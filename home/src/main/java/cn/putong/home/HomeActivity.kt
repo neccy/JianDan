@@ -1,4 +1,4 @@
-package cn.xinyi.home
+package cn.putong.home
 
 import android.os.Bundle
 import cn.putong.commonlibrary.base.BaseActivity

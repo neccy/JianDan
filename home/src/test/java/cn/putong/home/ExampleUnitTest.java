@@ -1,4 +1,4 @@
-package cn.xinyi.home;
+package cn.putong.home;
 
 import org.junit.Test;
 
