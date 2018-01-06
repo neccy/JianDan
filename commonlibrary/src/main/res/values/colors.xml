@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Application-->
+    <color name="colorPrimary">#1E8AE8</color>
+    <color name="colorPrimaryDark">#0E426F</color>
+    <color name="colorAccent">#1E8AE8</color>
+
+    <color name="app_color_blue">#1E8AE8</color>
+    <color name="app_color_blue_disabled">#0E426F</color>
+    <color name="app_color_blue_pressed">#1E8AE8</color>
+
+    <!--App Config-->
+    <color name="app_config_color_white">#ffffff</color>
+    <color name="app_content_bg_color">#F4F5F7</color>
+    <color name="app_config_color_login_other">#A0A8AD</color>
+</resources>

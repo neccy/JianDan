@@ -1,0 +1,46 @@
+package cn.putong.commonlibrary.base
+
+import android.os.Bundle
+import cn.putong.commonlibrary.R
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import me.yokeyword.fragmentation.SupportActivity
+import me.yokeyword.fragmentation.anim.FragmentAnimator
+
+/**
+ * BaseActivity
+ * Created by xinyi on 2018/1/6.
+ */
+open class BaseActivity : SupportActivity(), IBaseImpl {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 沉浸式状态栏
+        QMUIStatusBarHelper.translucent(this)
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        initView()
+        initData()
+        initListener()
+        loadData()
+    }
+
+    override fun initView() {}
+
+    override fun initData() {}
+
+    override fun initListener() {}
+
+    override fun loadData() {}
+
+    /**
+     * 初始化Fragment转场动画
+     */
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
+                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
+    }
+
+}
