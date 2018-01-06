@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页分类-->
+    <string-array name="home_class_item">
+        <item>新鲜事</item>
+        <item>无聊图</item>
+        <item>段子</item>
+    </string-array>
+
+</resources>

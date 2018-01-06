@@ -2,7 +2,6 @@ package cn.putong.commonlibrary.base
 
 import android.os.Bundle
 import cn.putong.commonlibrary.R
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
@@ -11,13 +10,6 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator
  * Created by xinyi on 2018/1/6.
  */
 open class BaseActivity : SupportActivity(), IBaseImpl {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // 沉浸式状态栏
-        QMUIStatusBarHelper.translucent(this)
-    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

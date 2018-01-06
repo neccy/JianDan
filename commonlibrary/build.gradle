@@ -25,16 +25,16 @@ dependencies {
 
     // Support
     implementation 'com.android.support:appcompat-v7:'+SUPPORT_VERSION
+    implementation 'com.android.support:design:' + SUPPORT_VERSION
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // UI
-    compile 'com.qmuiteam:qmui:1.0.6'
     compile 'me.yokeyword:fragmentation:1.2.3'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
 
     // NetWork
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     // Other
     compile 'com.orhanobut:logger:2.1.1'

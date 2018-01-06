@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="add" format="reference" />
+    <attr name="back" format="reference"/>
+    <attr name="more_horiz" format="reference" />
+</resources>

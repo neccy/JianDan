@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--TopBar-->
-    <dimen name="qmui_topbar_height">48dp</dimen>
-    <dimen name="qmui_topbar_title_size">17sp</dimen>
-    <dimen name="qmui_topbar_title_with_subtitle_size">16sp</dimen>
-    <dimen name="qmui_topbar_subtitle_size">11sp</dimen>
-    <dimen name="qmui_topbar_image_btn_width">48dp</dimen>
-    <dimen name="qmui_topbar_image_btn_height">48dp</dimen>
-    <dimen name="qmui_topbar_text_btn_padding_horizontal">12dp</dimen>
-    <dimen name="qmui_topbar_text_btn_text_size">16dp</dimen>
+
+    <!--TabLayout-->
+    <dimen name="tablayout_text_size">14sp</dimen>
 </resources>
