@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cn.putong.commonlibrary.R
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -45,14 +44,18 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
 
     /**
      * 设置ToolBar
-     * @param mTitle 标题
-     * @param mIsBack 是否设置返回按钮,默认为false
+     * @param mTitle 标题内容
+     * @param mIsBack 显示返回按钮并设置默认事件,默认为false
      */
     fun Toolbar.setToolbar(mTitle: String, mIsBack: Boolean = false) {
+        //父界面
+        val mActivity = (activity as BaseActivity)
+
         title = mTitle
-        (activity as BaseActivity).setSupportActionBar(this)
+        mActivity.setSupportActionBar(this)
+        setHasOptionsMenu(true)
         if (mIsBack) {
-            setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp)
+            mActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener { pop() }
         }
     }
