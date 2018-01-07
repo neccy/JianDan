@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object NetWoks {
 
-    private val APIURL = "i.jandan.net"
+    private val APIURL = "https://i.jandan.net"
 
     fun <T> configRetrofit(mService: Class<T>): T {
         val retrofit = Retrofit.Builder().baseUrl(APIURL).
