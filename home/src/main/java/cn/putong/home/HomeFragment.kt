@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BaseFragment() {
 
-    private lateinit var mFragmentAdapter: DataListFragmentAdapter
-    private lateinit var mFragmentList: ArrayList<DataListFragment>
+    private lateinit var mFragmentsAdapter: DataListFragmentAdapter
+    private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mClassItems: Array<String>
 
     companion object {
@@ -43,12 +43,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initFragmentList() {
-        mFragmentList = ArrayList()
-        mFragmentList.add(DataListFragment(CLASS_NEWTHINGS))
-        mFragmentList.add(DataListFragment(CLASS_BORINGPICTURES))
-        mFragmentList.add(DataListFragment(CLASS_DUANZI))
-        mFragmentAdapter = DataListFragmentAdapter(
-                childFragmentManager, mFragmentList, mClassItems)
+        mFragments = ArrayList()
+        mFragments.add(DataListFragment(CLASS_NEWTHINGS))
+        mFragments.add(DataListFragment(CLASS_BORINGPICTURES))
+        mFragments.add(DataListFragment(CLASS_DUANZI))
+        mFragmentsAdapter = DataListFragmentAdapter(
+                childFragmentManager, mFragments, mClassItems)
     }
 
     override fun initView() {
@@ -67,8 +67,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initViewPager() {
-        viewpager.adapter = mFragmentAdapter
-        viewpager.offscreenPageLimit = mFragmentList.size - 1
+        viewpager.adapter = mFragmentsAdapter
+        viewpager.offscreenPageLimit = mFragments.size - 1
         tablayout.setupWithViewPager(viewpager)
     }
 

@@ -35,7 +35,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Support
-    implementation 'com.android.support:appcompat-v7:'+SUPPORT_VERSION
+    implementation 'com.android.support:appcompat-v7:' + SUPPORT_VERSION
     implementation 'com.android.support:design:' + SUPPORT_VERSION
 
     //ARouter

@@ -10,13 +10,13 @@ import cn.putong.home.DataListFragment
  */
 class DataListFragmentAdapter(
         mFragmentManager: FragmentManager,
-        private val mFragmentList: List<DataListFragment>,
+        private val mFragments: List<DataListFragment>,
         private val mTitles: Array<String>) :
         FragmentPagerAdapter(mFragmentManager) {
 
-    override fun getItem(position: Int) = mFragmentList[position]
+    override fun getItem(position: Int) = mFragments[position]
 
-    override fun getCount() = mFragmentList.size
+    override fun getCount() = mFragments.size
 
     override fun getPageTitle(position: Int) = mTitles[position]
 }
