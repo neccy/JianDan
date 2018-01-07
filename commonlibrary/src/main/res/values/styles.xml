@@ -9,6 +9,8 @@
         <item name="add">@mipmap/ic_add_white_24dp</item>
         <item name="more_horiz">@mipmap/ic_more_horiz_white_24dp</item>
         <item name="back">@mipmap/ic_arrow_back_white_24dp</item>
+
+        <item name="tab_tv_color">@color/tablayout_text_color</item>
     </style>
 
     <!--TabLayout-->

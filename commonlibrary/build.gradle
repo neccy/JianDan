@@ -30,7 +30,7 @@ dependencies {
 
     // UI
     compile 'me.yokeyword:fragmentation:1.2.3'
-    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'me.zhanghai.android.materialprogressbar:library:1.4.2'
 
     // NetWork
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

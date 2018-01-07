@@ -28,8 +28,8 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
         initData()
+        initView()
         initListener()
         loadData()
     }
@@ -48,7 +48,7 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
      * @param mIsBack 显示返回按钮并设置默认事件,默认为false
      */
     fun Toolbar.setToolbar(mTitle: String, mIsBack: Boolean = false) {
-        //父界面
+        //父界面,用于获取SupportActionBar
         val mActivity = (activity as BaseActivity)
 
         title = mTitle

@@ -2,7 +2,10 @@ package cn.putong.home
 
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuInflater
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.home.adapter.DataListFragmentAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -11,15 +14,48 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BaseFragment() {
 
+    private lateinit var mFragmentAdapter: DataListFragmentAdapter
+    private lateinit var mFragmentList: ArrayList<DataListFragment>
+    private lateinit var mClassItems: Array<String>
+
+    companion object {
+        // 新鲜事
+        val CLASS_NEWTHINGS = 1
+        // 无聊图
+        val CLASS_BORINGPICTURES = 2
+        // 段子
+        val CLASS_DUANZI = 3
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_home)
+    }
+
+    override fun initData() {
+        super.initData()
+        initClassItems()
+        initFragmentList()
+    }
+
+    private fun initClassItems() {
+        mClassItems = resources.getStringArray(R.array.home_class_item)
+    }
+
+    private fun initFragmentList() {
+        mFragmentList = ArrayList()
+        mFragmentList.add(DataListFragment(CLASS_NEWTHINGS))
+        mFragmentList.add(DataListFragment(CLASS_BORINGPICTURES))
+        mFragmentList.add(DataListFragment(CLASS_DUANZI))
+        mFragmentAdapter = DataListFragmentAdapter(
+                childFragmentManager, mFragmentList, mClassItems)
     }
 
     override fun initView() {
         super.initView()
         initToolBar()
         initTabLayout()
+        initViewPager()
     }
 
     private fun initToolBar() {
@@ -27,10 +63,17 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initTabLayout() {
-
+        mClassItems.forEach { tablayout.addTab(tablayout.newTab().setText(it)) }
     }
 
-    override fun initData() {
-        super.initData()
+    private fun initViewPager() {
+        viewpager.adapter = mFragmentAdapter
+        viewpager.offscreenPageLimit = mFragmentList.size - 1
+        tablayout.setupWithViewPager(viewpager)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_home, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

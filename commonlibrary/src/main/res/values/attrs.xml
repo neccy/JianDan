@@ -3,4 +3,6 @@
     <attr name="add" format="reference" />
     <attr name="back" format="reference"/>
     <attr name="more_horiz" format="reference" />
+
+    <attr name="tab_tv_color" format="color"/>
 </resources>
