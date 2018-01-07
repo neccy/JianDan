@@ -76,4 +76,5 @@ class HomeFragment : BaseFragment() {
         inflater?.inflate(R.menu.menu_home, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
 }

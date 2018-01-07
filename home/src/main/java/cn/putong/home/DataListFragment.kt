@@ -6,7 +6,7 @@ import cn.putong.commonlibrary.base.BaseFragment
 
 @SuppressLint("ValidFragment")
 /**
- * 具体的数据界面
+ * 首页数据列表界面
  * Created by lala on 2018/1/7.
  */
 class DataListFragment(val mClass: Int) : BaseFragment() {
@@ -15,4 +15,6 @@ class DataListFragment(val mClass: Int) : BaseFragment() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_datalist)
     }
+
+
 }
