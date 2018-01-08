@@ -19,4 +19,5 @@ class DataListFragmentAdapter(
     override fun getCount() = mFragments.size
 
     override fun getPageTitle(position: Int) = mTitles[position]
+
 }

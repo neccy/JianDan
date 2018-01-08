@@ -15,7 +15,10 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
 
     private fun initThreadLibs() {
         initArouter()
+        initSmartRefreshLsyout()
     }
 
     override fun initArouter() {}
+
+    override fun initSmartRefreshLsyout() {}
 }

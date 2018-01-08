@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/newthings_item_background"
+    android:background="?attr/selectableItemBackground"
     android:padding="@dimen/item_default_padding">
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_height="@dimen/newthings_img_height"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/item_default_padding"
-        android:background="@color/newthings_item_img_default_bg" />
+        android:scaleType="matrix" />
 
     <TextView
         android:id="@+id/author"

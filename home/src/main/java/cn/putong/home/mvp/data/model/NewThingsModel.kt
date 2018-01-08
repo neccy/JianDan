@@ -10,9 +10,9 @@ class NewThingsModel {
     var count: Int = 0
     var count_total: Int = 0
     var pages: Int = 0
-    var posts: List<Posts> = listOf()
+    var posts: List<Post> = listOf()
 
-    class Posts {
+    class Post {
         val id: Int = 0
         val url: String = ""
         val title: String = ""

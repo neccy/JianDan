@@ -10,20 +10,28 @@ import cn.putong.home.adapter.NewThingsAdapter
 import cn.putong.home.mvp.data.model.NewThingsModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
 @SuppressLint("ValidFragment")
+
 /**
  * 首页数据列表界面
  * Created by lala on 2018/1/7.
  */
-class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
+class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
+        OnRefreshListener,
+        OnLoadmoreListener {
 
     // 当前页数
     private var mCurrentPage = 1
 
-    private lateinit var mNewThingsModel: NewThingsModel
-    private lateinit var mNewTingsAdapter: NewThingsAdapter
+    //新鲜事数据
+    private lateinit var mNewThingsData: ArrayList<NewThingsModel.Post>
+    private lateinit var mNewThingsAdapter: NewThingsAdapter
+
     private lateinit var mDataPrensent: DataPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,54 +42,69 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     override fun initData() {
         super.initData()
         mDataPrensent = DataPresenter(this)
-        initModel()
         initAdapter()
     }
 
-    private fun initModel() {
-        mNewThingsModel = NewThingsModel()
-    }
-
     private fun initAdapter() {
-        mNewTingsAdapter = NewThingsAdapter()
+        mNewThingsAdapter = NewThingsAdapter()
     }
 
     override fun initView() {
         super.initView()
+        initRefreshLayout()
         initListView()
+    }
+
+    private fun initRefreshLayout() {
+        refresah.setOnRefreshListener(this)
+        refresah.setOnLoadmoreListener(this)
     }
 
     private fun initListView() {
         listview.setDefaultDivider(context)
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
-                listview.adapter = mNewTingsAdapter
+                listview.adapter = mNewThingsAdapter
         }
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        getDatas()
+        getData()
     }
 
     override fun showLoading() {
-        progressbar.visibility = View.VISIBLE
+        if (!refresah.isRefreshing && !refresah.isLoading)
+            progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
         progressbar.visibility = View.GONE
+
+        // 正在刷新
+        if (refresah.isRefreshing)
+            refresah.finishRefresh()
+
+        // 正在加载
+        if (refresah.isLoading)
+            refresah.finishLoadmore()
     }
 
     override fun successful(model: Any) {
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS -> {
-                mNewThingsModel = model as NewThingsModel
-                mNewTingsAdapter.updateList(mNewThingsModel.posts)
+                // 新鲜事
+                val mNewThingsModel = model as NewThingsModel
+                mNewThingsData.addAll(mNewThingsModel.posts)
+                mNewThingsAdapter.updateList(mNewThingsData)
             }
 
             HomeFragment.CLASS_BORINGPICTURES -> {
+                // 无聊图
             }
+
             HomeFragment.CLASS_DUANZI -> {
+                // 段子
             }
         }
     }
@@ -93,13 +116,39 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     override fun getCurrentPage() = mCurrentPage
 
     /**
-     * 根据类型获取数据
+     * 刷新数据
      */
-    private fun getDatas() {
+    override fun onRefresh(refreshlayout: RefreshLayout?) {
+        getData()
+    }
+
+    /**
+     * 加载更多数据
+     */
+    override fun onLoadmore(refreshlayout: RefreshLayout?) {
+        getData(true)
+    }
+
+    /**
+     * 根据类型获取数据
+     * @param isLoadMore 是否加载更多
+     */
+    private fun getData(isLoadMore: Boolean = false) {
+
+        if (!isLoadMore) {
+            //下拉加载,初始化页数和集合,防止数据重复
+            mCurrentPage = 1
+            mNewThingsData = ArrayList()
+        } else {
+            //上拉加载更多,页数加1
+            mCurrentPage += 1
+        }
+
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
                 // 新鲜事
                 mDataPrensent.getNewThings()
         }
     }
+
 }

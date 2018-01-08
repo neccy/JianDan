@@ -10,4 +10,9 @@ interface IBaseThreadLibsImpl {
      * 初始化路由
      */
     fun initArouter()
+
+    /**
+     * 初始化SmartRefreshLsyout
+     */
+    fun initSmartRefreshLsyout()
 }
