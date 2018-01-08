@@ -2,20 +2,26 @@
 
     <!--Application  Theme-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--AppConfig-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <!--自定义icon属性-->
         <item name="add">@mipmap/ic_add_white_24dp</item>
         <item name="more_horiz">@mipmap/ic_more_horiz_white_24dp</item>
         <item name="back">@mipmap/ic_arrow_back_white_24dp</item>
 
+        <!--自定义color属性-->
         <item name="tab_tv_color">@color/tablayout_text_color</item>
+
+        <!--自定义dimen属性-->
+        <item name="tv_size">@dimen/textview_text_size</item>
+        <item name="tv_size_12sp">@dimen/textview_text_size_12sp</item>
     </style>
 
     <!--TabLayout-->
-    <style name="TabLayoutTextAppearance"
-        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">@dimen/tablayout_text_size</item>
     </style>
 </resources>

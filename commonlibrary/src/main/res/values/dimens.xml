@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--TabLayout-->
     <dimen name="tablayout_text_size">14sp</dimen>
+
+    <!--TextView-->
+    <dimen name="textview_text_size">16sp</dimen>
+    <dimen name="textview_text_size_12sp">12sp</dimen>
 </resources>

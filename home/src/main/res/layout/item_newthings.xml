@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/newthings_item_background"
+    android:padding="@dimen/item_default_padding">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/img"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="?attr/tv_size"
+        tools:text="这是一条测试内容，看看效果怎么样，不知道该写什么了，不知道该写什么了不知道该写什么了" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="@dimen/newthings_img_width"
+        android:layout_height="@dimen/newthings_img_height"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/item_default_padding"
+        android:background="@color/newthings_item_img_default_bg" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img"
+        android:layout_marginEnd="@dimen/item_default_padding"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="阿三" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img"
+        android:layout_toEndOf="@+id/author"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="1小时前" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img"
+        android:layout_toStartOf="@+id/img"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="13条评论" />
+</RelativeLayout>

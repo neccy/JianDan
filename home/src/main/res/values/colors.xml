@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--新鲜事Item背景色-->
+    <color name="newthings_item_background">#FAFAFA</color>
+
+    <!--新鲜事Item图片默认背景色-->
+    <color name="newthings_item_img_default_bg">#E6E6E6</color>
+</resources>

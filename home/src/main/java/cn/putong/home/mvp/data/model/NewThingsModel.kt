@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.model
+package cn.putong.home.mvp.data.model
 
 /**
  * 新鲜事模型

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="add" format="reference" />
-    <attr name="back" format="reference"/>
+    <attr name="back" format="reference" />
     <attr name="more_horiz" format="reference" />
 
-    <attr name="tab_tv_color" format="color"/>
+    <!--TabLayout 默认字体颜色-->
+    <attr name="tab_tv_color" format="color" />
+
+    <!--TextView 字体大小-->
+    <attr name="tv_size" format="dimension" />
+    <attr name="tv_size_12sp" format="dimension" />
 </resources>

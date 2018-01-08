@@ -4,4 +4,6 @@
     <string name="home_menu_action_collection">我的收藏</string>
     <string name="home_menu_action_setting">设置</string>
     <string name="home_menu_action_submission">投稿</string>
+
+    <string name="newthings_comment_count_text">条评论</string>
 </resources>
