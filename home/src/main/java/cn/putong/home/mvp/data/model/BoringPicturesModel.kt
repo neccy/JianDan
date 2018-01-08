@@ -14,18 +14,18 @@ class BoringPicturesModel {
     var comments: List<Comment> = listOf()
 
     class Comment {
-        private var comment_ID: String = ""
-        private var comment_post_ID: String = ""
-        private var comment_author: String = ""
-        private var comment_date: String = ""
-        private var comment_date_gmt: String = ""
-        private var comment_content: String = ""
-        private var user_id: String = ""
-        private var vote_positive: String = ""
-        private var vote_negative: String = ""
-        private var sub_comment_count: String = ""
-        private var text_content: String = ""
-        private var pics: List<String>? = listOf()
+        var comment_ID: String = ""
+        var comment_post_ID: String = ""
+        var comment_author: String = ""
+        var comment_date: String = ""
+        var comment_date_gmt: String = ""
+        var comment_content: String = ""
+        var user_id: String = ""
+        var vote_positive: String = ""
+        var vote_negative: String = ""
+        var sub_comment_count: String = ""
+        var text_content: String = ""
+        var pics: List<String> = listOf()
     }
 
 }

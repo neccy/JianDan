@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.BoringPicturesAdapter
@@ -63,6 +64,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     }
 
     private fun initRefreshLayout() {
+        materialheader.setColor()
         refresah.setOnRefreshListener(this)
         refresah.setOnLoadmoreListener(this)
     }
@@ -72,6 +74,9 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
                 listview.adapter = mNewThingsAdapter
+
+            HomeFragment.CLASS_BORINGPICTURES ->
+                listview.adapter = mBoringPicturesAdapter
         }
     }
 

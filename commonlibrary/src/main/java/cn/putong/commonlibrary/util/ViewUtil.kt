@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import cn.putong.commonlibrary.R
+import com.scwang.smartrefresh.header.MaterialHeader
 
 /**
  * 控件工具类
@@ -22,6 +23,6 @@ fun RecyclerView.setDefaultDivider(context: Context) {
 /**
  * 设置SwipeRefreshLayout颜色
  */
-fun SwipeRefreshLayout.setColor(resid: Int = R.color.colorAccent) {
-    setColorSchemeResources(resid)
+fun MaterialHeader.setColor(resid: Int = R.color.colorAccent) {
+    setColorSchemeColors(resources.getColor(resid))
 }
