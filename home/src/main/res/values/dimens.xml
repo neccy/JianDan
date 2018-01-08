@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--默认列表item Padding-->
-    <dimen name="item_default_padding">16dp</dimen>
-
+    <!--新鲜事item Padding-->
+    <dimen name="newthings_item_main_padding">16dp</dimen>
+    <dimen name="newthings_item_margin">@dimen/newthings_item_main_padding</dimen>
     <!--新鲜事item 长宽-->
-    <dimen name="newthings_img_width">95dp</dimen>
-    <dimen name="newthings_img_height">70dp</dimen>
+    <dimen name="newthings_item_img_width">95dp</dimen>
+    <dimen name="newthings_item_img_height">70dp</dimen>
 </resources>

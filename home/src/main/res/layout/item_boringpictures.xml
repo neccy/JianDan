@@ -12,16 +12,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/item_default_padding"
-            android:paddingTop="@dimen/item_default_padding">
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="@dimen/item_default_padding"
-                android:layout_marginRight="@dimen/item_default_padding"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -33,17 +33,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/author"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="@dimen/item_default_padding"
-                android:layout_marginRight="@dimen/item_default_padding"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:textSize="?attr/tv_size_12sp"
                 tools:text="5小时前" />
-
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time" />
-
 
         </RelativeLayout>
 

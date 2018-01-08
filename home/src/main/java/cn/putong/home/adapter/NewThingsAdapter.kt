@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.NewThingsModel
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_newthings.view.*
 
 /**
@@ -25,10 +24,7 @@ class NewThingsAdapter(
             author.text = mPost.author.nickname
             time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
             comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.newthings_comment_count_text)
-
-            Glide.with(context).
-                    load(mPost.custom_fields.thumb_c[0]).
-                    into(img)
+            img.setImageURI(mPost.custom_fields.thumb_c[0])
         }
     }
 

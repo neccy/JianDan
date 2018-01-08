@@ -70,13 +70,17 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     }
 
     private fun initListView() {
-        listview.setDefaultDivider(context)
-        when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS ->
-                listview.adapter = mNewThingsAdapter
+        if (mClass == HomeFragment.CLASS_NEWTHINGS)
+            listview.setDefaultDivider(context)
 
-            HomeFragment.CLASS_BORINGPICTURES ->
-                listview.adapter = mBoringPicturesAdapter
+        listview.adapter = when (mClass) {
+            HomeFragment.CLASS_NEWTHINGS ->
+                // 新鲜事
+                mNewThingsAdapter
+
+            else ->
+                // 无聊图
+                mBoringPicturesAdapter
         }
     }
 
