@@ -1,5 +1,6 @@
 package cn.putong.home.api
 
+import cn.putong.home.mvp.data.model.BoringPicturesModel
 import cn.putong.home.mvp.data.model.NewThingsModel
 import retrofit2.Call
 import retrofit2.http.GET
@@ -16,5 +17,11 @@ interface ApiService {
      */
     @GET("/?oxwlxojflwblxbsapi=get_recent_posts&include=url,date,tags,author,title,excerpt,comment_count,comment_status,custom_fields&page=?&custom_fields=thumb_c,views&dev=1")
     fun getNewThings(@Query("page") page: Int): Call<NewThingsModel>
+
+    /**
+     * 根据页数获取无聊图列表
+     */
+    @GET("/?oxwlxojflwblxbsapi=jandan.get_pic_comments&page=?")
+    fun getBoringPictures(@Query("page") page: Int): Call<BoringPicturesModel>
 
 }

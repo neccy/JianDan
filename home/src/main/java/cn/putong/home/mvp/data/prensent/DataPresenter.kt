@@ -30,4 +30,22 @@ class DataPresenter(IDataView: IDataView) {
             }
         })
     }
+
+    /**
+     * 获取无聊图数据列表
+     */
+    fun getBoringPictures() {
+        dataView.showLoading()
+        dataBiz.getBoringPictures(dataView.getCurrentPage(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+                dataView.successful(model)
+                dataView.hideLoading()
+            }
+
+            override fun faild(msg: String) {
+                dataView.error(msg)
+                dataView.hideLoading()
+            }
+        })
+    }
 }
