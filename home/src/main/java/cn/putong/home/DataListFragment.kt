@@ -134,7 +134,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
      * @param isLoadMore 是否加载更多
      */
     private fun getData(isLoadMore: Boolean = false) {
-
         if (!isLoadMore) {
             //下拉加载,初始化页数和集合,防止数据重复
             mCurrentPage = 1
