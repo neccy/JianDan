@@ -8,7 +8,7 @@ import cn.putong.home.mvp.data.view.IDataView
  * 首页数据Present
  * Created by xinyi on 2018/1/8.
  */
-class DataPresenter(val IDataView: IDataView) {
+class DataPresenter(IDataView: IDataView) {
 
     private val dataView = IDataView
     private val dataBiz = DataBiz()

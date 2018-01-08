@@ -1,5 +1,6 @@
 package cn.putong.home.adapter
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,7 @@ class NewThingsAdapter(
             title.text = mPost.title
             author.text = mPost.author.nickname
             time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
-            comments.text = "${mPost.comment_count}" +
+            comments.text = mPost.comment_count.toString() +
                     context.resources.getString(R.string.newthings_comment_count_text)
         }
     }
