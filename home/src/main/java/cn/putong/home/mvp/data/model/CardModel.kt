@@ -4,7 +4,7 @@ package cn.putong.home.mvp.data.model
  * 无聊图Model
  * Created by lala on 2018/1/8.
  */
-class BoringPicturesModel {
+class CardModel {
 
     var status: String = ""
     var current_page: Int = 0

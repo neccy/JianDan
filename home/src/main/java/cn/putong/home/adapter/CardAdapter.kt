@@ -9,24 +9,24 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.FrescoUtil
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
-import cn.putong.home.mvp.data.model.BoringPicturesModel
-import kotlinx.android.synthetic.main.view_boringpic_content.view.*
+import cn.putong.home.mvp.data.model.CardModel
+import kotlinx.android.synthetic.main.view_card_item_content.view.*
 
 /**
  * 无聊图列表适配器
  * Created by lala on 2018/1/8.
  */
-class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment> = ArrayList())
+class CardAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
     : BaseRecyclerAdapter() {
 
-    private var FOOTER: BoringPicturesModel.Comment = BoringPicturesModel.Comment()
+    private var FOOTER: CardModel.Comment = CardModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         val attachToRoot = false
         return when (viewType) {
             TYPE_NORMAL ->
-                BoringPicturesViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_boringpic, parent, attachToRoot))
+                CardViewHolder(LayoutInflater.from(parent?.context).
+                        inflate(R.layout.item_card, parent, attachToRoot))
             else ->
                 NewThingsAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
                         inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
@@ -34,7 +34,7 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        if (holder is BoringPicturesViewHolder)
+        if (holder is CardViewHolder)
             with(holder.itemView!!) {
                 val mComment = mList[position]
 
@@ -43,8 +43,14 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
                 content.text = mComment.text_content.trim()
                 content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
 
-                // 目前仅支持单图显示
-                FrescoUtil.setAnimatorController(Uri.parse(mComment.pics[0]), img)
+                // 是段子数据
+                if (mComment.pics.isEmpty()) {
+                    img.visibility = View.GONE
+                } else {
+                    // 目前仅支持单图显示
+                    FrescoUtil.setAnimatorController(Uri.parse(mComment.pics[0]), img)
+                    img.visibility = View.VISIBLE
+                }
 
                 positive_count.text = context.resources.getString(R.string.boringpic_content_positive_symbol) + mComment.vote_positive
                 negative_count.text = context.resources.getString(R.string.boringpic_content_negative_symbol) + mComment.vote_positive
@@ -61,7 +67,7 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
             TYPE_NORMAL
     }
 
-    fun updateList(mList: ArrayList<BoringPicturesModel.Comment>) {
+    fun updateList(mList: ArrayList<CardModel.Comment>) {
         this.mList = mList
         notifyDataSetChanged()
     }
@@ -76,7 +82,7 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
         notifyItemRemoved(mList.size)
     }
 
-    class BoringPicturesViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 

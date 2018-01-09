@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/boringpic_item_main_vertical_margin"
-    android:layout_marginLeft="@dimen/boringpic_item_main_horizontal_margin"
-    android:layout_marginRight="@dimen/boringpic_item_main_horizontal_margin"
-    android:layout_marginTop="@dimen/boringpic_item_main_vertical_margin"
+    android:layout_marginBottom="@dimen/card_item_main_vertical_margin"
+    android:layout_marginLeft="@dimen/card_item_main_horizontal_margin"
+    android:layout_marginRight="@dimen/card_item_main_horizontal_margin"
+    android:layout_marginTop="@dimen/card_item_main_vertical_margin"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/card_recycler_corner_radius"
     app:cardElevation="@dimen/card_recycler_elevation">
 
-    <include layout="@layout/view_boringpic_content" />
+    <include layout="@layout/view_card_item_content" />
 </android.support.v7.widget.CardView>

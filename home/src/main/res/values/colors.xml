@@ -7,6 +7,6 @@
     <!--新鲜事Item图片默认背景色-->
     <color name="newthings_item_img_placeholder">#E6E6E6</color>
 
-    <!--无聊图Content图片默认背景色-->
-    <color name="boringpic_content_img_placeholder">@color/newthings_item_img_placeholder</color>
+    <!--卡片Content图片默认背景色-->
+    <color name="card_item_content_img_placeholder">@color/newthings_item_img_placeholder</color>
 </resources>

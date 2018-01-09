@@ -10,9 +10,9 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.adapter.BoringPicAdapter
+import cn.putong.home.adapter.CardAdapter
 import cn.putong.home.adapter.NewThingsAdapter
-import cn.putong.home.mvp.data.model.BoringPicturesModel
+import cn.putong.home.mvp.data.model.CardModel
 import cn.putong.home.mvp.data.model.NewThingsModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
@@ -32,9 +32,9 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private lateinit var mNewThingsData: ArrayList<NewThingsModel.Post>
     private lateinit var mNewThingsAdapter: NewThingsAdapter
 
-    // 无聊图数据
-    private lateinit var mBoringPictureData: ArrayList<BoringPicturesModel.Comment>
-    private lateinit var mBoringPicturesAdapter: BoringPicAdapter
+    // 卡片类型数据(无聊图,新鲜事)
+    private lateinit var mCardDatas: ArrayList<CardModel.Comment>
+    private lateinit var mCardAdapter: CardAdapter
 
     private lateinit var mDataPrensent: DataPresenter
 
@@ -51,7 +51,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initAdapter() {
         mNewThingsAdapter = NewThingsAdapter()
-        mBoringPicturesAdapter = BoringPicAdapter()
+        mCardAdapter = CardAdapter()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -109,19 +109,14 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun successful(model: Any) {
-        when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS -> {
-                val mNewThingsModel = model as NewThingsModel
-                mNewThingsData.addAll(mNewThingsModel.posts)
-                mNewThingsAdapter.updateList(mNewThingsData)
-            }
-            HomeFragment.CLASS_BORINGPICTURES -> {
-                val mBoringPicturesModel = model as BoringPicturesModel
-                mBoringPictureData.addAll(mBoringPicturesModel.comments)
-                mBoringPicturesAdapter.updateList(mBoringPictureData)
-            }
-            HomeFragment.CLASS_DUANZI -> {
-            }
+        if (mClass == HomeFragment.CLASS_NEWTHINGS) {
+            val mNewThingsModel = model as NewThingsModel
+            mNewThingsData.addAll(mNewThingsModel.posts)
+            mNewThingsAdapter.updateList(mNewThingsData)
+        } else {
+            val mBoringPicturesModel = model as CardModel
+            mCardDatas.addAll(mBoringPicturesModel.comments)
+            mCardAdapter.updateList(mCardDatas)
         }
     }
 
@@ -139,7 +134,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             HomeFragment.CLASS_NEWTHINGS ->
                 mNewThingsAdapter
             else ->
-                mBoringPicturesAdapter
+                mCardAdapter
         }
     }
 
@@ -151,7 +146,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         if (!mLoading) {
             mCurrentPage = 1
             mNewThingsData = ArrayList()
-            mBoringPictureData = ArrayList()
+            mCardDatas = ArrayList()
         } else {
             mCurrentPage += 1
         }
@@ -164,6 +159,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
                 mDataPrensent.getNewThings()
             HomeFragment.CLASS_BORINGPICTURES ->
                 mDataPrensent.getBoringPictures()
+            HomeFragment.CLASS_DUANZI ->
+                mDataPrensent.getDuanZis()
         }
     }
 

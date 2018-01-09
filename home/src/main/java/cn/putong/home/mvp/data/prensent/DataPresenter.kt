@@ -48,4 +48,22 @@ class DataPresenter(IDataView: IDataView) {
             }
         })
     }
+
+    /**
+     * 获取段子数据列表
+     */
+    fun getDuanZis() {
+        dataView.showLoading()
+        dataBiz.getDuanZis(dataView.getCurrentPage(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+                dataView.hideLoading()
+                dataView.successful(model)
+            }
+
+            override fun faild(msg: String) {
+                dataView.error(msg)
+                dataView.hideLoading()
+            }
+        })
+    }
 }

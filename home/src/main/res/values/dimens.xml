@@ -6,37 +6,37 @@
     <dimen name="newthings_item_img_width">95dp</dimen>
     <dimen name="newthings_item_img_height">70dp</dimen>
 
-    <!--无聊图-->
-    <dimen name="boringpic_item_main_horizontal_margin">8dp</dimen>
-    <dimen name="boringpic_item_main_vertical_margin">6dp</dimen>
+    <!--卡片-->
+    <dimen name="card_item_main_horizontal_margin">8dp</dimen>
+    <dimen name="card_item_main_vertical_margin">6dp</dimen>
 
-    <dimen name="boringpic_content_main_horizontal_margin">16dp</dimen>
-    <dimen name="boringpic_content_main_vertical_margin">8dp</dimen>
+    <dimen name="card_item_content_main_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_main_vertical_margin">8dp</dimen>
 
-    <dimen name="boringpic_content_author_horizontal_margin">16dp</dimen>
-    <dimen name="boringpic_content_author_vertical_margin">8dp</dimen>
+    <dimen name="card_item_content_author_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_author_vertical_margin">8dp</dimen>
 
-    <dimen name="boringpic_content_time_horizontal_margin">16dp</dimen>
-    <dimen name="boringpic_content_time_vertical_margin">16dp</dimen>
+    <dimen name="card_item_content_time_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_time_vertical_margin">16dp</dimen>
 
-    <dimen name="boringpic_content_content_horizontal_margin">16dp</dimen>
-    <dimen name="boringpic_content_content_vertical_margin">8dp</dimen>
+    <dimen name="card_item_content_content_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_content_vertical_margin">8dp</dimen>
 
-    <dimen name="boringpic_content_message_vertical_margin">8dp</dimen>
-    <dimen name="boringpic_content_message_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_message_vertical_margin">8dp</dimen>
+    <dimen name="card_item_content_message_horizontal_margin">16dp</dimen>
 
-    <dimen name="boringpic_content_img_height">300dp</dimen>
-    <dimen name="boringpic_content_img_vertical_margin">8dp</dimen>
+    <dimen name="card_item_content_img_height">300dp</dimen>
+    <dimen name="card_item_content_img_vertical_margin">8dp</dimen>
 
-    <dimen name="boringpic_content_positive_horizontal_margin_left">8dp</dimen>
-    <dimen name="boringpic_content_positive_horizontal_margin_right">16dp</dimen>
-    <dimen name="boringpic_content_positive_padding">8dp</dimen>
+    <dimen name="card_item_content_positive_horizontal_margin_left">8dp</dimen>
+    <dimen name="card_item_content_positive_horizontal_margin_right">16dp</dimen>
+    <dimen name="card_item_content_positive_padding">8dp</dimen>
 
-    <dimen name="boringpic_content_negative_horizontal_margin">16dp</dimen>
-    <dimen name="boringpic_content_negative_padding">8dp</dimen>
+    <dimen name="card_item_content_negative_horizontal_margin">16dp</dimen>
+    <dimen name="card_item_content_negative_padding">8dp</dimen>
 
-    <dimen name="boringpic_content_comment_padding">8dp</dimen>
+    <dimen name="card_item_content_comment_padding">8dp</dimen>
 
-    <dimen name="boringpic_content_more_horiz_margin">16dp</dimen>
+    <dimen name="card_item_content_more_horiz_margin">16dp</dimen>
 
 </resources>
