@@ -8,7 +8,7 @@
 
     <!--无聊图-->
     <dimen name="boringpic_item_main_horizontal_margin">8dp</dimen>
-    <dimen name="boringpic_item_main_vertical_margin">5dp</dimen>
+    <dimen name="boringpic_item_main_vertical_margin">6dp</dimen>
 
     <dimen name="boringpic_content_main_horizontal_margin">16dp</dimen>
     <dimen name="boringpic_content_main_vertical_margin">8dp</dimen>
@@ -34,6 +34,6 @@
 
     <dimen name="boringpic_content_content_padding">8dp</dimen>
 
-    <dimen name="boringpic_content_more_horiz_margin">8dp</dimen>
+    <dimen name="boringpic_content_more_horiz_margin">16dp</dimen>
 
 </resources>
