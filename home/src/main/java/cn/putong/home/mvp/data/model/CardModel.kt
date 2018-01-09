@@ -1,7 +1,7 @@
 package cn.putong.home.mvp.data.model
 
 /**
- * 无聊图Model
+ * 卡片类型视图Model
  * Created by lala on 2018/1/8.
  */
 class CardModel {

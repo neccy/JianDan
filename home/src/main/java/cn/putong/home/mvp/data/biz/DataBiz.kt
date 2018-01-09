@@ -4,7 +4,7 @@ import cn.putong.commonlibrary.base.IBaseApiResultListener
 import cn.putong.commonlibrary.network.NetWoks
 import cn.putong.home.api.ApiService
 import cn.putong.home.mvp.data.model.CardModel
-import cn.putong.home.mvp.data.model.NewThingsModel
+import cn.putong.home.mvp.data.model.NormalModel
 import retrofit2.Call
 import retrofit2.Callback;
 import retrofit2.Response
@@ -17,13 +17,13 @@ class DataBiz : IDataBiz {
 
     override fun getNewThings(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getNewThings(page).
-                clone().enqueue(object : Callback<NewThingsModel> {
+                clone().enqueue(object : Callback<NormalModel> {
 
-            override fun onResponse(call: Call<NewThingsModel>?, response: Response<NewThingsModel>?) {
+            override fun onResponse(call: Call<NormalModel>?, response: Response<NormalModel>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<NewThingsModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<NormalModel>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
 

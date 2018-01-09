@@ -19,7 +19,7 @@
             android:overScrollMode="never"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/item_newthings" />
+            tools:listitem="@layout/item_normal" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar

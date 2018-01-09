@@ -5,8 +5,8 @@
     <color name="newthings_listview_bg">#FAFAFA</color>
 
     <!--新鲜事Item图片默认背景色-->
-    <color name="newthings_item_img_placeholder">#E6E6E6</color>
+    <color name="normal_item_img_placeholder">#E6E6E6</color>
 
     <!--卡片Content图片默认背景色-->
-    <color name="card_item_content_img_placeholder">@color/newthings_item_img_placeholder</color>
+    <color name="card_item_content_img_placeholder">@color/normal_item_img_placeholder</color>
 </resources>

@@ -13,24 +13,22 @@ import cn.putong.home.mvp.data.model.CardModel
 import kotlinx.android.synthetic.main.view_card_item_content.view.*
 
 /**
- * 无聊图列表适配器
+ * Card类型适配器
  * Created by lala on 2018/1/8.
  */
-class CardAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
+class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
     : BaseRecyclerAdapter() {
 
     private var FOOTER: CardModel.Comment = CardModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         val attachToRoot = false
-        return when (viewType) {
-            TYPE_NORMAL ->
-                CardViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_card, parent, attachToRoot))
-            else ->
-                NewThingsAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
-        }
+        return if (viewType == TYPE_NORMAL)
+            CardViewHolder(LayoutInflater.from(parent?.context).
+                    inflate(R.layout.item_card, parent, attachToRoot))
+        else
+            NormalDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
+                    inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -43,8 +41,8 @@ class CardAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
                 content.text = mComment.text_content.trim()
                 content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
 
-                // 是段子数据
                 if (mComment.pics.isEmpty()) {
+                    // 是段子数据,隐藏图片显示
                     img.visibility = View.GONE
                 } else {
                     // 目前仅支持单图显示

@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
-import cn.putong.home.mvp.data.model.NewThingsModel
-import kotlinx.android.synthetic.main.item_newthings.view.*
+import cn.putong.home.mvp.data.model.NormalModel
+import kotlinx.android.synthetic.main.item_normal.view.*
 
 /**
- * 新鲜事适配器
+ * 普通类型item适配器
  * Created by xinyi on 2018/1/8.
  */
-class NewThingsAdapter(
-        private var mList: ArrayList<NewThingsModel.Post> = ArrayList()) :
+class NormalDataAdapter(
+        private var mList: ArrayList<NormalModel.Post> = ArrayList()) :
         BaseRecyclerAdapter() {
 
-    private var FOOTER: NewThingsModel.Post = NewThingsModel.Post()
+    private var FOOTER: NormalModel.Post = NormalModel.Post()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        if (holder is NewThingsViewHolder) {
+        if (holder is NormalViewHolder) {
             with(holder.itemView!!) {
                 val mPost = mList[position]
                 title.text = mPost.title
@@ -38,8 +38,8 @@ class NewThingsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_NORMAL ->
-                NewThingsViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_newthings, parent, false))
+                NormalViewHolder(LayoutInflater.from(parent?.context).
+                        inflate(R.layout.item_normal, parent, false))
 
             else ->
                 FooterViewHolder(LayoutInflater.from(parent?.context).
@@ -55,7 +55,7 @@ class NewThingsAdapter(
             TYPE_NORMAL
     }
 
-    fun updateList(mList: ArrayList<NewThingsModel.Post>) {
+    fun updateList(mList: ArrayList<NormalModel.Post>) {
         this.mList = mList
         notifyDataSetChanged()
     }
@@ -73,7 +73,7 @@ class NewThingsAdapter(
     }
 
     // 新鲜事ViewHolder
-    class NewThingsViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class NormalViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     // 底部ViewHolder
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
