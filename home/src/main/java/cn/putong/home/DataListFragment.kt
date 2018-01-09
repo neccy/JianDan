@@ -55,10 +55,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         mBoringPicturesAdapter = BoringPicturesAdapter()
     }
 
-    override fun initView() {
-        super.initView()
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
         initRefreshLayout()
         initListView()
+        getData()
     }
 
     private fun initRefreshLayout() {
@@ -67,29 +68,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initListView() {
+        listview.adapter = getAdapter()
         if (mClass == HomeFragment.CLASS_NEWTHINGS)
             listview.setDefaultDivider(context)
-
-        listview.adapter = when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS ->
-                // 新鲜事
-                mNewThingsAdapter
-
-            else ->
-                // 无聊图
-                mBoringPicturesAdapter
-        }
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        getData()
     }
 
     override fun initListener() {
         super.initListener()
-
-        // ListView滑动监听
         listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -111,7 +96,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun hideLoading() {
-        // 正在
+        // 正在首次刷新
         if (progressbar.visibility == View.VISIBLE)
             progressbar.visibility = View.GONE
 
@@ -120,17 +105,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             refresh.isRefreshing = false
 
         // 正在加载
-        if (mLongingMore) {
-            mLongingMore = false
-
-            when (mClass) {
-                HomeFragment.CLASS_NEWTHINGS ->
-                    mNewThingsAdapter.removeFooter()
-
-                HomeFragment.CLASS_BORINGPICTURES ->
-                    mBoringPicturesAdapter.removeFooter()
-            }
-        }
+        if (mLongingMore)
+            hideAdapterFooter()
     }
 
     override fun successful(model: Any) {
@@ -162,32 +138,55 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     override fun getCurrentPage() = mCurrentPage
 
     /**
-     * 根据类型获取数据
-     * @param isLoadMore 是否加载更多
+     * 隐藏适配器加载更多视图
      */
-    private fun getData(isLoadMore: Boolean = false) {
-        if (!isLoadMore) {
-            //下拉加载,初始化页数和集合,防止数据重复
+    private fun hideAdapterFooter() {
+        mLongingMore = false
+        when (mClass) {
+            HomeFragment.CLASS_NEWTHINGS ->
+                mNewThingsAdapter.removeFooter()
+
+            HomeFragment.CLASS_BORINGPICTURES ->
+                mBoringPicturesAdapter.removeFooter()
+        }
+    }
+
+    /**
+     * 根据类型获取对应适配器
+     */
+    private fun getAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        return when (mClass) {
+            HomeFragment.CLASS_NEWTHINGS ->
+                mNewThingsAdapter
+
+            else ->
+                mBoringPicturesAdapter
+        }
+    }
+
+    /**
+     * 根据类型获取数据
+     * @param mLongingMore 是否加载更多
+     */
+    private fun getData(mLongingMore: Boolean = false) {
+        if (!mLongingMore) {
             mCurrentPage = 1
             mNewThingsData = ArrayList()
             mBoringPictureData = ArrayList()
 
         } else {
-            //上拉加载更多,页数加1
             mCurrentPage += 1
         }
 
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS -> {
-                // 新鲜事
-                if (isLoadMore)
+                if (mLongingMore)
                     mNewThingsAdapter.addFooter()
                 mDataPrensent.getNewThings()
             }
 
             HomeFragment.CLASS_BORINGPICTURES -> {
-                // 无聊图
-                if (isLoadMore)
+                if (mLongingMore)
                     mBoringPicturesAdapter.addFooter()
                 mDataPrensent.getBoringPictures()
             }
