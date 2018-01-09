@@ -25,7 +25,7 @@
     <dimen name="card_item_content_message_vertical_margin">8dp</dimen>
     <dimen name="card_item_content_message_horizontal_margin">16dp</dimen>
 
-    <dimen name="card_item_content_img_height">300dp</dimen>
+    <dimen name="card_item_content_img_height">350dp</dimen>
     <dimen name="card_item_content_img_vertical_margin">8dp</dimen>
 
     <dimen name="card_item_content_positive_horizontal_margin_left">8dp</dimen>
