@@ -22,13 +22,14 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
     private var FOOTER: BoringPicturesModel.Comment = BoringPicturesModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        val attachToRoot = false
         return when (viewType) {
             TYPE_NORMAL ->
                 BoringPicturesViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_boringpic, parent, false))
+                        inflate(R.layout.item_boringpic, parent, attachToRoot))
             else ->
                 NewThingsAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_recyclerview_footer, parent, false))
+                        inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
         }
     }
 
@@ -40,6 +41,7 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
                 author.text = mComment.comment_author
                 time.text = TimeUtil.format(TimeUtil.getDate(mComment.comment_date))
 
+                // 目前仅支持单图显示
                 FrescoUtil.setAnimatorController(Uri.parse(mComment.pics[0]), img)
 
                 positive_count.text = context.resources.getString(R.string.boringpic_content_positive_symbol) + mComment.vote_positive
@@ -51,8 +53,7 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
     override fun getItemCount() = mList.size
 
     override fun getItemViewType(position: Int): Int {
-        val mComment = mList[position]
-        return if (mComment.comment_ID.isEmpty())
+        return if (mList[position].comment_ID.isEmpty())
             TYPE_FOOTER
         else
             TYPE_NORMAL
@@ -73,10 +74,8 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
         notifyItemRemoved(mList.size)
     }
 
-    // 无聊图ViewHolder
     class BoringPicturesViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    // 底部ViewHolder
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 }

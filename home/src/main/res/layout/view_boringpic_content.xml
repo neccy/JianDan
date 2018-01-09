@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/author"
         android:layout_marginBottom="@dimen/boringpic_content_time_vertical_margin"
@@ -47,6 +47,7 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/boringpic_content_positive_horizontal_margin_right"
         android:layout_marginStart="@dimen/boringpic_content_positive_horizontal_margin_left"
+        android:padding="@dimen/boringpic_content_positive_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="OO 6" />
 
@@ -58,6 +59,7 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/boringpic_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
+        android:padding="@dimen/boringpic_content_negative_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="XX 16" />
 
@@ -68,15 +70,17 @@
         android:layout_below="@+id/img"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
+        android:padding="@dimen/boringpic_content_content_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="吐槽 26" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/comment_count"
         android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/comment_count"
         android:layout_below="@+id/img"
-        android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/boringpic_content_more_horiz_margin"
         android:src="?attr/more_horiz_small" />
 

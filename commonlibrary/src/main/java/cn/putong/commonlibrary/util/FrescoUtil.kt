@@ -4,7 +4,6 @@ import android.net.Uri
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.view.SimpleDraweeView
 
-
 /**
  * Fresco封装
  * Created by xinyi on 2018/1/9.
