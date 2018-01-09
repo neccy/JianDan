@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.BoringPicturesModel
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.item_boringpictures.view.*
  * Created by lala on 2018/1/8.
  */
 class BoringPicturesAdapter(private var mList: ArrayList<BoringPicturesModel.Comment> = ArrayList())
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    : BaseRecyclerAdapter() {
 
     // 新鲜事
     private val TYPE_BORINGPICTURES = 1
@@ -60,12 +61,12 @@ class BoringPicturesAdapter(private var mList: ArrayList<BoringPicturesModel.Com
         notifyDataSetChanged()
     }
 
-    fun addFooter() {
+    override fun addFooter() {
         mList.add(FOOTER)
         notifyItemInserted(mList.size - 1)
     }
 
-    fun removeFooter() {
+    override fun removeFooter() {
         mList.removeAt(mList.size - 1)
         notifyItemRemoved(mList.size)
     }

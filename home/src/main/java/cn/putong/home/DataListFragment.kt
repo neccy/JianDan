@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
@@ -24,9 +25,7 @@ import kotlinx.android.synthetic.main.fragment_datalist.*
 @SuppressLint("ValidFragment")
 class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
-    // 当前页数
     private var mCurrentPage = 1
-    // 加载更多视图是否显示
     private var mLongingMore = false
 
     // 新鲜事数据
@@ -79,7 +78,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val linearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
-
                 if (!mLongingMore && linearLayoutManager.itemCount ==
                         (linearLayoutManager.findLastVisibleItemPosition() + 1)) {
                     mLongingMore = true
@@ -112,21 +110,16 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     override fun successful(model: Any) {
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS -> {
-                // 新鲜事
                 val mNewThingsModel = model as NewThingsModel
                 mNewThingsData.addAll(mNewThingsModel.posts)
                 mNewThingsAdapter.updateList(mNewThingsData)
             }
-
             HomeFragment.CLASS_BORINGPICTURES -> {
-                // 无聊图
                 val mBoringPicturesModel = model as BoringPicturesModel
                 mBoringPictureData.addAll(mBoringPicturesModel.comments)
                 mBoringPicturesAdapter.updateList(mBoringPictureData)
             }
-
             HomeFragment.CLASS_DUANZI -> {
-                // 段子
             }
         }
     }
@@ -142,23 +135,16 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     private fun hideAdapterFooter() {
         mLongingMore = false
-        when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS ->
-                mNewThingsAdapter.removeFooter()
-
-            HomeFragment.CLASS_BORINGPICTURES ->
-                mBoringPicturesAdapter.removeFooter()
-        }
+        getAdapter().removeFooter()
     }
 
     /**
      * 根据类型获取对应适配器
      */
-    private fun getAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private fun getAdapter(): BaseRecyclerAdapter {
         return when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
                 mNewThingsAdapter
-
             else ->
                 mBoringPicturesAdapter
         }
@@ -166,30 +152,25 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     /**
      * 根据类型获取数据
-     * @param mLongingMore 是否加载更多
+     * @param mLoadingMore 是否加载更多
      */
-    private fun getData(mLongingMore: Boolean = false) {
-        if (!mLongingMore) {
+    private fun getData(mLoading: Boolean = false) {
+        if (!mLoading) {
             mCurrentPage = 1
             mNewThingsData = ArrayList()
             mBoringPictureData = ArrayList()
-
         } else {
             mCurrentPage += 1
         }
 
-        when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS -> {
-                if (mLongingMore)
-                    mNewThingsAdapter.addFooter()
-                mDataPrensent.getNewThings()
-            }
+        if (mLoading)
+            getAdapter().addFooter()
 
-            HomeFragment.CLASS_BORINGPICTURES -> {
-                if (mLongingMore)
-                    mBoringPicturesAdapter.addFooter()
+        when (mClass) {
+            HomeFragment.CLASS_NEWTHINGS ->
+                mDataPrensent.getNewThings()
+            HomeFragment.CLASS_BORINGPICTURES ->
                 mDataPrensent.getBoringPictures()
-            }
         }
     }
 

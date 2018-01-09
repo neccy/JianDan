@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.NewThingsModel
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.item_newthings.view.*
  */
 class NewThingsAdapter(
         private var mList: ArrayList<NewThingsModel.Post> = ArrayList()) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        BaseRecyclerAdapter() {
 
     // 新鲜事
     private val TYPE_NEWTHINGS = 1
@@ -65,15 +66,14 @@ class NewThingsAdapter(
         notifyDataSetChanged()
     }
 
-
-    fun addFooter() {
+    override fun addFooter() {
         // 设置标识用来识别底部
         FOOTER.id = -1
         mList.add(FOOTER)
         notifyItemInserted(mList.size - 1)
     }
 
-    fun removeFooter() {
+    override fun removeFooter() {
         mList.removeAt(mList.size - 1)
         notifyItemRemoved(mList.size)
     }
