@@ -13,7 +13,7 @@ class NewThingsModel {
     var posts: List<Post> = listOf()
 
     class Post {
-        val id: Int = 0
+        var id: Int = 0
         val url: String = ""
         val title: String = ""
         val excerpt: String = ""

@@ -20,8 +20,8 @@ class DataPresenter(IDataView: IDataView) {
         dataView.showLoading()
         dataBiz.getNewThings(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
-                dataView.successful(model)
                 dataView.hideLoading()
+                dataView.successful(model)
             }
 
             override fun faild(msg: String) {
@@ -38,8 +38,8 @@ class DataPresenter(IDataView: IDataView) {
         dataView.showLoading()
         dataBiz.getBoringPictures(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
-                dataView.successful(model)
                 dataView.hideLoading()
+                dataView.successful(model)
             }
 
             override fun faild(msg: String) {

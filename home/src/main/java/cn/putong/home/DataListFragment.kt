@@ -2,6 +2,8 @@ package cn.putong.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.util.setColor
@@ -13,9 +15,6 @@ import cn.putong.home.mvp.data.model.BoringPicturesModel
 import cn.putong.home.mvp.data.model.NewThingsModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
 @SuppressLint("ValidFragment")
@@ -24,12 +23,12 @@ import kotlinx.android.synthetic.main.fragment_datalist.*
  * 首页数据列表界面
  * Created by lala on 2018/1/7.
  */
-class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
-        OnRefreshListener,
-        OnLoadmoreListener {
+class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     // 当前页数
     private var mCurrentPage = 1
+    // 加载更多视图是否显示
+    private var mLongingMore = false
 
     // 新鲜事数据
     private lateinit var mNewThingsData: ArrayList<NewThingsModel.Post>
@@ -64,9 +63,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     }
 
     private fun initRefreshLayout() {
-        materialheader.setColor()
-        refresah.setOnRefreshListener(this)
-        refresah.setOnLoadmoreListener(this)
+        refresh.setColor()
+        refresh.setOnRefreshListener { getData() }
     }
 
     private fun initListView() {
@@ -89,8 +87,30 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
         getData()
     }
 
+    override fun initListener() {
+        super.initListener()
+
+        // ListView滑动监听
+        listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val linearLayoutManager: LinearLayoutManager =
+                        recyclerView?.layoutManager as LinearLayoutManager
+
+                if (!mLongingMore && linearLayoutManager.itemCount ==
+                        (linearLayoutManager.findLastVisibleItemPosition() + 1)) {
+                    mLongingMore = true
+                    mNewThingsAdapter.addFooter()
+                    getData(true)
+                }
+            }
+        })
+    }
+
     override fun showLoading() {
-        if (!refresah.isRefreshing && !refresah.isLoading)
+        // 当没有刷新和加载是,才可显示Progress
+        if (!refresh.isRefreshing && !mLongingMore)
             progressbar.visibility = View.VISIBLE
     }
 
@@ -98,12 +118,14 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
         progressbar.visibility = View.GONE
 
         // 正在刷新
-        if (refresah.isRefreshing)
-            refresah.finishRefresh()
+        if (refresh.isRefreshing)
+            refresh.isRefreshing = false
 
         // 正在加载
-        if (refresah.isLoading)
-            refresah.finishLoadmore()
+        if (mLongingMore) {
+            mLongingMore = false
+            mNewThingsAdapter.removeFooter()
+        }
     }
 
     override fun successful(model: Any) {
@@ -133,20 +155,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     }
 
     override fun getCurrentPage() = mCurrentPage
-
-    /**
-     * 刷新数据
-     */
-    override fun onRefresh(refreshlayout: RefreshLayout?) {
-        getData()
-    }
-
-    /**
-     * 加载更多数据
-     */
-    override fun onLoadmore(refreshlayout: RefreshLayout?) {
-        getData(true)
-    }
 
     /**
      * 根据类型获取数据

@@ -14,31 +14,72 @@ import kotlinx.android.synthetic.main.item_newthings.view.*
  * Created by xinyi on 2018/1/8.
  */
 class NewThingsAdapter(
-        private var mList: List<NewThingsModel.Post> = listOf()) :
-        RecyclerView.Adapter<NewThingsAdapter.ViewHolder>() {
+        private var mList: ArrayList<NewThingsModel.Post> = ArrayList()) :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        with(holder?.itemView!!) {
-            val mPost = mList[position]
-            title.text = mPost.title
-            author.text = mPost.author.nickname
-            time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
-            comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.newthings_comment_count_text)
-            img.setImageURI(mPost.custom_fields.thumb_c[0])
+    // 新鲜事
+    private val TYPE_NEWTHINGS = 1
+
+    // 底部视图
+    private val TYPE_FOOTER = 2
+
+    private var FOOTER: NewThingsModel.Post = NewThingsModel.Post()
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        if (holder is NewThingsViewHolder) {
+            with(holder.itemView!!) {
+                val mPost = mList[position]
+                title.text = mPost.title
+                author.text = mPost.author.nickname
+                time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
+                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.newthings_comment_count_text)
+                img.setImageURI(mPost.custom_fields.thumb_c[0])
+            }
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent?.context).
-                inflate(R.layout.item_newthings, parent, false))
     }
 
     override fun getItemCount() = mList.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_NEWTHINGS ->
+                NewThingsViewHolder(LayoutInflater.from(parent?.context).
+                        inflate(R.layout.item_newthings, parent, false))
 
-    fun updateList(mList: List<NewThingsModel.Post>) {
+            else ->
+                FooterViewHolder(LayoutInflater.from(parent?.context).
+                        inflate(R.layout.item_recyclerview_footer, parent, false))
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val mPost = mList[position]
+        return if (mPost.id == -1)
+            TYPE_FOOTER
+        else
+            TYPE_NEWTHINGS
+    }
+
+    fun updateList(mList: ArrayList<NewThingsModel.Post>) {
         this.mList = mList
         notifyDataSetChanged()
     }
+
+    fun addFooter() {
+        // 设置标识用来识别底部
+        FOOTER.id = -1
+        mList.add(FOOTER)
+        notifyItemInserted(mList.size - 1)
+    }
+
+    fun removeFooter() {
+        mList.removeAt(mList.size - 1)
+        notifyItemRemoved(mList.size)
+    }
+
+    // 新鲜事ViewHolder
+    class NewThingsViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    // 底部ViewHolder
+    class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
