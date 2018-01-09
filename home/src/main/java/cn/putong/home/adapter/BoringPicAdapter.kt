@@ -40,6 +40,8 @@ class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment>
 
                 author.text = mComment.comment_author
                 time.text = TimeUtil.format(TimeUtil.getDate(mComment.comment_date))
+                content.text = mComment.text_content.trim()
+                content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
 
                 // 目前仅支持单图显示
                 FrescoUtil.setAnimatorController(Uri.parse(mComment.pics[0]), img)

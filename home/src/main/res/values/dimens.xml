@@ -19,6 +19,9 @@
     <dimen name="boringpic_content_time_horizontal_margin">16dp</dimen>
     <dimen name="boringpic_content_time_vertical_margin">16dp</dimen>
 
+    <dimen name="boringpic_content_content_horizontal_margin">16dp</dimen>
+    <dimen name="boringpic_content_content_vertical_margin">8dp</dimen>
+
     <dimen name="boringpic_content_message_vertical_margin">8dp</dimen>
     <dimen name="boringpic_content_message_horizontal_margin">16dp</dimen>
 
@@ -32,7 +35,7 @@
     <dimen name="boringpic_content_negative_horizontal_margin">16dp</dimen>
     <dimen name="boringpic_content_negative_padding">8dp</dimen>
 
-    <dimen name="boringpic_content_content_padding">8dp</dimen>
+    <dimen name="boringpic_content_comment_padding">8dp</dimen>
 
     <dimen name="boringpic_content_more_horiz_margin">16dp</dimen>
 
