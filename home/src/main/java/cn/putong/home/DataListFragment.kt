@@ -173,7 +173,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mCurrentPage = 1
             mNewThingsData = ArrayList()
             mBoringPictureData = ArrayList()
-
         } else {
             mCurrentPage += 1
         }
