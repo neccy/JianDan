@@ -65,6 +65,7 @@ class NewThingsAdapter(
         notifyDataSetChanged()
     }
 
+
     fun addFooter() {
         // 设置标识用来识别底部
         FOOTER.id = -1

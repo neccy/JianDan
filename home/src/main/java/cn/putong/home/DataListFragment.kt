@@ -17,12 +17,11 @@ import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
-@SuppressLint("ValidFragment")
-
 /**
  * 首页数据列表界面
  * Created by lala on 2018/1/7.
  */
+@SuppressLint("ValidFragment")
 class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     // 当前页数
@@ -94,28 +93,27 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
-                val linearLayoutManager: LinearLayoutManager =
-                        recyclerView?.layoutManager as LinearLayoutManager
+                val linearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
 
                 if (!mLongingMore && linearLayoutManager.itemCount ==
                         (linearLayoutManager.findLastVisibleItemPosition() + 1)) {
                     mLongingMore = true
-                    mNewThingsAdapter.addFooter()
-                    getData(true)
+                    getData(mLongingMore)
                 }
             }
         })
     }
 
     override fun showLoading() {
-        // 当没有刷新和加载是,才可显示Progress
+        // 当没有刷新和加载时
         if (!refresh.isRefreshing && !mLongingMore)
             progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressbar.visibility = View.GONE
+        // 正在
+        if (progressbar.visibility == View.VISIBLE)
+            progressbar.visibility = View.GONE
 
         // 正在刷新
         if (refresh.isRefreshing)
@@ -124,7 +122,14 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         // 正在加载
         if (mLongingMore) {
             mLongingMore = false
-            mNewThingsAdapter.removeFooter()
+
+            when (mClass) {
+                HomeFragment.CLASS_NEWTHINGS ->
+                    mNewThingsAdapter.removeFooter()
+
+                HomeFragment.CLASS_BORINGPICTURES ->
+                    mBoringPicturesAdapter.removeFooter()
+            }
         }
     }
 
@@ -173,13 +178,19 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         }
 
         when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS ->
+            HomeFragment.CLASS_NEWTHINGS -> {
                 // 新鲜事
+                if (isLoadMore)
+                    mNewThingsAdapter.addFooter()
                 mDataPrensent.getNewThings()
+            }
 
-            HomeFragment.CLASS_BORINGPICTURES ->
+            HomeFragment.CLASS_BORINGPICTURES -> {
                 // 无聊图
+                if (isLoadMore)
+                    mBoringPicturesAdapter.addFooter()
                 mDataPrensent.getBoringPictures()
+            }
         }
     }
 
