@@ -15,4 +15,9 @@ interface IBaseThreadLibsImpl {
      * 初始化SmartRefreshLsyout
      */
     fun initSmartRefreshLsyout()
+
+    /**
+     * 初始化Fresco
+     */
+    fun initFresco()
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:padding="@dimen/item_default_padding">
+    android:padding="@dimen/newthings_item_main_padding">
 
     <TextView
         android:id="@+id/title"
@@ -17,20 +18,21 @@
         android:textSize="?attr/tv_size"
         tools:text="这是一条测试内容，看看效果怎么样，不知道该写什么了，不知道该写什么了不知道该写什么了" />
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img"
-        android:layout_width="@dimen/newthings_img_width"
-        android:layout_height="@dimen/newthings_img_height"
+        android:layout_width="@dimen/newthings_item_img_width"
+        android:layout_height="@dimen/newthings_item_img_height"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/item_default_padding"
-        android:scaleType="matrix" />
+        android:layout_marginStart="@dimen/newthings_item_margin"
+        android:scaleType="matrix"
+        app:placeholderImage="@color/newthings_item_img_default_bg" />
 
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img"
-        android:layout_marginEnd="@dimen/item_default_padding"
+        android:layout_marginEnd="@dimen/newthings_item_margin"
         android:textSize="?attr/tv_size_12sp"
         tools:text="阿三" />
 

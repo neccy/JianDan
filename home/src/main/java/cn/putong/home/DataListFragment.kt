@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
+import cn.putong.home.adapter.BoringPicturesAdapter
 import cn.putong.home.adapter.NewThingsAdapter
+import cn.putong.home.mvp.data.model.BoringPicturesModel
 import cn.putong.home.mvp.data.model.NewThingsModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
@@ -28,9 +31,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     // 当前页数
     private var mCurrentPage = 1
 
-    //新鲜事数据
+    // 新鲜事数据
     private lateinit var mNewThingsData: ArrayList<NewThingsModel.Post>
     private lateinit var mNewThingsAdapter: NewThingsAdapter
+
+    // 无聊图数据
+    private lateinit var mBoringPictureData: ArrayList<BoringPicturesModel.Comment>
+    private lateinit var mBoringPicturesAdapter: BoringPicturesAdapter
 
     private lateinit var mDataPrensent: DataPresenter
 
@@ -47,6 +54,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
 
     private fun initAdapter() {
         mNewThingsAdapter = NewThingsAdapter()
+        mBoringPicturesAdapter = BoringPicturesAdapter()
     }
 
     override fun initView() {
@@ -56,15 +64,23 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
     }
 
     private fun initRefreshLayout() {
+        materialheader.setColor()
         refresah.setOnRefreshListener(this)
         refresah.setOnLoadmoreListener(this)
     }
 
     private fun initListView() {
-        listview.setDefaultDivider(context)
-        when (mClass) {
+        if (mClass == HomeFragment.CLASS_NEWTHINGS)
+            listview.setDefaultDivider(context)
+
+        listview.adapter = when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
-                listview.adapter = mNewThingsAdapter
+                // 新鲜事
+                mNewThingsAdapter
+
+            else ->
+                // 无聊图
+                mBoringPicturesAdapter
         }
     }
 
@@ -101,6 +117,9 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
 
             HomeFragment.CLASS_BORINGPICTURES -> {
                 // 无聊图
+                val mBoringPicturesModel = model as BoringPicturesModel
+                mBoringPictureData.addAll(mBoringPicturesModel.comments)
+                mBoringPicturesAdapter.updateList(mBoringPictureData)
             }
 
             HomeFragment.CLASS_DUANZI -> {
@@ -138,6 +157,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
             //下拉加载,初始化页数和集合,防止数据重复
             mCurrentPage = 1
             mNewThingsData = ArrayList()
+            mBoringPictureData = ArrayList()
+
         } else {
             //上拉加载更多,页数加1
             mCurrentPage += 1
@@ -147,6 +168,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView,
             HomeFragment.CLASS_NEWTHINGS ->
                 // 新鲜事
                 mDataPrensent.getNewThings()
+
+            HomeFragment.CLASS_BORINGPICTURES ->
+                // 无聊图
+                mDataPrensent.getBoringPictures()
         }
     }
 
