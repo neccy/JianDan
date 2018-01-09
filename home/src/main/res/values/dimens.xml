@@ -7,7 +7,8 @@
     <dimen name="newthings_item_img_height">70dp</dimen>
 
     <!--无聊图-->
-    <dimen name="boringpic_item_main_margin">8dp</dimen>
+    <dimen name="boringpic_item_main_horizontal_margin">8dp</dimen>
+    <dimen name="boringpic_item_main_vertical_margin">6dp</dimen>
 
     <dimen name="boringpic_content_main_horizontal_margin">16dp</dimen>
     <dimen name="boringpic_content_main_vertical_margin">8dp</dimen>
