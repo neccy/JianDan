@@ -1,48 +1,51 @@
 package cn.putong.home.adapter
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.util.FrescoUtil
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.BoringPicturesModel
-import kotlinx.android.synthetic.main.item_boringpictures.view.*
+import kotlinx.android.synthetic.main.view_boringpic_content.view.*
 
 /**
  * 无聊图列表适配器
  * Created by lala on 2018/1/8.
  */
-class BoringPicturesAdapter(private var mList: ArrayList<BoringPicturesModel.Comment> = ArrayList())
+class BoringPicAdapter(private var mList: ArrayList<BoringPicturesModel.Comment> = ArrayList())
     : BaseRecyclerAdapter() {
-
-    // 新鲜事
-    private val TYPE_BORINGPICTURES = 1
-
-    // 底部视图
-    private val TYPE_FOOTER = 2
 
     private var FOOTER: BoringPicturesModel.Comment = BoringPicturesModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            TYPE_BORINGPICTURES ->
+            TYPE_NORMAL ->
                 BoringPicturesViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_boringpictures, parent, false))
-
+                        inflate(R.layout.item_boringpic, parent, false))
             else ->
                 NewThingsAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
                         inflate(R.layout.item_recyclerview_footer, parent, false))
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is BoringPicturesViewHolder)
             with(holder.itemView!!) {
                 val mComment = mList[position]
+
                 author.text = mComment.comment_author
                 time.text = TimeUtil.format(TimeUtil.getDate(mComment.comment_date))
+
+                img.controller = FrescoUtil.getController(mComment.pics[0])
+
+                positive_count.text = context.resources.getString(R.string.boringpic_content_positive_symbol) + mComment.vote_positive
+                negative_count.text = context.resources.getString(R.string.boringpic_content_negative_symbol) + mComment.vote_positive
+                comment_count.text = resources.getString(R.string.boringpic_content_comment_count_text) + mComment.sub_comment_count
             }
     }
 
@@ -53,7 +56,7 @@ class BoringPicturesAdapter(private var mList: ArrayList<BoringPicturesModel.Com
         return if (mComment.comment_ID.isEmpty())
             TYPE_FOOTER
         else
-            TYPE_BORINGPICTURES
+            TYPE_NORMAL
     }
 
     fun updateList(mList: ArrayList<BoringPicturesModel.Comment>) {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/boringpic_content_main_vertical_margin"
+    android:paddingTop="@dimen/boringpic_content_main_vertical_margin">
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/boringpic_content_author_vertical_margin"
+        android:layout_marginLeft="@dimen/boringpic_content_author_horizontal_margin"
+        android:layout_marginRight="@dimen/boringpic_content_author_horizontal_margin"
+        android:textColor="@android:color/black"
+        android:textSize="?attr/tv_size_14sp"
+        android:textStyle="bold"
+        tools:text="阿三" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/author"
+        android:layout_marginBottom="@dimen/boringpic_content_time_vertical_margin"
+        android:layout_marginLeft="@dimen/boringpic_content_time_horizontal_margin"
+        android:layout_marginRight="@dimen/boringpic_content_time_horizontal_margin"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="5小时前" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/boringpic_content_img_height"
+        android:layout_below="@+id/time"
+        android:layout_marginBottom="@dimen/boringpic_content_img_vertical_margin"
+        app:actualImageScaleType="focusCrop"
+        app:placeholderImage="@color/boringpic_content_img_placeholder" />
+
+    <TextView
+        android:id="@+id/positive_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/boringpic_content_positive_horizontal_margin_right"
+        android:layout_marginStart="@dimen/boringpic_content_positive_horizontal_margin_left"
+        android:textSize="?attr/tv_size_14sp"
+        tools:text="OO 6" />
+
+    <TextView
+        android:id="@+id/negative_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/boringpic_content_negative_horizontal_margin"
+        android:layout_toEndOf="@+id/positive_count"
+        android:textSize="?attr/tv_size_14sp"
+        tools:text="XX 16" />
+
+    <TextView
+        android:id="@+id/comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/negative_count"
+        android:textSize="?attr/tv_size_14sp"
+        tools:text="吐槽 26" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/img"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/boringpic_content_more_horiz_margin"
+        android:src="?attr/more_horiz_small" />
+
+</RelativeLayout>

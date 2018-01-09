@@ -8,6 +8,13 @@ import android.view.ViewGroup
  * Created by xinyi on 2018/1/9.
  */
 abstract class BaseRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    // 普通类型
+    val TYPE_NORMAL = 1
+
+    // 底部视图
+    val TYPE_FOOTER = 2
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

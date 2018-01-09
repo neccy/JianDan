@@ -18,12 +18,6 @@ class NewThingsAdapter(
         private var mList: ArrayList<NewThingsModel.Post> = ArrayList()) :
         BaseRecyclerAdapter() {
 
-    // 新鲜事
-    private val TYPE_NEWTHINGS = 1
-
-    // 底部视图
-    private val TYPE_FOOTER = 2
-
     private var FOOTER: NewThingsModel.Post = NewThingsModel.Post()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -43,7 +37,7 @@ class NewThingsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            TYPE_NEWTHINGS ->
+            TYPE_NORMAL ->
                 NewThingsViewHolder(LayoutInflater.from(parent?.context).
                         inflate(R.layout.item_newthings, parent, false))
 
@@ -58,7 +52,7 @@ class NewThingsAdapter(
         return if (mPost.id == -1)
             TYPE_FOOTER
         else
-            TYPE_NEWTHINGS
+            TYPE_NORMAL
     }
 
     fun updateList(mList: ArrayList<NewThingsModel.Post>) {

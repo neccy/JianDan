@@ -24,8 +24,8 @@
         android:layout_height="@dimen/newthings_item_img_height"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/newthings_item_margin"
-        android:scaleType="matrix"
-        app:placeholderImage="@color/newthings_item_img_default_bg" />
+        app:actualImageScaleType="focusCrop"
+        app:placeholderImage="@color/newthings_item_img_placeholder" />
 
     <TextView
         android:id="@+id/author"
@@ -53,4 +53,5 @@
         android:layout_toStartOf="@+id/img"
         android:textSize="?attr/tv_size_12sp"
         tools:text="13条评论" />
+
 </RelativeLayout>

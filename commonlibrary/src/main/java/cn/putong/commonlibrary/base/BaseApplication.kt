@@ -1,6 +1,7 @@
 package cn.putong.commonlibrary.base
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 
 /**
  * Base Application
@@ -23,5 +24,23 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
 
     override fun initSmartRefreshLsyout() {}
 
-    override fun initFresco() {}
+    override fun initFresco() {
+//        val config = ImagePipelineConfig.newBuilder(this)
+//                .setBitmapMemoryCacheParamsSupplier(bitmapCacheParamsSupplier)
+//                .setCacheKeyFactory(cacheKeyFactory)
+//                .setDownsampleEnabled(true)
+//                .setWebpSupportEnabled(true)
+//                .setEncodedMemoryCacheParamsSupplier(encodedCacheParamsSupplier)
+//                .setExecutorSupplier(executorSupplier)
+//                .setImageCacheStatsTracker(imageCacheStatsTracker)
+//                .setMainDiskCacheConfig(mainDiskCacheConfig)
+//                .setMemoryTrimmableRegistry(memoryTrimmableRegistry)
+//                .setNetworkFetchProducer(networkFetchProducer)
+//                .setPoolFactory(poolFactory)
+//                .setProgressiveJpegConfig(progressiveJpegConfig)
+//                .setRequestListeners(requestListeners)
+//                .setSmallImageDiskCacheConfig(smallImageDiskCacheConfig)
+//                .build()
+        Fresco.initialize(this)
+    }
 }

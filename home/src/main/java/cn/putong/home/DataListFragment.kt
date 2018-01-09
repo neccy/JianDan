@@ -10,7 +10,7 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.adapter.BoringPicturesAdapter
+import cn.putong.home.adapter.BoringPicAdapter
 import cn.putong.home.adapter.NewThingsAdapter
 import cn.putong.home.mvp.data.model.BoringPicturesModel
 import cn.putong.home.mvp.data.model.NewThingsModel
@@ -34,7 +34,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     // 无聊图数据
     private lateinit var mBoringPictureData: ArrayList<BoringPicturesModel.Comment>
-    private lateinit var mBoringPicturesAdapter: BoringPicturesAdapter
+    private lateinit var mBoringPicturesAdapter: BoringPicAdapter
 
     private lateinit var mDataPrensent: DataPresenter
 
@@ -51,7 +51,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initAdapter() {
         mNewThingsAdapter = NewThingsAdapter()
-        mBoringPicturesAdapter = BoringPicturesAdapter()
+        mBoringPicturesAdapter = BoringPicAdapter()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -88,7 +88,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun showLoading() {
-        // 当没有刷新和加载时
         if (!refresh.isRefreshing && !mLongingMore)
             progressbar.visibility = View.VISIBLE
     }
@@ -103,8 +102,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             refresh.isRefreshing = false
 
         // 正在加载
-        if (mLongingMore)
-            hideAdapterFooter()
+        if (mLongingMore) {
+            mLongingMore = false
+            getAdapter().removeFooter()
+        }
     }
 
     override fun successful(model: Any) {
@@ -131,14 +132,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     override fun getCurrentPage() = mCurrentPage
 
     /**
-     * 隐藏适配器加载更多视图
-     */
-    private fun hideAdapterFooter() {
-        mLongingMore = false
-        getAdapter().removeFooter()
-    }
-
-    /**
      * 根据类型获取对应适配器
      */
     private fun getAdapter(): BaseRecyclerAdapter {
@@ -152,7 +145,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     /**
      * 根据类型获取数据
-     * @param mLoadingMore 是否加载更多
+     * @param mLoading 是否加载更多
      */
     private fun getData(mLoading: Boolean = false) {
         if (!mLoading) {
