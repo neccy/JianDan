@@ -17,7 +17,7 @@ class NewDetailPagerFragment(
         private val mCurrentPositon: Int) : BaseFragment() {
 
     private lateinit var mFragments: ArrayList<NewDetailFragment>
-    private lateinit var mFragmentsAdapter : NewDetailFragmentAdapter
+    private lateinit var mFragmentsAdapter: NewDetailFragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class NewDetailPagerFragment(
         mNewDatas.forEach {
             mFragments.add(NewDetailFragment(it))
         }
-        mFragmentsAdapter = NewDetailFragmentAdapter(childFragmentManager,mFragments)
+        mFragmentsAdapter = NewDetailFragmentAdapter(childFragmentManager, mFragments)
     }
 
     override fun initView() {
@@ -42,8 +42,8 @@ class NewDetailPagerFragment(
         initViewPager()
     }
 
-    private fun initViewPager(){
-        viewpager.adapter  =mFragmentsAdapter
+    private fun initViewPager() {
+        viewpager.adapter = mFragmentsAdapter
         viewpager.offscreenPageLimit = mFragments.size - 1
         viewpager.currentItem = mCurrentPositon
     }

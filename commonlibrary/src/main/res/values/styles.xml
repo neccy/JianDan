@@ -25,4 +25,5 @@
     <style name="TabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">@dimen/tablayout_text_size</item>
     </style>
+
 </resources>

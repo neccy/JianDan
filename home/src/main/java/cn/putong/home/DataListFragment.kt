@@ -137,7 +137,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mNewAdapter
         else
             mCommentAdapter
-
     }
 
     /**
