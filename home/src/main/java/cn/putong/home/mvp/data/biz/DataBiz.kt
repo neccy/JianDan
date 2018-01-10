@@ -3,8 +3,8 @@ package cn.putong.home.mvp.data.biz
 import cn.putong.commonlibrary.base.IBaseApiResultListener
 import cn.putong.commonlibrary.network.NetWoks
 import cn.putong.home.api.ApiService
-import cn.putong.home.mvp.data.model.CardModel
-import cn.putong.home.mvp.data.model.NormalModel
+import cn.putong.home.mvp.data.model.CommentModel
+import cn.putong.home.mvp.data.model.NewModel
 import retrofit2.Call
 import retrofit2.Callback;
 import retrofit2.Response
@@ -17,13 +17,13 @@ class DataBiz : IDataBiz {
 
     override fun getNewThings(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getNewThings(page).
-                clone().enqueue(object : Callback<NormalModel> {
+                clone().enqueue(object : Callback<NewModel> {
 
-            override fun onResponse(call: Call<NormalModel>?, response: Response<NormalModel>?) {
+            override fun onResponse(call: Call<NewModel>?, response: Response<NewModel>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<NormalModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<NewModel>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
 
@@ -32,12 +32,12 @@ class DataBiz : IDataBiz {
 
     override fun getBoringPictures(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getBoringPictures(page).
-                clone().enqueue(object : Callback<CardModel> {
-            override fun onResponse(call: Call<CardModel>?, response: Response<CardModel>?) {
+                clone().enqueue(object : Callback<CommentModel> {
+            override fun onResponse(call: Call<CommentModel>?, response: Response<CommentModel>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<CardModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<CommentModel>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
         })
@@ -45,12 +45,12 @@ class DataBiz : IDataBiz {
 
     override fun getDuanZis(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getDuanZis(page).
-                clone().enqueue(object : Callback<CardModel> {
-            override fun onResponse(call: Call<CardModel>?, response: Response<CardModel>?) {
+                clone().enqueue(object : Callback<CommentModel> {
+            override fun onResponse(call: Call<CommentModel>?, response: Response<CommentModel>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<CardModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<CommentModel>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
         })

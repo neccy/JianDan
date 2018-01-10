@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/card_item_content_main_vertical_margin"
-    android:paddingTop="@dimen/card_item_content_main_vertical_margin">
+    android:paddingBottom="@dimen/comment_item_content_main_vertical_margin"
+    android:paddingTop="@dimen/comment_item_content_main_vertical_margin">
 
     <TextView
         android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_item_content_author_vertical_margin"
-        android:layout_marginLeft="@dimen/card_item_content_author_horizontal_margin"
-        android:layout_marginRight="@dimen/card_item_content_author_horizontal_margin"
+        android:layout_marginBottom="@dimen/comment_item_content_author_vertical_margin"
+        android:layout_marginLeft="@dimen/comment_item_content_author_horizontal_margin"
+        android:layout_marginRight="@dimen/comment_item_content_author_horizontal_margin"
         android:textColor="@android:color/black"
         android:textSize="?attr/tv_size_14sp"
         android:textStyle="bold"
@@ -23,9 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/author"
-        android:layout_marginBottom="@dimen/card_item_content_time_vertical_margin"
-        android:layout_marginLeft="@dimen/card_item_content_time_horizontal_margin"
-        android:layout_marginRight="@dimen/card_item_content_time_horizontal_margin"
+        android:layout_marginBottom="@dimen/comment_item_content_time_vertical_margin"
+        android:layout_marginLeft="@dimen/comment_item_content_time_horizontal_margin"
+        android:layout_marginRight="@dimen/comment_item_content_time_horizontal_margin"
         android:textSize="?attr/tv_size_12sp"
         tools:text="5小时前" />
 
@@ -34,9 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/time"
-        android:layout_marginBottom="@dimen/card_item_content_content_vertical_margin"
-        android:layout_marginLeft="@dimen/card_item_content_content_horizontal_margin"
-        android:layout_marginRight="@dimen/card_item_content_content_horizontal_margin"
+        android:layout_marginBottom="@dimen/comment_item_content_content_vertical_margin"
+        android:layout_marginLeft="@dimen/comment_item_content_content_horizontal_margin"
+        android:layout_marginRight="@dimen/comment_item_content_content_horizontal_margin"
         android:textColor="@android:color/black"
         android:textSize="?attr/tv_size"
         android:visibility="gone"
@@ -46,10 +46,9 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/picviewpager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_item_content_picpager_height"
+        android:layout_height="@dimen/comment_item_content_picpager_height"
         android:layout_below="@+id/content"
-        android:layout_marginBottom="@dimen/card_item_content_picpager_vertical_margin"
-        android:background="@color/card_item_content_picpager_placeholder"
+        android:layout_marginBottom="@dimen/comment_item_content_picpager_vertical_margin"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -59,9 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/card_item_content_positive_horizontal_margin_right"
-        android:layout_marginStart="@dimen/card_item_content_positive_horizontal_margin_left"
-        android:padding="@dimen/card_item_content_positive_padding"
+        android:layout_marginEnd="@dimen/comment_item_content_positive_horizontal_margin_right"
+        android:layout_marginStart="@dimen/comment_item_content_positive_horizontal_margin_left"
+        android:padding="@dimen/comment_item_content_positive_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="OO 6" />
 
@@ -71,9 +70,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/card_item_content_negative_horizontal_margin"
+        android:layout_marginEnd="@dimen/comment_item_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
-        android:padding="@dimen/card_item_content_negative_padding"
+        android:padding="@dimen/comment_item_content_negative_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="XX 16" />
 
@@ -84,7 +83,7 @@
         android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
-        android:padding="@dimen/card_item_content_comment_padding"
+        android:padding="@dimen/comment_item_content_comment_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="吐槽 26" />
 
@@ -95,7 +94,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/comment_count"
         android:layout_below="@+id/picviewpager"
-        android:layout_marginEnd="@dimen/card_item_content_more_horiz_margin"
+        android:layout_marginEnd="@dimen/comment_item_content_more_horiz_margin"
         android:src="?attr/more_horiz_small" />
 
 </RelativeLayout>

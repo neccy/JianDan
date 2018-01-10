@@ -10,10 +10,10 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.adapter.CardDataAdapter
-import cn.putong.home.adapter.NormalDataAdapter
-import cn.putong.home.mvp.data.model.CardModel
-import cn.putong.home.mvp.data.model.NormalModel
+import cn.putong.home.adapter.CommentDataAdapter
+import cn.putong.home.adapter.NewDataAdapter
+import cn.putong.home.mvp.data.model.CommentModel
+import cn.putong.home.mvp.data.model.NewModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import kotlinx.android.synthetic.main.fragment_datalist.*
@@ -28,13 +28,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private var mCurrentPage = 1
     private var mLongingMore = false
 
-    // 普通类型数据
-    private lateinit var mNormalDatas: ArrayList<NormalModel.Post>
-    private lateinit var mNormalAdapter: NormalDataAdapter
+    // 新闻类型数据(新鲜事)
+    private lateinit var mNewDatas: ArrayList<NewModel.Post>
+    private lateinit var mNewAdapter: NewDataAdapter
 
-    // 卡片视图类型数据(无聊图,新鲜事)
-    private lateinit var mCardDatas: ArrayList<CardModel.Comment>
-    private lateinit var mCardAdapter: CardDataAdapter
+    // 评论类型数据(无聊图,新鲜事)
+    private lateinit var mCommentDatas: ArrayList<CommentModel.Comment>
+    private lateinit var mCommentAdapter: CommentDataAdapter
 
     private lateinit var mDataPrensent: DataPresenter
 
@@ -50,8 +50,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initAdapter() {
-        mNormalAdapter = NormalDataAdapter()
-        mCardAdapter = CardDataAdapter()
+        mNewAdapter = NewDataAdapter { position, post ->
+
+        }
+        mCommentAdapter = CommentDataAdapter()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -110,13 +112,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     override fun successful(model: Any) {
         if (mClass == HomeFragment.CLASS_NEWTHINGS) {
-            val mNewThingsModel = model as NormalModel
-            mNormalDatas.addAll(mNewThingsModel.posts)
-            mNormalAdapter.updateList(mNormalDatas)
+            val mNewThingsModel = model as NewModel
+            mNewDatas.addAll(mNewThingsModel.posts)
+            mNewAdapter.updateList(mNewDatas)
         } else {
-            val mBoringPicturesModel = model as CardModel
-            mCardDatas.addAll(mBoringPicturesModel.comments)
-            mCardAdapter.updateList(mCardDatas)
+            val mBoringPicturesModel = model as CommentModel
+            mCommentDatas.addAll(mBoringPicturesModel.comments)
+            mCommentAdapter.updateList(mCommentDatas)
         }
     }
 
@@ -131,9 +133,9 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     private fun getAdapter(): BaseRecyclerAdapter {
         return if (mClass == HomeFragment.CLASS_NEWTHINGS)
-            mNormalAdapter
+            mNewAdapter
         else
-            mCardAdapter
+            mCommentAdapter
 
     }
 
@@ -144,8 +146,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private fun getData(mLoading: Boolean = false) {
         if (!mLoading) {
             mCurrentPage = 1
-            mNormalDatas = ArrayList()
-            mCardDatas = ArrayList()
+            mNewDatas = ArrayList()
+            mCommentDatas = ArrayList()
         } else {
             mCurrentPage += 1
         }

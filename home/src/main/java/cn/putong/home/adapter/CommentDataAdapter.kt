@@ -1,5 +1,6 @@
 package cn.putong.home.adapter
 
+import android.content.Context
 import android.net.Uri
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
@@ -11,27 +12,26 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.FrescoUtil
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
-import cn.putong.home.mvp.data.model.CardModel
+import cn.putong.home.mvp.data.model.CommentModel
 import com.facebook.drawee.view.SimpleDraweeView
-import kotlinx.android.synthetic.main.view_card_item_content.view.*
-
+import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 
 /**
  * Card类型数据适配器
  * Created by lala on 2018/1/8.
  */
-class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
+class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = ArrayList())
     : BaseRecyclerAdapter() {
 
-    private var FOOTER: CardModel.Comment = CardModel.Comment()
+    private var FOOTER: CommentModel.Comment = CommentModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         val attachToRoot = false
         return if (viewType == TYPE_NORMAL)
             CardViewHolder(LayoutInflater.from(parent?.context).
-                    inflate(R.layout.item_card, parent, attachToRoot))
+                    inflate(R.layout.item_comment, parent, attachToRoot))
         else
-            NormalDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
+            NewDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
                     inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
     }
 
@@ -49,13 +49,7 @@ class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayLis
                     // 是段子数据,隐藏图片显示
                     picviewpager.visibility = View.GONE
                 } else {
-                    val mPicList = ArrayList<SimpleDraweeView>()
-                    mComment.pics.forEach {
-                        val mPicView = SimpleDraweeView(context)
-                        FrescoUtil.setAnimatorController(Uri.parse(it), mPicView)
-                        mPicList.add(mPicView)
-                    }
-                    picviewpager.adapter = PicAdapter(mPicList)
+                    picviewpager.adapter = PicAdapter(mPicViewList(context, mComment.pics))
                     picviewpager.visibility = View.VISIBLE
                 }
 
@@ -74,7 +68,7 @@ class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayLis
             TYPE_NORMAL
     }
 
-    fun updateList(mList: ArrayList<CardModel.Comment>) {
+    fun updateList(mList: ArrayList<CommentModel.Comment>) {
         this.mList = mList
         notifyDataSetChanged()
     }
@@ -93,6 +87,21 @@ class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayLis
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
+    /**
+     * 图片View列表
+     */
+    private val mPicViewList = { context: Context, pics: List<String> ->
+        val mPicList = ArrayList<SimpleDraweeView>()
+        pics.forEach {
+            val mPicView =
+                    LayoutInflater.from(context)
+                            .inflate(R.layout.view_comment_item_pic, null)
+                            as SimpleDraweeView
+            FrescoUtil.setAnimatorController(Uri.parse(it), mPicView)
+            mPicList.add(mPicView)
+        }
+        mPicList
+    }
 
     /**
      * 图片Pager适配器

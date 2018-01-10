@@ -15,11 +15,11 @@
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/newthings_listview_bg"
+            android:background="@color/new_listview_bg"
             android:overScrollMode="never"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/item_normal" />
+            tools:listitem="@layout/item_new" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
