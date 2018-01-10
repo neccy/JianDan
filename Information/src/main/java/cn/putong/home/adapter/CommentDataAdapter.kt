@@ -54,7 +54,7 @@ class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = Ar
                 }
 
                 positive_count.text = context.resources.getString(R.string.boringpic_content_positive_symbol) + mComment.vote_positive
-                negative_count.text = context.resources.getString(R.string.boringpic_content_negative_symbol) + mComment.vote_positive
+                negative_count.text = context.resources.getString(R.string.boringpic_content_negative_symbol) + mComment.vote_negative
                 comment_count.text = resources.getString(R.string.boringpic_content_comment_count_text) + mComment.sub_comment_count
             }
     }
