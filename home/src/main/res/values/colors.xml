@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--新鲜事Item背景色-->
+    <!--New Item-->
     <color name="new_listview_bg">#FAFAFA</color>
-
-    <!--新鲜事Item图片默认背景色-->
     <color name="new_item_img_placeholder">#E6E6E6</color>
 
-    <!--卡片Content图片默认背景色-->
+    <!--Comment Content-->
     <color name="comment_item_content_pic_placeholder">@color/new_item_img_placeholder</color>
+
+    <!--New Detail-->
+    <color name="new_detail_pic_placeholder">@color/new_item_img_placeholder</color>
 </resources>

@@ -30,7 +30,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // UI
-    compile 'me.yokeyword:fragmentation:1.2.3'
+    compile 'me.yokeyword:fragmentation:1.2.4'
+    compile 'me.yokeyword:fragmentation-swipeback:1.2.4'
 
     // NetWork
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

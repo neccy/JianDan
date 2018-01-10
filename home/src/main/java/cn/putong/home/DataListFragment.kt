@@ -32,7 +32,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private lateinit var mNewDatas: ArrayList<NewModel.Post>
     private lateinit var mNewAdapter: NewDataAdapter
 
-    // 评论类型数据(无聊图,新鲜事)
+    // 评论类型数据(无聊图,段子)
     private lateinit var mCommentDatas: ArrayList<CommentModel.Comment>
     private lateinit var mCommentAdapter: CommentDataAdapter
 
@@ -50,8 +50,9 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initAdapter() {
-        mNewAdapter = NewDataAdapter { position, post ->
-
+        mNewAdapter = NewDataAdapter { position ->
+            (parentFragment as HomeFragment).
+                    start(NewDetailPagerFragment(mNewDatas, position))
         }
         mCommentAdapter = CommentDataAdapter()
     }

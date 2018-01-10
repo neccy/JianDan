@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_new.view.*
  */
 class NewDataAdapter(
         private var mList: ArrayList<NewModel.Post> = ArrayList(),
-        private val onClickListener: (Int, NewModel.Post) -> Unit) :
+        private val onClickListener: (Int) -> Unit) :
         BaseRecyclerAdapter() {
 
     private var FOOTER: NewModel.Post = NewModel.Post()
@@ -31,7 +31,7 @@ class NewDataAdapter(
                 comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.newthings_comment_count_text)
                 img.setImageURI(mPost.custom_fields.thumb_c[0])
                 item_main.setOnClickListener {
-                    onClickListener.invoke(position, mPost)
+                    onClickListener.invoke(position)
                 }
             }
         }

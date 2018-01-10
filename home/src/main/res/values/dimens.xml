@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--新鲜事-->
+    <!--New Item-->
     <dimen name="new_item_main_padding">16dp</dimen>
     <dimen name="new_item_margin">@dimen/new_item_main_padding</dimen>
-    <dimen name="new_item_img_width">95dp</dimen>
-    <dimen name="new_item_img_height">70dp</dimen>
+    <dimen name="new_item_pic_width">95dp</dimen>
+    <dimen name="new_item_pic_height">70dp</dimen>
 
-    <!--卡片-->
+    <!--Comment Item-->
     <dimen name="comment_item_main_horizontal_margin">8dp</dimen>
     <dimen name="comment_item_main_vertical_margin">6dp</dimen>
 
@@ -38,5 +38,8 @@
     <dimen name="comment_item_content_comment_padding">8dp</dimen>
 
     <dimen name="comment_item_content_more_horiz_margin">16dp</dimen>
+
+    <!--New Detail-->
+    <dimen name="new_detail_pic_height">200dp</dimen>
 
 </resources>

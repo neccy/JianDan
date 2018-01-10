@@ -21,8 +21,8 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img"
-        android:layout_width="@dimen/new_item_img_width"
-        android:layout_height="@dimen/new_item_img_height"
+        android:layout_width="@dimen/new_item_pic_width"
+        android:layout_height="@dimen/new_item_pic_height"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/new_item_margin"
         app:actualImageScaleType="focusCrop"
