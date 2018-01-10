@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -44,22 +43,21 @@
         tools:text="这是一条测试内容"
         tools:visibility="visible" />
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/img"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/picviewpager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_item_content_img_height"
+        android:layout_height="@dimen/card_item_content_picpager_height"
         android:layout_below="@+id/content"
-        android:layout_marginBottom="@dimen/card_item_content_img_vertical_margin"
+        android:layout_marginBottom="@dimen/card_item_content_picpager_vertical_margin"
+        android:background="@color/card_item_content_picpager_placeholder"
         android:visibility="gone"
-        app:actualImageScaleType="focusCrop"
-        app:placeholderImage="@color/card_item_content_img_placeholder"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/positive_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
+        android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/card_item_content_positive_horizontal_margin_right"
         android:layout_marginStart="@dimen/card_item_content_positive_horizontal_margin_left"
@@ -71,7 +69,7 @@
         android:id="@+id/negative_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
+        android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/card_item_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
@@ -83,7 +81,7 @@
         android:id="@+id/comment_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
+        android:layout_below="@+id/picviewpager"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
         android:padding="@dimen/card_item_content_comment_padding"
@@ -96,7 +94,7 @@
         android:layout_alignBottom="@+id/comment_count"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/comment_count"
-        android:layout_below="@+id/img"
+        android:layout_below="@+id/picviewpager"
         android:layout_marginEnd="@dimen/card_item_content_more_horiz_margin"
         android:src="?attr/more_horiz_small" />
 

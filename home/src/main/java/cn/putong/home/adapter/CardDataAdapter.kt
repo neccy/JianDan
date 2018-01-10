@@ -1,6 +1,8 @@
 package cn.putong.home.adapter
 
 import android.net.Uri
+import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +12,12 @@ import cn.putong.commonlibrary.util.FrescoUtil
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.CardModel
+import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_card_item_content.view.*
 
+
 /**
- * Card类型适配器
+ * Card类型数据适配器
  * Created by lala on 2018/1/8.
  */
 class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayList())
@@ -43,11 +47,16 @@ class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayLis
 
                 if (mComment.pics.isEmpty()) {
                     // 是段子数据,隐藏图片显示
-                    img.visibility = View.GONE
+                    picviewpager.visibility = View.GONE
                 } else {
-                    // 目前仅支持单图显示
-                    FrescoUtil.setAnimatorController(Uri.parse(mComment.pics[0]), img)
-                    img.visibility = View.VISIBLE
+                    val mPicList = ArrayList<SimpleDraweeView>()
+                    mComment.pics.forEach {
+                        val mPicView = SimpleDraweeView(context)
+                        FrescoUtil.setAnimatorController(Uri.parse(it), mPicView)
+                        mPicList.add(mPicView)
+                    }
+                    picviewpager.adapter = PicAdapter(mPicList)
+                    picviewpager.visibility = View.VISIBLE
                 }
 
                 positive_count.text = context.resources.getString(R.string.boringpic_content_positive_symbol) + mComment.vote_positive
@@ -84,4 +93,28 @@ class CardDataAdapter(private var mList: ArrayList<CardModel.Comment> = ArrayLis
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
+
+    /**
+     * 图片Pager适配器
+     */
+    class PicAdapter(private var mViewList: List<SimpleDraweeView> = listOf()) : PagerAdapter() {
+
+        override fun isViewFromObject(view: View?, `object`: Any?) = view == `object`
+
+        override fun getCount() = mViewList.size
+
+        override fun instantiateItem(container: ViewGroup?, position: Int): Any {
+            (container as ViewPager).addView(mViewList.get(position))
+            return mViewList[position]
+        }
+
+        override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
+            (container as ViewPager).removeView(mViewList.get(position))
+        }
+
+        fun updatePicList(mViewList: List<SimpleDraweeView>) {
+            this.mViewList = mViewList
+            notifyDataSetChanged()
+        }
+    }
 }
