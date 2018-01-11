@@ -52,7 +52,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         mNewAdapter = NewDataAdapter { position ->
             (parentFragment as HomeFragment).
-                    start(NewDetailPagerFragment(mNewDatas, position))
+                    start(NewDetailFragment(mNewDatas[position]))
         }
         mCommentAdapter = CommentDataAdapter()
     }

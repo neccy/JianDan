@@ -5,11 +5,14 @@
     <string name="home_menu_action_setting">设置</string>
     <string name="home_menu_action_submission">投稿</string>
 
-    <string name="newthings_comment_count_text">条评论</string>
+    <string name="new_comment_count_text">条评论</string>
 
-    <string name="boringpic_content_positive_symbol">OO&#160;</string>
-    <string name="boringpic_content_negative_symbol">XX&#160;</string>
-    <string name="boringpic_content_comment_count_text">吐槽&#160;</string>
+    <string name="comment_content_positive_symbol">OO&#160;</string>
+    <string name="comment_content_negative_symbol">XX&#160;</string>
+    <string name="comment_content_comment_count_text">吐槽&#160;</string>
+
+    <string name="new_detail_menu_action_comment">评论</string>
+    <string name="new_detail_menu_action_more">更多</string>
 
     <string name="space_symbol">&#160;</string>
 </resources>

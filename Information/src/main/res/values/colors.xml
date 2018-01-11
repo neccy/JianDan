@@ -10,4 +10,8 @@
 
     <!--New Detail-->
     <color name="new_detail_pic_placeholder">@color/new_item_img_placeholder</color>
+    <color name="new_detail_main_bg">#F9F9F9</color>
+    <color name="new_detail_lin_bg">#DDDDDD</color>
+    <color name="new_detail_toolbar_bg">#FEFEFE</color>
+    <color name="new_detail_toolbar_line">@color/new_detail_lin_bg</color>
 </resources>

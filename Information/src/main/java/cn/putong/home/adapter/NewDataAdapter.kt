@@ -28,7 +28,7 @@ class NewDataAdapter(
                 title.text = mPost.title
                 author.text = mPost.author.nickname
                 time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
-                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.newthings_comment_count_text)
+                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.new_comment_count_text)
                 img.setImageURI(mPost.custom_fields.thumb_c[0])
                 item_main.setOnClickListener {
                     onClickListener.invoke(position)

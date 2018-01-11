@@ -42,4 +42,22 @@
     <!--New Detail-->
     <dimen name="new_detail_pic_height">200dp</dimen>
 
+    <dimen name="new_detail_title_horizontal_margin">16dp</dimen>
+    <dimen name="new_detail_title_vertical_margin">32dp</dimen>
+    <dimen name="new_detail_title_padding">4dp</dimen>
+
+    <dimen name="new_detail_author_content_vertical_padding">16dp</dimen>
+    <dimen name="new_detail_author_horizontal_margin">8dp</dimen>
+
+    <dimen name="new_detail_excerpt_vertical_margin">16dp</dimen>
+    <dimen name="new_detail_excerpt_horizontal_margin">16dp</dimen>
+
+    <dimen name="new_detail_line_width">100dp</dimen>
+    <dimen name="new_detail_line_height">3px</dimen>
+    <dimen name="new_detail_line_vertical_margin">32dp</dimen>
+
+    <dimen name="new_detail_webview_vertical_margin">8dp</dimen>
+
+    <dimen name="new_detail_toolbar_height">47dp</dimen>
+
 </resources>

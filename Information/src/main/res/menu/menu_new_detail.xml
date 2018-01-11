@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_comment"
+        android:icon="?attr/comment_gray"
+        android:title="@string/new_detail_menu_action_comment"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_more"
+        android:icon="?attr/more_horiz_small"
+        android:title="@string/new_detail_menu_action_more"
+        app:showAsAction="always" />
+</menu>

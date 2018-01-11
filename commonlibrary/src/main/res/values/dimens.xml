@@ -7,6 +7,7 @@
     <dimen name="textview_text_size">16sp</dimen>
     <dimen name="textview_text_size_12sp">12sp</dimen>
     <dimen name="textview_text_size_14sp">14sp</dimen>
+    <dimen name="textview_text_size_26sp">26sp</dimen>
 
     <!--CardView-->
     <dimen name="card_recycler_corner_radius">2dp</dimen>

@@ -2,7 +2,9 @@
 <resources>
     <attr name="add" format="reference" />
     <attr name="back" format="reference" />
-    <attr name="more_horiz_small" format="reference"/>
+    <attr name="more_horiz_small" format="reference" />
+    <attr name="back_gray" format="reference" />
+    <attr name="comment_gray" format="reference" />
 
     <!--TabLayout 默认字体颜色-->
     <attr name="tab_tv_color" format="color" />
@@ -11,4 +13,5 @@
     <attr name="tv_size" format="dimension" />
     <attr name="tv_size_12sp" format="dimension" />
     <attr name="tv_size_14sp" format="dimension" />
+    <attr name="tv_size_26sp" format="dimension" />
 </resources>
