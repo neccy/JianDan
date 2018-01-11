@@ -14,11 +14,12 @@ import kotlinx.android.synthetic.main.fragment_newdetail.*
 import kotlinx.android.synthetic.main.view_newdetail_toolbar.*
 
 /**
- * 新闻类型数据详情
+ * 新闻类型数据详情界面
  * Created by xinyi on 2018/1/10.
  */
 @SuppressLint("ValidFragment")
-class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment() {
+class NewDetailFragment(private val mNewData: NewModel.Post) :
+        BaseFragment(mSupportSwipBack = true) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +41,13 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment() {
     }
 
     private fun initToolBar() {
-        val mIsBack = true
-        toolbar.setToolbar(mNewData.title, mIsBack)
+        toolbar.setToolbar(mNewData.title, mIsBack = true)
         toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
     }
 
     private fun initWebView() {
         webview.setWebView()
-        webview.webViewClient = WebViewClientBase()
+        webview.webViewClient = WebViewClient()
     }
 
     private inner class WebViewClientBase : WebViewClient() {

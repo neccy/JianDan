@@ -1,17 +1,19 @@
 package cn.putong.commonlibrary.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.yokeyword.fragmentation.SupportFragment
+import me.yokeyword.fragmentation_swipeback.SwipeBackFragment
 
 /**
  * Base Fragment
  * Created by xinyi on 2018/1/6.
  */
-open class BaseFragment : SupportFragment(), IBaseImpl {
+@SuppressLint("ValidFragment")
+open class BaseFragment(val mSupportSwipBack: Boolean = false) : SwipeBackFragment(), IBaseImpl {
 
     private var mView: View? = null
     private var mContainer: ViewGroup? = null
@@ -19,7 +21,8 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         this.mContainer = container!!
-        return mView!!
+        setSwipeBackEnable(mSupportSwipBack)
+        return attachToSwipeBack(mView!!)
     }
 
     fun setContentView(viewId: Int) {
@@ -33,7 +36,6 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
         initListener()
         loadData()
     }
-
     override fun initView() {}
 
     override fun initData() {}
