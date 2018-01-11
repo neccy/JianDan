@@ -89,6 +89,12 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
         initWebView()
     }
 
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_new_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
