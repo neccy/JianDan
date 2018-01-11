@@ -17,16 +17,11 @@ import cn.putong.home.util.HtmlUtil
 import kotlinx.android.synthetic.main.fragment_newdetail.*
 import kotlinx.android.synthetic.main.view_newdetail_toolbar.*
 
-
-/**
- * 新闻类型数据详情界面
- * Created by xinyi on 2018/1/10.
- */
 @SuppressLint("ValidFragment")
-class NewDetailFragment(private val mNewData: NewModel.Post)
-    : BaseFragment(mSupportSwipBack = true), IDetailView {
+class NewDetailFragment(private val mNewData: NewModel.Post) :
+        BaseFragment(mSupportSwipBack = true), IDetailView {
 
-    private lateinit var mDetailPresenter: DetailPresenter
+    private lateinit var mDetailPreSenter: DetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +30,7 @@ class NewDetailFragment(private val mNewData: NewModel.Post)
 
     override fun initData() {
         super.initData()
-        mDetailPresenter = DetailPresenter(this)
+        mDetailPreSenter = DetailPresenter(this)
         initNewData()
     }
 
@@ -63,7 +58,7 @@ class NewDetailFragment(private val mNewData: NewModel.Post)
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        mDetailPresenter.getNewThingsDetail()
+        mDetailPreSenter.getNewThingsDetail()
     }
 
     override fun showLoading() {
@@ -75,13 +70,8 @@ class NewDetailFragment(private val mNewData: NewModel.Post)
     }
 
     override fun successful(model: Any) {
-        val html = (model as NewDetailModel).post.content
-        webview.loadDataWithBaseURL(
-                HtmlUtil.BASE_URL,
-                HtmlUtil.getHtml(html),
-                HtmlUtil.MIME_TYPE,
-                HtmlUtil.ENCODING,
-                HtmlUtil.HISTORY_URL)
+        HtmlUtil.CONTENT = (model as NewDetailModel).post.content
+        HtmlUtil.setUrl(webview)
     }
 
     override fun error(msg: String) {

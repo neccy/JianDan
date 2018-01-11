@@ -1,20 +1,23 @@
 package cn.putong.home.util
 
+import android.webkit.WebView
+
 /**
  * HTML工具类
  * Created by xinyi on 2018/1/11.
  */
 object HtmlUtil {
 
-    val BASE_URL = ""
-    val MIME_TYPE = "text/html"
-    val ENCODING = "utf-8"
-    val HISTORY_URL = ""
+    var CONTENT = ""
+    private val BASEURL = ""
+    private val MIMETYPE = "text/html"
+    private val ENCODING = "utf-8"
+    private val HISTORYURL = ""
 
     /**
      * 根据新鲜事接口返回内容信息生成HTML
      */
-    fun getHtml(content: String): String {
+    fun getHtml(): String {
         val sb = StringBuilder()
         sb.append("<!DOCTYPE html>")
         sb.append("<html dir=\"ltr\" lang=\"zh\">")
@@ -31,7 +34,7 @@ object HtmlUtil {
         sb.append("<div class=\"postinfo\">")
         sb.append("</div>")
         sb.append("<div class=\"entry\">")
-        sb.append(content)
+        sb.append(CONTENT)
         sb.append("</div>")
         sb.append("</div>")
         sb.append("</div>")
@@ -41,5 +44,17 @@ object HtmlUtil {
         sb.append("</body>")
         sb.append("</html>")
         return sb.toString()
+    }
+
+    /**
+     * 设置详情Url
+     */
+    fun setUrl(webView: WebView) {
+        webView.loadDataWithBaseURL(
+                HtmlUtil.BASEURL,
+                HtmlUtil.getHtml(),
+                HtmlUtil.MIMETYPE,
+                HtmlUtil.ENCODING,
+                HtmlUtil.HISTORYURL)
     }
 }

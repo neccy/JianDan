@@ -18,10 +18,6 @@ import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
-/**
- * 首页数据列表界面
- * Created by lala on 2018/1/7.
- */
 @SuppressLint("ValidFragment")
 class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
@@ -36,7 +32,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private lateinit var mCommentDatas: ArrayList<CommentModel.Comment>
     private lateinit var mCommentAdapter: CommentDataAdapter
 
-    private lateinit var mDataPrensent: DataPresenter
+    private lateinit var mDataPrenSent: DataPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +41,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     override fun initData() {
         super.initData()
-        mDataPrensent = DataPresenter(this)
+        mDataPrenSent = DataPresenter(this)
         initAdapter()
     }
 
@@ -157,11 +153,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
         when (mClass) {
             HomeFragment.CLASS_NEWTHINGS ->
-                mDataPrensent.getNewThings()
+                mDataPrenSent.getNewThings()
             HomeFragment.CLASS_BORINGPICTURES ->
-                mDataPrensent.getBoringPictures()
+                mDataPrenSent.getBoringPictures()
             HomeFragment.CLASS_DUANZI ->
-                mDataPrensent.getDuanZis()
+                mDataPrenSent.getDuanZis()
         }
     }
 
