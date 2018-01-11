@@ -35,7 +35,7 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
 
     private fun initNewData() {
         picview.setImageURI(mNewData.custom_fields.thumb_c[0])
-        title.text = mNewData.title
+        post_title.text = mNewData.title
         author.text = mNewData.author.nickname
         time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
         excerpt.text = mNewData.excerpt
@@ -61,16 +61,20 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
     }
 
     override fun showLoading() {
-        progressbar.visibility = View.VISIBLE
+        if (progressbar != null)
+            progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressbar.visibility = View.GONE
+        if (progressbar != null)
+            progressbar.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-        HtmlUtil.CONTENT = (model as NewDetailModel).post.content
-        HtmlUtil.setUrl(webview)
+        if (webview != null) {
+            HtmlUtil.CONTENT = (model as NewDetailModel).post.content
+            HtmlUtil.setUrl(webview)
+        }
     }
 
     override fun error(msg: String) {

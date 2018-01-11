@@ -20,8 +20,8 @@ class DetailPresenter(IDetailView: IDetailView) {
         detailview.showLoading()
         detailBiz.getNewThingsDetail(detailview.getDataId(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
-                detailview.hideLoading()
                 detailview.successful(model)
+                detailview.hideLoading()
             }
 
             override fun faild(msg: String) {
