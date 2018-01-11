@@ -52,7 +52,8 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
     }
 
     private fun initWebView() {
-        webview.setWebView()
+        if (webview != null)
+            webview.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {

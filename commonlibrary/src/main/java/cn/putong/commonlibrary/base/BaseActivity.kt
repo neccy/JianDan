@@ -1,9 +1,7 @@
 package cn.putong.commonlibrary.base
 
 import android.os.Bundle
-import cn.putong.commonlibrary.R
 import me.yokeyword.fragmentation.SupportActivity
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 /**
  * BaseActivity
