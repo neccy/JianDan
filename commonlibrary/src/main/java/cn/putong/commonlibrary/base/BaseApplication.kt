@@ -1,7 +1,10 @@
 package cn.putong.commonlibrary.base
 
 import android.app.Application
+import cn.putong.commonlibrary.R
 import com.facebook.drawee.backends.pipeline.Fresco
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 /**
  * Base Application
@@ -16,31 +19,26 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
 
     private fun initThreadLibs() {
         initArouter()
-        initSmartRefreshLsyout()
         initFresco()
+        initRealm()
     }
 
     override fun initArouter() {}
 
-    override fun initSmartRefreshLsyout() {}
-
     override fun initFresco() {
-//        val config = ImagePipelineConfig.newBuilder(this)
-//                .setBitmapMemoryCacheParamsSupplier(bitmapCacheParamsSupplier)
-//                .setCacheKeyFactory(cacheKeyFactory)
-//                .setDownsampleEnabled(true)
-//                .setWebpSupportEnabled(true)
-//                .setEncodedMemoryCacheParamsSupplier(encodedCacheParamsSupplier)
-//                .setExecutorSupplier(executorSupplier)
-//                .setImageCacheStatsTracker(imageCacheStatsTracker)
-//                .setMainDiskCacheConfig(mainDiskCacheConfig)
-//                .setMemoryTrimmableRegistry(memoryTrimmableRegistry)
-//                .setNetworkFetchProducer(networkFetchProducer)
-//                .setPoolFactory(poolFactory)
-//                .setProgressiveJpegConfig(progressiveJpegConfig)
-//                .setRequestListeners(requestListeners)
-//                .setSmallImageDiskCacheConfig(smallImageDiskCacheConfig)
-//                .build()
         Fresco.initialize(this)
+    }
+
+    override fun initRealm() {
+        super.initRealm()
+        val filename = getString(R.string.app_db_name)
+        val schemaVersion: Long = 1
+        Realm.init(this)
+        val realmConfig = RealmConfiguration
+                .Builder()
+                .name(filename)
+                .schemaVersion(schemaVersion)
+                .build()
+        Realm.setDefaultConfiguration(realmConfig)
     }
 }

@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+// Realm
+apply plugin: 'realm-android'
+
 android {
     compileSdkVersion 26
     defaultConfig {

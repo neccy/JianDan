@@ -12,12 +12,13 @@ interface IBaseThreadLibsImpl {
     fun initArouter()
 
     /**
-     * 初始化SmartRefreshLsyout
-     */
-    fun initSmartRefreshLsyout()
-
-    /**
      * 初始化Fresco
      */
     fun initFresco()
+
+    /**
+     * 初始化数据库
+     */
+    fun initRealm(){}
+
 }

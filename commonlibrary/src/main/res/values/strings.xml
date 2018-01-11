@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">煎蛋</string>
+    <string name="app_db_name">jiandan.realm</string>
 </resources>
