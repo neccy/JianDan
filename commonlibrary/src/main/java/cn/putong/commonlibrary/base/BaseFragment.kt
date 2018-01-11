@@ -6,14 +6,15 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.yokeyword.fragmentation_swipeback.SwipeBackFragment
+import me.yokeyword.fragmentation.SupportFragment
+
 
 /**
  * Base Fragment
  * Created by xinyi on 2018/1/6.
  */
 @SuppressLint("ValidFragment")
-open class BaseFragment(val mSupportSwipBack: Boolean = false) : SwipeBackFragment(), IBaseImpl {
+open class BaseFragment : SupportFragment(), IBaseImpl {
 
     private var mView: View? = null
     private var mContainer: ViewGroup? = null
@@ -21,8 +22,7 @@ open class BaseFragment(val mSupportSwipBack: Boolean = false) : SwipeBackFragme
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         this.mContainer = container!!
-        setSwipeBackEnable(mSupportSwipBack)
-        return attachToSwipeBack(mView!!)
+        return mView!!
     }
 
     fun setContentView(viewId: Int) {
@@ -36,6 +36,7 @@ open class BaseFragment(val mSupportSwipBack: Boolean = false) : SwipeBackFragme
         initListener()
         loadData()
     }
+
     override fun initView() {}
 
     override fun initData() {}

@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.fragment_newdetail.*
 import kotlinx.android.synthetic.main.view_newdetail_toolbar.*
 
 @SuppressLint("ValidFragment")
-class NewDetailFragment(private val mNewData: NewModel.Post) :
-        BaseFragment(mSupportSwipBack = true), IDetailView {
+class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), IDetailView {
 
     private lateinit var mDetailPreSenter: DetailPresenter
 

@@ -13,6 +13,7 @@ object HtmlUtil {
     private val MIMETYPE = "text/html"
     private val ENCODING = "utf-8"
     private val HISTORYURL = ""
+    private val CSS = "new_detail_style.css"
 
     /**
      * 根据新鲜事接口返回内容信息生成HTML
@@ -23,7 +24,7 @@ object HtmlUtil {
         sb.append("<html dir=\"ltr\" lang=\"zh\">")
         sb.append("<head>")
         sb.append("<meta name=\"viewport\" content=\"width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\" />")
-        sb.append("<link rel=\"stylesheet\" href='file:///android_asset/new_detail_style.css' type=\"text/css\" media=\"screen\" />")
+        sb.append("<link rel=\"stylesheet\" href='file:///android_asset/$CSS' type=\"text/css\" media=\"screen\" />")
         sb.append("</head>")
         sb.append("<body style=\"padding:0px 8px 8px 8px;\">")
         sb.append("<div id=\"pagewrapper\">")

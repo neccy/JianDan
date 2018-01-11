@@ -1,4 +1,4 @@
-/*  
+/*
 
 Theme Name:iphone
 
@@ -86,7 +86,7 @@ object, embed { display:none; }
 
 #maincontent .postinfo {font-size: 14px;color: #717171; padding: 5px 0;}
 
-#maincontent .entry, #maincontent .entrytext {display: block;color: #111111;font-size: 16px; line-height: 1.6em;}
+#maincontent .entry, #maincontent .entrytext {display: block;color: #111111;font-size: 18px; line-height: 1.6em;}
 
 #maincontent .thumb {float: left; height:125px; overflow:hidden;padding-right:10px; display: inline;}
 
@@ -180,7 +180,6 @@ h2.pagetitle {color: #DD1111;font-size: 15px;margin: 10px 10px 10px!important;}
 .alignleft {float: left;}
 
 .alignright {float: right;}
-
 
 
 .wp-pagenavi {padding: 10px 5px 10px 0; margin: 0px; font-size:11px;}

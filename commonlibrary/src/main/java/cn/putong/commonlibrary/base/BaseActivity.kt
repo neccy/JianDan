@@ -26,13 +26,4 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
     override fun initListener() {}
 
     override fun loadData() {}
-
-    /**
-     * 初始化Fragment转场动画
-     */
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
-                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
-    }
-
 }
