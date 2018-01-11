@@ -1,11 +1,13 @@
 package cn.putong.commonlibrary.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import cn.putong.commonlibrary.R
 
 /**
@@ -28,7 +30,8 @@ fun SwipeRefreshLayout.setColor(resid: Int = R.color.colorAccent) {
     setColorSchemeResources(resid)
 }
 
-/**
+@SuppressLint("SetJavaScriptEnabled")
+        /**
  * WebView相关设置
  */
 fun WebView.setWebView() {
@@ -45,4 +48,6 @@ fun WebView.setWebView() {
     mWebSett.setAppCacheEnabled(true)
     // 设置缓存模式
     mWebSett.cacheMode = WebSettings.LOAD_DEFAULT;
+    // 禁止加载Url时弹出浏览器
+    webViewClient = WebViewClient()
 }

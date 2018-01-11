@@ -55,8 +55,9 @@
     <dimen name="new_detail_line_width">100dp</dimen>
     <dimen name="new_detail_line_height">3px</dimen>
     <dimen name="new_detail_line_vertical_margin">32dp</dimen>
+    <dimen name="new_detail_line_horizontal_margin">16dp</dimen>
 
-    <dimen name="new_detail_webview_vertical_margin">8dp</dimen>
+    <dimen name="new_detail_webview_content_vertical_margin">16dp</dimen>
 
     <dimen name="new_detail_toolbar_height">47dp</dimen>
 

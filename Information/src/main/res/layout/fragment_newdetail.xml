@@ -29,7 +29,6 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:layout_marginLeft="@dimen/new_detail_title_horizontal_margin"
                 android:layout_marginRight="@dimen/new_detail_title_horizontal_margin"
                 android:layout_marginTop="@dimen/new_detail_title_vertical_margin"
@@ -89,11 +88,24 @@
                 android:background="@color/new_detail_lin_bg" />
 
             <!--WebView-->
-            <WebView
-                android:id="@+id/webview"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/new_detail_webview_content_vertical_margin">
 
+                <WebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

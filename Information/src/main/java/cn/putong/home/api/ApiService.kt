@@ -34,6 +34,6 @@ interface ApiService {
     /**
      * 获取新鲜事详情
      */
-    @GET("/?oxwlxojflwblxbsapi=get_post&id=?&include=date,modified")
+    @GET("?oxwlxojflwblxbsapi=get_post&include=content&id=")
     fun getNewThingsDetail(@Query("id") id: Int): Call<NewDetailModel>
 }

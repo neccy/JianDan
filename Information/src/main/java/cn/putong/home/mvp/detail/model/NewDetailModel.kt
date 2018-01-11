@@ -7,13 +7,12 @@ package cn.putong.home.mvp.detail.model
 class NewDetailModel {
 
     var status: String = ""
-    var post: Post = Post()
+    var post: Post =Post()
     var previous_url: String = ""
     var next_url: String = ""
 
     class Post {
         var id: Int = 0
-        var date: String = ""
-        var modified: String = ""
+        var content: String = ""
     }
 }
