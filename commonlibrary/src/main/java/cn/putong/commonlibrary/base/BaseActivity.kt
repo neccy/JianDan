@@ -13,11 +13,14 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        initLayout()
         initView()
         initData()
         initListener()
         loadData()
     }
+
+    override fun initLayout() {}
 
     override fun initView() {}
 

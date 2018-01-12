@@ -172,4 +172,5 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             getAdapter().notifyItemChanged(recordEvent.position)
     }
 
+
 }

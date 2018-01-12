@@ -5,6 +5,7 @@ package cn.putong.commonlibrary.base
  * Created by xinyi on 2018/1/6.
  */
 interface IBaseImpl {
+    fun initLayout()
     fun initView()
     fun initData()
     fun initListener()

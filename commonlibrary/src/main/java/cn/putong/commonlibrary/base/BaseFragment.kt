@@ -42,11 +42,14 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initLayout()
         initData()
         initView()
         initListener()
         loadData()
     }
+
+    override fun initLayout() {}
 
     override fun initView() {}
 

@@ -1,9 +1,9 @@
 package cn.putong.home
 
-import android.os.Bundle
 import cn.putong.commonlibrary.base.BaseActivity
 import cn.putong.commonlibrary.util.ModuleUtil
 import com.alibaba.android.arouter.facade.annotation.Route
+import org.jetbrains.anko.frameLayout
 
 /**
  * 首页组件入口
@@ -12,9 +12,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 @Route(path = ModuleUtil.HOME_MODULE_PATH)
 class HomeActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+    override fun initLayout() {
+        super.initLayout()
+        frameLayout { id = R.id.home_fl }
     }
 
     override fun initView() {
