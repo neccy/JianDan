@@ -9,7 +9,6 @@ class CommentModel {
     var status: String = ""
     var current_page: Int = 0
     var total_comments: Int = 0
-    var page_count: Int = 0
     var count: Int = 0
     var comments: List<Comment> = listOf()
 

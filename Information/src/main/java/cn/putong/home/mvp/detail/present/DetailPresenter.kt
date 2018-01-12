@@ -30,4 +30,22 @@ class DetailPresenter(IDetailView: IDetailView) {
             }
         })
     }
+
+    /**
+     * 获取新鲜事评论信息
+     */
+    fun getNewThingsComments() {
+        detailview.showLoading()
+        detailBiz.getNewThingsComments(detailview.getDataId(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+                detailview.successful(model)
+                detailview.hideLoading()
+            }
+
+            override fun faild(msg: String) {
+                detailview.error(msg)
+                detailview.hideLoading()
+            }
+        })
+    }
 }

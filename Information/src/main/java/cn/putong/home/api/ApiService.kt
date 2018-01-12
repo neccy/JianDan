@@ -2,6 +2,7 @@ package cn.putong.home.api
 
 import cn.putong.home.mvp.data.model.CommentModel
 import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.home.mvp.detail.model.PostCommentModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import retrofit2.Call
 import retrofit2.http.GET
@@ -20,6 +21,18 @@ interface ApiService {
     fun getNewThings(@Query("page") page: Int): Call<PostModel>
 
     /**
+     * 获取新鲜事详情
+     */
+    @GET("?oxwlxojflwblxbsapi=get_post&include=content&id=")
+    fun getNewThingsDetail(@Query("id") id: Int): Call<PostDetailModel>
+
+    /**
+     * 获取新鲜事评论列表
+     */
+    @GET(" /?oxwlxojflwblxbsapi=get_post&id=?&include=comments")
+    fun getNewThingsComments(@Query("id") id: Int): Call<PostCommentModel>
+
+    /**
      * 获取无聊图列表
      */
     @GET("/?oxwlxojflwblxbsapi=jandan.get_pic_comments&page=?")
@@ -31,9 +44,4 @@ interface ApiService {
     @GET("/?oxwlxojflwblxbsapi=jandan.get_duan_comments&page=?")
     fun getDuanZis(@Query("page") page: Int): Call<CommentModel>
 
-    /**
-     * 获取新鲜事详情
-     */
-    @GET("?oxwlxojflwblxbsapi=get_post&include=content&id=")
-    fun getNewThingsDetail(@Query("id") id: Int): Call<PostDetailModel>
 }

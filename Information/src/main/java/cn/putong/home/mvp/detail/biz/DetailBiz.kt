@@ -3,6 +3,7 @@ package cn.putong.home.mvp.detail.biz
 import cn.putong.commonlibrary.base.IBaseApiResultListener
 import cn.putong.commonlibrary.network.NetWoks
 import cn.putong.home.api.ApiService
+import cn.putong.home.mvp.detail.model.PostCommentModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import retrofit2.Call
 import retrofit2.Callback;
@@ -28,4 +29,20 @@ class DetailBiz : IDetailBiz {
 
         })
     }
+
+    override fun getNewThingsComments(id: Int, resultListener: IBaseApiResultListener) {
+        NetWoks.configRetrofit(ApiService::class.java).getNewThingsComments(id).
+                clone().enqueue(object : Callback<PostCommentModel> {
+
+            override fun onResponse(call: Call<PostCommentModel>?, response: Response<PostCommentModel>?) {
+                resultListener.successful(response?.body()!!)
+            }
+
+            override fun onFailure(call: Call<PostCommentModel>?, t: Throwable?) {
+                resultListener.faild(t?.message!!)
+            }
+
+        })
+    }
+
 }

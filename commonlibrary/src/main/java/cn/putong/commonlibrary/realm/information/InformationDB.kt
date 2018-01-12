@@ -10,7 +10,8 @@ import cn.putong.commonlibrary.realm.information.table.PostRecordTable
 object InformationDB {
 
     /**
-     * 根据id保存已看状态
+     * 根据id保存已看记录
+     * @param onResultListener 回调接口
      */
     fun savePostRecord(id: Int, onResultListener: (Boolean) -> Unit) {
         if (getPostRecord(id) == null)

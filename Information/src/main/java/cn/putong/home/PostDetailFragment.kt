@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.otto.AppEvent
@@ -109,6 +110,17 @@ class PostDetailFragment(
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_post_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.action_comment ->
+                start(PostCommentFragment(mNewData))
+            R.id.action_more -> {
+
+            }
+        }
+        return true
     }
 
 }

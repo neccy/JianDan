@@ -63,8 +63,8 @@ class PostDataAdapter(
     }
 
     fun updateList(mList: ArrayList<PostModel.Post>) {
-        this.mList = mList
         mList.setHaveSeenStatus()
+        this.mList = mList
         notifyDataSetChanged()
     }
 
@@ -72,7 +72,7 @@ class PostDataAdapter(
      * 设置已看状态
      */
     private fun List<PostModel.Post>.setHaveSeenStatus() {
-       filter { InformationDB.getPostRecord(it.id) != null }.
+        filter { InformationDB.getPostRecord(it.id) != null }.
                 forEach { it.have_seen = true }
     }
 
