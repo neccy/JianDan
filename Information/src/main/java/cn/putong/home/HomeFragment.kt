@@ -23,7 +23,8 @@ class HomeFragment : BaseFragment() {
     private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mClassItems: Array<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             mUi.createView(AnkoContext.Companion.create(context, owner = this))
 
     override fun initUi() {

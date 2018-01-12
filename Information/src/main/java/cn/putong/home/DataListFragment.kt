@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.setColor
@@ -17,12 +19,15 @@ import cn.putong.home.mvp.data.model.CommentModel
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
+import cn.putong.home.ui.DataListFragmentUi
 import cn.putong.home.util.DataClass
 import com.squareup.otto.Subscribe
-import kotlinx.android.synthetic.main.fragment_datalist.*
+import org.jetbrains.anko.AnkoContext
 
 @SuppressLint("ValidFragment")
 class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
+
+    private lateinit var mUi: DataListFragmentUi
 
     private var mCurrentPage = 1
     private var mLongingMore = false
@@ -37,9 +42,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private lateinit var mDataPrenSent: DataPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_datalist)
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+
+    override fun initUi() {
+        super.initUi()
+        mUi = DataListFragmentUi()
     }
 
     override fun initData() {
@@ -64,19 +73,19 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initRefreshLayout() {
-        refresh.setColor()
-        refresh.setOnRefreshListener { getData() }
+        mUi.refresh.setColor()
+        mUi.refresh.setOnRefreshListener { getData() }
     }
 
     private fun initListView() {
-        listview.adapter = getAdapter()
+        mUi.listview.adapter = getAdapter()
         if (mClass == DataClass.CLASS_NEWTHINGS)
-            listview.setDefaultDivider(context)
+            mUi.listview.setDefaultDivider(context)
     }
 
     override fun initListener() {
         super.initListener()
-        listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        mUi.listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val linearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
@@ -90,18 +99,18 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun showLoading() {
-        if (!refresh.isRefreshing && !mLongingMore)
-            progressbar.visibility = View.VISIBLE
+        if (!mUi.refresh.isRefreshing && !mLongingMore)
+            mUi.progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
         // 正在首次刷新
-        if (progressbar.visibility == View.VISIBLE)
-            progressbar.visibility = View.GONE
+        if (mUi.progressbar.visibility == View.VISIBLE)
+            mUi.progressbar.visibility = View.GONE
 
         // 正在刷新
-        if (refresh.isRefreshing)
-            refresh.isRefreshing = false
+        if (mUi.refresh.isRefreshing)
+            mUi.refresh.isRefreshing = false
 
         // 正在加载
         if (mLongingMore) {
@@ -123,7 +132,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun error(msg: String) {
-        TipBar.showTip(data_content, msg)
+        TipBar.showTip(mUi.listview, msg)
     }
 
     override fun getCurrentPage() = mCurrentPage

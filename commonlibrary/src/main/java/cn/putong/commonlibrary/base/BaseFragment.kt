@@ -9,12 +9,8 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.otto.AppEvent
 import me.yokeyword.fragmentation.SupportFragment
 
-/**
- * Base Fragment
- * Created by xinyi on 2018/1/6.
- */
 @SuppressLint("ValidFragment")
-open class BaseFragment: SupportFragment(), IBaseImpl {
+open class BaseFragment : SupportFragment(), IBaseImpl{
 
     private var mView: View? = null
     private var mContainer: ViewGroup? = null
@@ -22,6 +18,7 @@ open class BaseFragment: SupportFragment(), IBaseImpl {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initUi()
+
         AppEvent.register(this)
     }
 
