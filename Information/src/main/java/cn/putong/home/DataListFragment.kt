@@ -12,10 +12,12 @@ import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
+import cn.putong.home.event.PostRecordEvent
 import cn.putong.home.mvp.data.model.CommentModel
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
+import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
 @SuppressLint("ValidFragment")
@@ -48,7 +50,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         mPostAdapter = PostDataAdapter { position ->
             (parentFragment as HomeFragment).
-                    start(PostDetailFragment(mPostDatas[position]))
+                    start(PostDetailFragment(mPostDatas[position], position))
         }
         mCommentAdapter = CommentDataAdapter()
     }
@@ -159,6 +161,15 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             HomeFragment.CLASS_DUANZI ->
                 mDataPrenSent.getDuanZis()
         }
+    }
+
+    /**
+     * 根据详情页面发送过来的下标更新适配器
+     */
+    @Subscribe
+    fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
+        if (mClass == HomeFragment.CLASS_NEWTHINGS)
+            getAdapter().notifyItemChanged(recordEvent.position)
     }
 
 }

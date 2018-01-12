@@ -1,10 +1,12 @@
 package cn.putong.home.adapter
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.PostModel
@@ -26,6 +28,7 @@ class PostDataAdapter(
             with(holder.itemView!!) {
                 val mPost = mList[position]
                 title.text = mPost.title
+                title.setTextColor(if (!mPost.have_seen) Color.BLACK else Color.GRAY)
                 author.text = mPost.author.nickname
                 time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
                 comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.post_comment_count_text)
@@ -61,7 +64,16 @@ class PostDataAdapter(
 
     fun updateList(mList: ArrayList<PostModel.Post>) {
         this.mList = mList
+        mList.setHaveSeenStatus()
         notifyDataSetChanged()
+    }
+
+    /**
+     * 设置已看状态
+     */
+    private fun List<PostModel.Post>.setHaveSeenStatus() {
+       filter { InformationDB.getPostRecord(it.id) != null }.
+                forEach { it.have_seen = true }
     }
 
     override fun addFooter() {
@@ -82,3 +94,4 @@ class PostDataAdapter(
     // 底部ViewHolder
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
+

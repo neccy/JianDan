@@ -23,6 +23,7 @@ class PostModel {
         val comment_count: Int = 0
         val comment_status: String = ""
         val custom_fields: CustomFields = CustomFields()
+        var have_seen: Boolean = false
 
         class Tag {
             val id: Int = 0

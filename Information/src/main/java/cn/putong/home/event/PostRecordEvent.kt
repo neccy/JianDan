@@ -5,5 +5,5 @@ package cn.putong.home.event
  * Created by xinyi on 2018/1/12.
  */
 class PostRecordEvent( // 当前新闻数据下标
-        private val position: Int
+        val position: Int
 )

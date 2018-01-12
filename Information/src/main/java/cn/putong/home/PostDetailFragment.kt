@@ -6,10 +6,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.commonlibrary.util.setWebView
 import cn.putong.commonlibrary.widget.TipBar
+import cn.putong.home.event.PostRecordEvent
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
@@ -18,9 +20,10 @@ import cn.putong.home.util.HtmlUtil
 import kotlinx.android.synthetic.main.fragment_postdetail.*
 import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
 
-
 @SuppressLint("ValidFragment")
-class PostDetailFragment(private val mNewData: PostModel.Post) : BaseFragment(), IDetailView {
+class PostDetailFragment(
+        private val mNewData: PostModel.Post,
+        private val mPosition: Int) : BaseFragment(), IDetailView {
 
     private lateinit var mDetailPreSenter: DetailPresenter
 
@@ -94,10 +97,13 @@ class PostDetailFragment(private val mNewData: PostModel.Post) : BaseFragment(),
     override fun onSupportVisible() {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
-        InformationDB.saveNewRecord(mNewData.id)
-
-        // 通知更新列表
-        // AppEvent.post(NewRecordEvent())
+        InformationDB.savePostRecord(mNewData.id, { result ->
+            if (result) {
+                // 通知更新列表
+                mNewData.have_seen = true
+                AppEvent.post(PostRecordEvent(mPosition))
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

@@ -9,10 +9,28 @@ import cn.putong.commonlibrary.realm.information.table.PostRecordTable
  */
 object InformationDB {
 
-    fun saveNewRecord(id: Int) {
-        AppDB.getInstance().executeTransaction { realm ->
-            val mNewRecordTb = realm.createObject(PostRecordTable::class.java)
-            mNewRecordTb.new_data_id = id
-        }
+    /**
+     * 根据id保存已看状态
+     */
+    fun savePostRecord(id: Int, onResultListener: (Boolean) -> Unit) {
+        if (getPostRecord(id) == null)
+            AppDB.getInstance().executeTransaction { realm ->
+                try {
+                    val mNewRecordTb = realm.createObject(PostRecordTable::class.java)
+                    mNewRecordTb.new_data_id = id
+                    onResultListener.invoke(true)
+                } catch (e: Exception) {
+                    onResultListener.invoke(false)
+                }
+            }
     }
+
+    /**
+     * 根据id获取已看记录
+     */
+    fun getPostRecord(id: Int): PostRecordTable? {
+        val fieldName = "new_data_id"
+        return AppDB.getInstance().where(PostRecordTable::class.java).equalTo(fieldName, id).findFirst()
+    }
+
 }
