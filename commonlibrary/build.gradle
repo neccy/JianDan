@@ -33,7 +33,11 @@ dependencies {
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Anko
     compile "org.jetbrains.anko:anko:$anko_version"
+    compile "org.jetbrains.anko:anko-design:$anko_version"
+    compile "org.jetbrains.anko:anko-design-coroutines:$anko_version"
 
     // UI
     compile 'me.yokeyword:fragmentation:1.2.4'

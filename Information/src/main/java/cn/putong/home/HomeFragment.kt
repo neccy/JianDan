@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.home.adapter.DataListFragmentAdapter
+import cn.putong.home.util.DataClass
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -17,15 +18,6 @@ class HomeFragment : BaseFragment() {
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mClassItems: Array<String>
-
-    companion object {
-        // 新鲜事
-        val CLASS_NEWTHINGS = 1
-        // 无聊图
-        val CLASS_BORINGPICTURES = 2
-        // 段子
-        val CLASS_DUANZI = 3
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +36,11 @@ class HomeFragment : BaseFragment() {
 
     private fun initFragmentList() {
         mFragments = ArrayList()
-        mFragments.add(DataListFragment(CLASS_NEWTHINGS))
-        mFragments.add(DataListFragment(CLASS_BORINGPICTURES))
-        mFragments.add(DataListFragment(CLASS_DUANZI))
-        mFragmentsAdapter = DataListFragmentAdapter(
-                childFragmentManager, mFragments, mClassItems)
+        mFragments.add(DataListFragment(DataClass.CLASS_NEWTHINGS))
+        mFragments.add(DataListFragment(DataClass.CLASS_BORINGPICTURES))
+        mFragments.add(DataListFragment(DataClass.CLASS_DUANZI))
+        mFragmentsAdapter =
+                DataListFragmentAdapter(childFragmentManager, mFragments, mClassItems)
     }
 
     override fun initView() {

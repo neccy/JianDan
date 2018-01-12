@@ -17,6 +17,7 @@ import cn.putong.home.mvp.data.model.CommentModel
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
+import cn.putong.home.util.DataClass
 import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.fragment_datalist.*
 
@@ -69,7 +70,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initListView() {
         listview.adapter = getAdapter()
-        if (mClass == HomeFragment.CLASS_NEWTHINGS)
+        if (mClass == DataClass.CLASS_NEWTHINGS)
             listview.setDefaultDivider(context)
     }
 
@@ -110,7 +111,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun successful(model: Any) {
-        if (mClass == HomeFragment.CLASS_NEWTHINGS) {
+        if (mClass == DataClass.CLASS_NEWTHINGS) {
             val mNewThingsModel = model as PostModel
             mPostDatas.addAll(mNewThingsModel.posts)
             mPostAdapter.updateList(mPostDatas)
@@ -131,7 +132,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      * 根据类型获取对应适配器
      */
     private fun getAdapter(): BaseRecyclerAdapter {
-        return if (mClass == HomeFragment.CLASS_NEWTHINGS)
+        return if (mClass == DataClass.CLASS_NEWTHINGS)
             mPostAdapter
         else
             mCommentAdapter
@@ -154,11 +155,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             getAdapter().addFooter()
 
         when (mClass) {
-            HomeFragment.CLASS_NEWTHINGS ->
+            DataClass.CLASS_NEWTHINGS ->
                 mDataPrenSent.getNewThings()
-            HomeFragment.CLASS_BORINGPICTURES ->
+            DataClass.CLASS_BORINGPICTURES ->
                 mDataPrenSent.getBoringPictures()
-            HomeFragment.CLASS_DUANZI ->
+            DataClass.CLASS_DUANZI ->
                 mDataPrenSent.getDuanZis()
         }
     }
@@ -168,9 +169,8 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mClass == HomeFragment.CLASS_NEWTHINGS)
+        if (mClass == DataClass.CLASS_NEWTHINGS)
             getAdapter().notifyItemChanged(recordEvent.position)
     }
-
 
 }
