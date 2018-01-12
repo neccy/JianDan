@@ -28,12 +28,10 @@ class HomeFragment : BaseFragment() {
             mUi.createView(AnkoContext.Companion.create(context, owner = this))
 
     override fun initUi() {
-        super.initUi()
         mUi = HomeFragmentUi()
     }
 
     override fun initData() {
-        super.initData()
         initClassItems()
         initFragmentList()
     }
@@ -52,7 +50,6 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initView() {
-        super.initView()
         initToolBar()
         initTabLayout()
         initViewPager()
@@ -74,7 +71,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_home, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

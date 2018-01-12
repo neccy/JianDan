@@ -34,7 +34,6 @@ class PostDetailFragment(
     }
 
     override fun initData() {
-        super.initData()
         mDetailPreSenter = DetailPresenter(this)
         initNewData()
     }
@@ -48,7 +47,6 @@ class PostDetailFragment(
     }
 
     override fun initView() {
-        super.initView()
         initToolBar()
     }
 

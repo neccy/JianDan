@@ -47,12 +47,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mUi.createView(AnkoContext.Companion.create(context, owner = this))
 
     override fun initUi() {
-        super.initUi()
         mUi = DataListFragmentUi()
     }
 
     override fun initData() {
-        super.initData()
         mDataPrenSent = DataPresenter(this)
         initAdapter()
     }
@@ -84,7 +82,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun initListener() {
-        super.initListener()
         mUi.listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

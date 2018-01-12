@@ -13,12 +13,10 @@ import org.jetbrains.anko.frameLayout
 class HomeActivity : BaseActivity() {
 
     override fun initUi() {
-        super.initUi()
         frameLayout { id = R.id.home_fl }
     }
 
     override fun initView() {
-        super.initView()
         initRootFragment()
     }
 

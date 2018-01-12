@@ -28,12 +28,10 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun initData() {
-        super.initData()
         mCommentPreSenter = DetailPresenter(this)
     }
 
     override fun initView() {
-        super.initView()
         initToolBar()
         initRefreshLayout()
     }
@@ -48,7 +46,6 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun loadData() {
-        super.loadData()
         mCommentPreSenter.getNewThingsComments()
     }
 
