@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/new_detail_main_bg">
+    android:background="@color/post_detail_main_bg">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/new_detail_toolbar_height">
+        android:layout_marginBottom="@dimen/post_detail_toolbar_height">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,20 +20,20 @@
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/picview"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/new_detail_pic_height"
+                android:layout_height="@dimen/post_detail_pic_height"
                 app:actualImageScaleType="focusCrop"
-                app:placeholderImage="@color/new_detail_pic_placeholder" />
+                app:placeholderImage="@color/post_detail_pic_placeholder" />
 
             <!--标题-->
             <TextView
                 android:id="@+id/post_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/new_detail_title_horizontal_margin"
-                android:layout_marginRight="@dimen/new_detail_title_horizontal_margin"
-                android:layout_marginTop="@dimen/new_detail_title_vertical_margin"
+                android:layout_marginLeft="@dimen/post_detail_title_horizontal_margin"
+                android:layout_marginRight="@dimen/post_detail_title_horizontal_margin"
+                android:layout_marginTop="@dimen/post_detail_title_vertical_margin"
                 android:gravity="center"
-                android:padding="@dimen/new_detail_title_padding"
+                android:padding="@dimen/post_detail_title_padding"
                 android:textColor="@android:color/black"
                 android:textSize="?attr/tv_size_26sp"
                 tools:text="这是一条测试标题内容" />
@@ -47,13 +47,13 @@
                 android:gravity="center"
 
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/new_detail_author_content_vertical_padding">
+                android:paddingTop="@dimen/post_detail_author_content_vertical_padding">
 
                 <TextView
                     android:id="@+id/author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/new_detail_author_horizontal_margin"
+                    android:layout_marginRight="@dimen/post_detail_author_horizontal_margin"
                     android:textColor="@android:color/black"
                     android:textSize="?attr/tv_size_14sp"
                     tools:text="阿三" />
@@ -71,9 +71,9 @@
                 android:id="@+id/excerpt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/new_detail_excerpt_horizontal_margin"
-                android:layout_marginRight="@dimen/new_detail_excerpt_horizontal_margin"
-                android:layout_marginTop="@dimen/new_detail_excerpt_vertical_margin"
+                android:layout_marginLeft="@dimen/post_detail_excerpt_horizontal_margin"
+                android:layout_marginRight="@dimen/post_detail_excerpt_horizontal_margin"
+                android:layout_marginTop="@dimen/post_detail_excerpt_vertical_margin"
                 android:gravity="center"
                 android:textSize="?attr/tv_size"
                 tools:text="这支一条摘要测试内容" />
@@ -81,17 +81,17 @@
             <!--线-->
             <View
                 android:id="@+id/line"
-                android:layout_width="@dimen/new_detail_line_width"
-                android:layout_height="@dimen/new_detail_line_height"
+                android:layout_width="@dimen/post_detail_line_width"
+                android:layout_height="@dimen/post_detail_line_height"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/new_detail_line_vertical_margin"
-                android:background="@color/new_detail_lin_bg" />
+                android:layout_marginTop="@dimen/post_detail_line_vertical_margin"
+                android:background="@color/post_detail_lin_bg" />
 
             <!--WebView-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/new_detail_webview_content_vertical_margin">
+                android:layout_marginTop="@dimen/post_detail_webview_content_vertical_margin">
 
                 <WebView
                     android:id="@+id/webview"
@@ -109,6 +109,6 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/view_newdetail_toolbar" />
+    <include layout="@layout/view_postdetail_toolbar" />
 
 </RelativeLayout>

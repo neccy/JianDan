@@ -1,8 +1,8 @@
 package cn.putong.home.api
 
 import cn.putong.home.mvp.data.model.CommentModel
-import cn.putong.home.mvp.data.model.NewModel
-import cn.putong.home.mvp.detail.model.NewDetailModel
+import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.home.mvp.detail.model.PostDetailModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,7 +17,7 @@ interface ApiService {
      * 获取新鲜事列表
      */
     @GET("/?oxwlxojflwblxbsapi=get_recent_posts&include=url,date,tags,author,title,excerpt,comment_count,comment_status,custom_fields&page=?&custom_fields=thumb_c,views&dev=1")
-    fun getNewThings(@Query("page") page: Int): Call<NewModel>
+    fun getNewThings(@Query("page") page: Int): Call<PostModel>
 
     /**
      * 获取无聊图列表
@@ -35,5 +35,5 @@ interface ApiService {
      * 获取新鲜事详情
      */
     @GET("?oxwlxojflwblxbsapi=get_post&include=content&id=")
-    fun getNewThingsDetail(@Query("id") id: Int): Call<NewDetailModel>
+    fun getNewThingsDetail(@Query("id") id: Int): Call<PostDetailModel>
 }

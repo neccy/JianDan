@@ -8,14 +8,14 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/new_detail_line_height"
-        android:background="@color/new_detail_toolbar_line" />
+        android:layout_height="@dimen/post_detail_line_height"
+        android:background="@color/post_detail_toolbar_line" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/new_detail_toolbar_height"
-        android:background="@color/new_detail_toolbar_bg"
+        android:layout_height="@dimen/post_detail_toolbar_height"
+        android:background="@color/post_detail_toolbar_bg"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />

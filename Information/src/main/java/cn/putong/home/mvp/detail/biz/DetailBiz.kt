@@ -3,7 +3,7 @@ package cn.putong.home.mvp.detail.biz
 import cn.putong.commonlibrary.base.IBaseApiResultListener
 import cn.putong.commonlibrary.network.NetWoks
 import cn.putong.home.api.ApiService
-import cn.putong.home.mvp.detail.model.NewDetailModel
+import cn.putong.home.mvp.detail.model.PostDetailModel
 import retrofit2.Call
 import retrofit2.Callback;
 import retrofit2.Response
@@ -16,13 +16,13 @@ class DetailBiz : IDetailBiz {
 
     override fun getNewThingsDetail(id: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getNewThingsDetail(id).
-                clone().enqueue(object : Callback<NewDetailModel> {
+                clone().enqueue(object : Callback<PostDetailModel> {
 
-            override fun onResponse(call: Call<NewDetailModel>?, response: Response<NewDetailModel>?) {
+            override fun onResponse(call: Call<PostDetailModel>?, response: Response<PostDetailModel>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<NewDetailModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<PostDetailModel>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
 

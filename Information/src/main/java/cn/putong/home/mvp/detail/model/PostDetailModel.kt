@@ -4,7 +4,7 @@ package cn.putong.home.mvp.detail.model
  * 新闻类型数据详情Model
  * Created by xinyi on 2018/1/11.
  */
-class NewDetailModel {
+class PostDetailModel {
 
     var status: String = ""
     var post: Post =Post()

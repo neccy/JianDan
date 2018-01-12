@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:padding="@dimen/new_item_main_padding">
+    android:padding="@dimen/post_item_main_padding">
 
     <TextView
         android:id="@+id/title"
@@ -21,19 +21,19 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img"
-        android:layout_width="@dimen/new_item_pic_width"
-        android:layout_height="@dimen/new_item_pic_height"
+        android:layout_width="@dimen/post_item_pic_width"
+        android:layout_height="@dimen/post_item_pic_height"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/new_item_margin"
+        android:layout_marginStart="@dimen/post_item_margin"
         app:actualImageScaleType="focusCrop"
-        app:placeholderImage="@color/new_item_img_placeholder" />
+        app:placeholderImage="@color/post_item_img_placeholder" />
 
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img"
-        android:layout_marginEnd="@dimen/new_item_margin"
+        android:layout_marginEnd="@dimen/post_item_margin"
         android:textSize="?attr/tv_size_12sp"
         tools:text="阿三" />
 

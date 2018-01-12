@@ -6,27 +6,27 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.realm.AppDB
-import cn.putong.commonlibrary.realm.information.table.NewRecordTable
+import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.commonlibrary.util.setWebView
 import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.mvp.data.model.NewModel
-import cn.putong.home.mvp.detail.model.NewDetailModel
+import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
 import cn.putong.home.util.HtmlUtil
-import kotlinx.android.synthetic.main.fragment_newdetail.*
-import kotlinx.android.synthetic.main.view_newdetail_toolbar.*
+import kotlinx.android.synthetic.main.fragment_postdetail.*
+import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
+
 
 @SuppressLint("ValidFragment")
-class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), IDetailView {
+class PostDetailFragment(private val mNewData: PostModel.Post) : BaseFragment(), IDetailView {
 
     private lateinit var mDetailPreSenter: DetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_newdetail)
+        setContentView(R.layout.fragment_postdetail)
     }
 
     override fun initData() {
@@ -75,7 +75,7 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
 
     override fun successful(model: Any) {
         if (webview != null) {
-            HtmlUtil.CONTENT = (model as NewDetailModel).post.content
+            HtmlUtil.CONTENT = (model as PostDetailModel).post.content
             HtmlUtil.setUrl(webview)
         }
     }
@@ -94,14 +94,14 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
     override fun onSupportVisible() {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
-        AppDB.getInstance().executeTransaction { realm ->
-            val mNewRecordTb = realm.createObject(NewRecordTable::class.java)
-            mNewRecordTb.new_data_id = mNewData.id
-        }
+        InformationDB.saveNewRecord(mNewData.id)
+
+        // 通知更新列表
+        // AppEvent.post(NewRecordEvent())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_new_detail, menu)
+        inflater?.inflate(R.menu.menu_post_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

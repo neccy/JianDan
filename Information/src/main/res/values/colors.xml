@@ -2,16 +2,16 @@
 <resources>
 
     <!--New Item-->
-    <color name="new_listview_bg">#FAFAFA</color>
-    <color name="new_item_img_placeholder">#E6E6E6</color>
+    <color name="post_listview_bg">#FAFAFA</color>
+    <color name="post_item_img_placeholder">#E6E6E6</color>
 
     <!--Comment Content-->
-    <color name="comment_item_content_pic_placeholder">@color/new_item_img_placeholder</color>
+    <color name="comment_item_content_pic_placeholder">@color/post_item_img_placeholder</color>
 
     <!--New Detail-->
-    <color name="new_detail_pic_placeholder">@color/new_item_img_placeholder</color>
-    <color name="new_detail_main_bg">#F9F9F9</color>
-    <color name="new_detail_lin_bg">#DDDDDD</color>
-    <color name="new_detail_toolbar_bg">#FEFEFE</color>
-    <color name="new_detail_toolbar_line">@color/new_detail_lin_bg</color>
+    <color name="post_detail_pic_placeholder">@color/post_item_img_placeholder</color>
+    <color name="post_detail_main_bg">#F9F9F9</color>
+    <color name="post_detail_lin_bg">#DDDDDD</color>
+    <color name="post_detail_toolbar_bg">#FEFEFE</color>
+    <color name="post_detail_toolbar_line">@color/post_detail_lin_bg</color>
 </resources>

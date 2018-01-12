@@ -4,7 +4,7 @@ package cn.putong.home.mvp.data.model
  * 新鲜事模型
  * Created by lala on 2018/1/8.
  */
-class NewModel {
+class PostModel {
 
     var status: String = ""
     var count: Int = 0

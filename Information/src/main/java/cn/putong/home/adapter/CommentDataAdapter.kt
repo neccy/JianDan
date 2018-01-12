@@ -31,7 +31,7 @@ class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = Ar
             CardViewHolder(LayoutInflater.from(parent?.context).
                     inflate(R.layout.item_comment, parent, attachToRoot))
         else
-            NewDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
+            PostDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
                     inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
     }
 

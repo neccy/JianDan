@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--New Item-->
-    <dimen name="new_item_main_padding">16dp</dimen>
-    <dimen name="new_item_margin">@dimen/new_item_main_padding</dimen>
-    <dimen name="new_item_pic_width">95dp</dimen>
-    <dimen name="new_item_pic_height">70dp</dimen>
+    <dimen name="post_item_main_padding">16dp</dimen>
+    <dimen name="post_item_margin">@dimen/post_item_main_padding</dimen>
+    <dimen name="post_item_pic_width">95dp</dimen>
+    <dimen name="post_item_pic_height">70dp</dimen>
 
     <!--Comment Item-->
     <dimen name="comment_item_main_horizontal_margin">8dp</dimen>
@@ -40,25 +40,25 @@
     <dimen name="comment_item_content_more_horiz_margin">16dp</dimen>
 
     <!--New Detail-->
-    <dimen name="new_detail_pic_height">200dp</dimen>
+    <dimen name="post_detail_pic_height">200dp</dimen>
 
-    <dimen name="new_detail_title_horizontal_margin">16dp</dimen>
-    <dimen name="new_detail_title_vertical_margin">32dp</dimen>
-    <dimen name="new_detail_title_padding">4dp</dimen>
+    <dimen name="post_detail_title_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_title_vertical_margin">32dp</dimen>
+    <dimen name="post_detail_title_padding">4dp</dimen>
 
-    <dimen name="new_detail_author_content_vertical_padding">16dp</dimen>
-    <dimen name="new_detail_author_horizontal_margin">8dp</dimen>
+    <dimen name="post_detail_author_content_vertical_padding">16dp</dimen>
+    <dimen name="post_detail_author_horizontal_margin">8dp</dimen>
 
-    <dimen name="new_detail_excerpt_vertical_margin">16dp</dimen>
-    <dimen name="new_detail_excerpt_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_excerpt_vertical_margin">16dp</dimen>
+    <dimen name="post_detail_excerpt_horizontal_margin">16dp</dimen>
 
-    <dimen name="new_detail_line_width">100dp</dimen>
-    <dimen name="new_detail_line_height">3px</dimen>
-    <dimen name="new_detail_line_vertical_margin">32dp</dimen>
-    <dimen name="new_detail_line_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_line_width">100dp</dimen>
+    <dimen name="post_detail_line_height">3px</dimen>
+    <dimen name="post_detail_line_vertical_margin">32dp</dimen>
+    <dimen name="post_detail_line_horizontal_margin">16dp</dimen>
 
-    <dimen name="new_detail_webview_content_vertical_margin">16dp</dimen>
+    <dimen name="post_detail_webview_content_vertical_margin">16dp</dimen>
 
-    <dimen name="new_detail_toolbar_height">47dp</dimen>
+    <dimen name="post_detail_toolbar_height">47dp</dimen>
 
 </resources>

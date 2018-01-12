@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
-import cn.putong.home.mvp.data.model.NewModel
-import kotlinx.android.synthetic.main.item_new.view.*
+import cn.putong.home.mvp.data.model.PostModel
+import kotlinx.android.synthetic.main.item_post.view.*
 
 /**
  * 普通类型item适配器
  * Created by xinyi on 2018/1/8.
  */
-class NewDataAdapter(
-        private var mList: ArrayList<NewModel.Post> = ArrayList(),
+class PostDataAdapter(
+        private var mList: ArrayList<PostModel.Post> = ArrayList(),
         private val onClickListener: (Int) -> Unit) :
         BaseRecyclerAdapter() {
 
-    private var FOOTER: NewModel.Post = NewModel.Post()
+    private var FOOTER: PostModel.Post = PostModel.Post()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is NormalViewHolder) {
@@ -28,7 +28,7 @@ class NewDataAdapter(
                 title.text = mPost.title
                 author.text = mPost.author.nickname
                 time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
-                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.new_comment_count_text)
+                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.post_comment_count_text)
                 img.setImageURI(mPost.custom_fields.thumb_c[0])
                 item_main.setOnClickListener {
                     onClickListener.invoke(position)
@@ -43,7 +43,7 @@ class NewDataAdapter(
         return when (viewType) {
             TYPE_NORMAL ->
                 NormalViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_new, parent, false))
+                        inflate(R.layout.item_post, parent, false))
 
             else ->
                 FooterViewHolder(LayoutInflater.from(parent?.context).
@@ -59,7 +59,7 @@ class NewDataAdapter(
             TYPE_NORMAL
     }
 
-    fun updateList(mList: ArrayList<NewModel.Post>) {
+    fun updateList(mList: ArrayList<PostModel.Post>) {
         this.mList = mList
         notifyDataSetChanged()
     }
