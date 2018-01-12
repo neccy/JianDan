@@ -16,5 +16,4 @@ class App : BaseApplication() {
         ARouter.openDebug();
         ARouter.init(this);
     }
-
 }

@@ -1,4 +1,4 @@
-package cn.putong.commonlibrary.database
+package cn.putong.commonlibrary.realm
 
 import io.realm.Realm
 

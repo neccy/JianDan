@@ -2,6 +2,7 @@ package cn.putong.commonlibrary.base
 
 import android.app.Application
 import cn.putong.commonlibrary.R
+import cn.putong.commonlibrary.realm.information.module.InforMationModule
 import com.facebook.drawee.backends.pipeline.Fresco
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -37,6 +38,7 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
         val realmConfig = RealmConfiguration
                 .Builder()
                 .name(filename)
+                .modules(InforMationModule())
                 .schemaVersion(schemaVersion)
                 .build()
         Realm.setDefaultConfiguration(realmConfig)

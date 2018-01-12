@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.realm.AppDB
+import cn.putong.commonlibrary.realm.information.table.NewRecordTable
 import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.commonlibrary.util.setWebView
 import cn.putong.commonlibrary.widget.TipBar
@@ -92,7 +94,10 @@ class NewDetailFragment(private val mNewData: NewModel.Post) : BaseFragment(), I
     override fun onSupportVisible() {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
-
+        AppDB.getInstance().executeTransaction { realm ->
+            val mNewRecordTb = realm.createObject(NewRecordTable::class.java)
+            mNewRecordTb.new_data_id = mNewData.id
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

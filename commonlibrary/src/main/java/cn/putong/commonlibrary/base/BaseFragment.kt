@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.otto.AppEvent
 import me.yokeyword.fragmentation.SupportFragment
 
 
@@ -19,10 +20,20 @@ open class BaseFragment : SupportFragment(), IBaseImpl {
     private var mView: View? = null
     private var mContainer: ViewGroup? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AppEvent.register(this)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         this.mContainer = container!!
         return mView!!
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppEvent.unregister(this)
     }
 
     fun setContentView(viewId: Int) {
