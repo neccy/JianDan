@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ProgressBar
 import cn.putong.home.DataListFragment
+import cn.putong.home.R
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
@@ -18,6 +19,7 @@ class DataListFragmentUi : AnkoComponent<DataListFragment> {
         relativeLayout {
             refresh = swipeRefreshLayout {
                 listview = recyclerView {
+                    backgroundResource =R.color.post_listview_bg
                     layoutManager = LinearLayoutManager(context)
                 }
             }.lparams(width = matchParent, height = matchParent)
