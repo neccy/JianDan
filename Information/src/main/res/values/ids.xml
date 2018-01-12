@@ -4,4 +4,7 @@
     <!--HomeFragment FrameLayout Id-->
     <item name="home_fl" type="id" />
 
+    <!--HomeFragment ViewPager Id-->
+    <item name="home_viewpgaer" type="id"/>
+
 </resources>

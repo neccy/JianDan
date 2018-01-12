@@ -12,8 +12,8 @@ import org.jetbrains.anko.frameLayout
 @Route(path = ModuleUtil.HOME_MODULE_PATH)
 class HomeActivity : BaseActivity() {
 
-    override fun initLayout() {
-        super.initLayout()
+    override fun initUi() {
+        super.initUi()
         frameLayout { id = R.id.home_fl }
     }
 

@@ -1,13 +1,15 @@
 package cn.putong.home
 
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.home.adapter.DataListFragmentAdapter
+import cn.putong.home.ui.HomeFragmentUi
 import cn.putong.home.util.DataClass
-import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.AnkoContext
 
 /**
  * 首页
@@ -15,13 +17,18 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BaseFragment() {
 
+    private lateinit var mUi: HomeFragmentUi
+
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mClassItems: Array<String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_home)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+
+    override fun initUi() {
+        super.initUi()
+        mUi = HomeFragmentUi()
     }
 
     override fun initData() {
@@ -51,17 +58,17 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initToolBar() {
-        (toolbar as Toolbar).setToolbar(getString(R.string.app_name))
+        mUi.toolbar.setToolbar(getString(R.string.app_name))
     }
 
     private fun initTabLayout() {
-        mClassItems.forEach { tablayout.addTab(tablayout.newTab().setText(it)) }
+        mClassItems.forEach { mUi.tablayout.addTab(mUi.tablayout.newTab().setText(it)) }
     }
 
     private fun initViewPager() {
-        viewpager.adapter = mFragmentsAdapter
-        viewpager.offscreenPageLimit = mFragments.size - 1
-        tablayout.setupWithViewPager(viewpager)
+        mUi.viewpager.adapter = mFragmentsAdapter
+        mUi.viewpager.offscreenPageLimit = mFragments.size - 1
+        mUi.tablayout.setupWithViewPager(mUi.viewpager)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

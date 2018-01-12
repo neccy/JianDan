@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     app:tabIndicatorColor="@android:color/white"
+    app:tabMode="fixed"
     app:tabSelectedTextColor="@android:color/white"
     app:tabTextAppearance="@style/TabLayoutTextAppearance"
-    app:tabTextColor="@android:color/white" />
+    app:tabTextColor="?attr/tab_tv_color" />
