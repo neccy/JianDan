@@ -2,10 +2,7 @@ package cn.putong.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.realm.information.InformationDB
@@ -17,20 +14,23 @@ import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
+import cn.putong.home.ui.PostDetailFragmentUi
 import cn.putong.home.util.HtmlUtil
-import kotlinx.android.synthetic.main.fragment_postdetail.*
-import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
+import org.jetbrains.anko.AnkoContext
 
 @SuppressLint("ValidFragment")
-class PostDetailFragment(
-        private val mNewData: PostModel.Post,
-        private val mPosition: Int) : BaseFragment(), IDetailView {
+class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosition: Int)
+    : BaseFragment(), IDetailView {
 
+    private lateinit var mUi: PostDetailFragmentUi
     private lateinit var mDetailPreSenter: DetailPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_postdetail)
+//    override fun onCreateView(
+//            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+//            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+
+    override fun initUi() {
+        mUi = PostDetailFragmentUi()
     }
 
     override fun initData() {
@@ -39,11 +39,11 @@ class PostDetailFragment(
     }
 
     private fun initNewData() {
-        picview.setImageURI(mNewData.custom_fields.thumb_c[0])
-        post_title.text = mNewData.title
-        author.text = mNewData.author.nickname
-        time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
-        excerpt.text = mNewData.excerpt
+        mUi.picview.setImageURI(mNewData.custom_fields.thumb_c[0])
+        mUi.post_title.text = mNewData.title
+        mUi.author.text = mNewData.author.nickname
+        mUi.time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
+        mUi.excerpt.text = mNewData.excerpt
     }
 
     override fun initView() {
@@ -51,13 +51,13 @@ class PostDetailFragment(
     }
 
     private fun initToolBar() {
-        toolbar.setToolbar(mNewData.title, mIsBack = true)
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
+        mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
+        mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
     }
 
     private fun initWebView() {
-        if (webview != null)
-            webview.setWebView()
+        if (mUi.webview != null)
+            mUi.webview!!.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -66,24 +66,24 @@ class PostDetailFragment(
     }
 
     override fun showLoading() {
-        if (progressbar != null)
-            progressbar.visibility = View.VISIBLE
+        if (mUi.progressbar != null)
+            mUi.progressbar!!.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        if (progressbar != null)
-            progressbar.visibility = View.GONE
+        if (mUi.progressbar != null)
+            mUi.progressbar!!.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-        if (webview != null) {
+        if (mUi.webview != null) {
             HtmlUtil.CONTENT = (model as PostDetailModel).post.content
-            HtmlUtil.setUrl(webview)
+            HtmlUtil.setUrl(mUi.webview!!)
         }
     }
 
     override fun error(msg: String) {
-        TipBar.showTip(toolbar, msg)
+        TipBar.showTip(mUi.toolbar, msg)
     }
 
     override fun getDataId() = mNewData.id
@@ -114,9 +114,6 @@ class PostDetailFragment(
         when (item!!.itemId) {
             R.id.action_comment ->
                 start(PostCommentFragment(mNewData))
-            R.id.action_more -> {
-
-            }
         }
         return true
     }

@@ -19,7 +19,7 @@ class DataListFragmentUi : AnkoComponent<DataListFragment> {
         relativeLayout {
             refresh = swipeRefreshLayout {
                 listview = recyclerView {
-                    backgroundResource =R.color.post_listview_bg
+                    backgroundResource = R.color.post_listview_bg
                     layoutManager = LinearLayoutManager(context)
                 }
             }.lparams(width = matchParent, height = matchParent)
