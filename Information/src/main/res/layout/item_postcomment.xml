@@ -19,6 +19,7 @@
         android:id="@+id/positive_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/author"
         android:layout_toStartOf="@+id/negative_count"
         android:textSize="?attr/tv_size_12sp"
         tools:text="OO 6" />
@@ -28,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/author"
         android:layout_marginStart="@dimen/postcomment_item_negative_count_horizontal_margin"
         android:textSize="?attr/tv_size_12sp"
         tools:text="XX 16" />

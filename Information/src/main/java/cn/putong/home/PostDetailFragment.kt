@@ -21,7 +21,7 @@ import cn.putong.home.util.HtmlUtil
 import kotlinx.android.synthetic.main.fragment_postdetail.*
 import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
 
-@SuppressLint("ValidFragment")
+@SuppressLint(value = ["ValidFragment"])
 class PostDetailFragment(
         private val mNewData: PostModel.Post,
         private val mPosition: Int) : BaseFragment(), IDetailView {

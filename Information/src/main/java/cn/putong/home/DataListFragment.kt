@@ -24,7 +24,7 @@ import cn.putong.home.util.DataClass
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
-@SuppressLint("ValidFragment")
+@SuppressLint(value = ["ValidFragment"])
 class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private lateinit var mUi: DataListFragmentUi

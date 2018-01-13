@@ -22,8 +22,8 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
         BaseFragment(), IDetailView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var mUi: PostCommentFragmentUi
-    private lateinit var mCommentPreSenter: DetailPresenter
 
+    private lateinit var mCommentPreSenter: DetailPresenter
     private lateinit var mCommentsAdapter: PostCommentAdapter
 
     override fun onCreateView(
