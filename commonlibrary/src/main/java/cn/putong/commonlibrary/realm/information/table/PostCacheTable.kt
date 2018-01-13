@@ -8,7 +8,9 @@ import io.realm.RealmObject
  */
 open class PostCacheTable(
         // 缓存数据类型(1:新鲜事 2:无聊图 3:段子)
-        var cache_data_type: Int = 0,
+        var type: Int = 0,
         // 缓存数据
-        var cache_data: String = ""
+        var cache_data: String = "",
+        // 缓存日期
+        var date: String = ""
 ) : RealmObject()

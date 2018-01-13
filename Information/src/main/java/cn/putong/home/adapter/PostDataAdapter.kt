@@ -1,6 +1,7 @@
 package cn.putong.home.adapter
 
 import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.PostModel
 import kotlinx.android.synthetic.main.item_post.view.*
+import org.jetbrains.anko.textColor
 
 /**
  * 普通类型item适配器
@@ -27,11 +29,19 @@ class PostDataAdapter(
         if (holder is NormalViewHolder) {
             with(holder.itemView!!) {
                 val mPost = mList[position]
+
+                val titleColor = if (!mPost.have_seen)
+                    ContextCompat.getColor(context, R.color.textview_black_color)
+                else
+                    Color.GRAY
+                title.textColor = titleColor
                 title.text = mPost.title
-                title.setTextColor(if (!mPost.have_seen) Color.BLACK else Color.GRAY)
+
                 author.text = mPost.author.nickname
                 time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
-                comments.text = mPost.comment_count.toString() + context.resources.getString(R.string.post_comment_count_text)
+
+                comments.text = resources.getString(R.string.post_comment_count_text, mPost.comment_count)
+
                 img.setImageURI(mPost.custom_fields.thumb_c[0])
                 item_main.setOnClickListener {
                     onClickListener.invoke(position)
@@ -47,7 +57,6 @@ class PostDataAdapter(
             TYPE_NORMAL ->
                 NormalViewHolder(LayoutInflater.from(parent?.context).
                         inflate(R.layout.item_post, parent, false))
-
             else ->
                 FooterViewHolder(LayoutInflater.from(parent?.context).
                         inflate(R.layout.item_recyclerview_footer, parent, false))

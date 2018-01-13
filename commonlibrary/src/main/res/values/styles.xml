@@ -17,6 +17,7 @@
         <!--自定义color属性-->
         <item name="tab_tv_color">@color/tablayout_text_color</item>
         <item name="listview_bg">@color/recyclerview_bg_color</item>
+        <item name="tv_black_color">@color/textview_black_color</item>
 
         <!--自定义dimen属性-->
         <item name="tv_size">@dimen/textview_text_size</item>

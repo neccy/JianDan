@@ -34,4 +34,6 @@ object InformationDB {
         return AppDB.getInstance().where(PostRecordTable::class.java).equalTo(fieldName, id).findFirst()
     }
 
+
+
 }

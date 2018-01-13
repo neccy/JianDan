@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/positive_count"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/tv_black_color"
         android:textSize="?attr/tv_size_14sp"
         tools:text="阿三" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/time"
         android:layout_marginTop="@dimen/postcomment_item_content_vertical_margin"
-        android:textColor="@color/postcomment_item_content"
+        android:textColor="?attr/tv_black_color"
         android:textSize="?attr/tv_size"
         tools:text="这是一条测试的评论内容，没事作用，就是看看效果，实在不知道怎么写了，啦啦啦啦" />
 

@@ -11,4 +11,5 @@
 
     <color name="tablayout_text_color">#7A7A7A</color>
     <color name="recyclerview_bg_color">#FAFAFA</color>
+    <color name="textview_black_color">#202020</color>
 </resources>

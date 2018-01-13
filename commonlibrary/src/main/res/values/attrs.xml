@@ -15,6 +15,9 @@
     <attr name="tv_size_14sp" format="dimension" />
     <attr name="tv_size_26sp" format="dimension" />
 
+    <!--TextView 默认黑色-->
+    <attr name="tv_black_color" format="color" />
+
     <!--RecyclerView 默认背景色-->
     <attr name="listview_bg" format="color" />
 </resources>
