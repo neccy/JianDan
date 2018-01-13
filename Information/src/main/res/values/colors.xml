@@ -14,4 +14,6 @@
     <color name="post_detail_lin_bg">#DDDDDD</color>
     <color name="post_detail_toolbar_bg">#FEFEFE</color>
     <color name="post_detail_toolbar_line">@color/post_detail_lin_bg</color>
+
+    <color name="test_bg">#FF56</color>
 </resources>

@@ -5,6 +5,9 @@
     <item name="home_fl" type="id" />
 
     <!--HomeFragment ViewPager Id-->
-    <item name="home_viewpgaer" type="id"/>
+    <item name="home_viewpgaer" type="id" />
+
+    <!--通用AppBarLayout-->
+    <item name="appbarlayout" type="id" />
 
 </resources>

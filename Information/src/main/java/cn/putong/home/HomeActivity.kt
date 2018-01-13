@@ -22,6 +22,6 @@ class HomeActivity : BaseActivity() {
 
     private fun initRootFragment() {
         if (findFragment(HomeFragment::class.java) == null)
-            loadRootFragment(R.id.home_fl, TestFragment())
+            loadRootFragment(R.id.home_fl, HomeFragment())
     }
 }

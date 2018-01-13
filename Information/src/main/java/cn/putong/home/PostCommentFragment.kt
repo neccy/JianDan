@@ -3,14 +3,16 @@ package cn.putong.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.Toolbar
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.util.setColor
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
-import kotlinx.android.synthetic.main.fragment_postcomment.*
+import cn.putong.home.ui.PostCommentFragmentUi
+import org.jetbrains.anko.AnkoContext
 
 /**
  * 新闻类型数据评论界面
@@ -20,11 +22,15 @@ import kotlinx.android.synthetic.main.fragment_postcomment.*
 class PostCommentFragment(private val mNewData: PostModel.Post) :
         BaseFragment(), IDetailView, SwipeRefreshLayout.OnRefreshListener {
 
+    private lateinit var mUi: PostCommentFragmentUi
     private lateinit var mCommentPreSenter: DetailPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_postcomment)
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+
+    override fun initUi() {
+        mUi = PostCommentFragmentUi()
     }
 
     override fun initData() {
@@ -32,17 +38,17 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun initView() {
-        initToolBar()
         initRefreshLayout()
-    }
-
-    private fun initToolBar() {
-        (toolbar as Toolbar).setToolbar(getString(R.string.postcomment_toolbar_title), mIsBack = true)
+        initToolBar()
     }
 
     private fun initRefreshLayout() {
-        refresh.setColor()
-        refresh.setOnRefreshListener(this)
+        mUi.refresh.setColor()
+        mUi.refresh.setOnRefreshListener(this)
+    }
+
+    private fun initToolBar() {
+        mUi.toolbar.setToolbar(getString(R.string.postcomment_toolbar_title), mIsBack = true)
     }
 
     override fun loadData() {
@@ -50,11 +56,11 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun showLoading() {
-        refresh.isRefreshing = true
+        mUi.refresh.isRefreshing = true
     }
 
     override fun hideLoading() {
-        refresh.isRefreshing = false
+        mUi.refresh.isRefreshing = false
     }
 
     override fun successful(model: Any) {
@@ -64,7 +70,7 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     override fun getDataId() = mNewData.id
 
     override fun error(msg: String) {
-        TipBar.showTip(toolbar, msg)
+        TipBar.showTip(mUi.toolbar, msg)
     }
 
     override fun onRefresh() {

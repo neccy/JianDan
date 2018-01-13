@@ -2,7 +2,10 @@ package cn.putong.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.realm.information.InformationDB
@@ -14,23 +17,20 @@ import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
-import cn.putong.home.ui.PostDetailFragmentUi
 import cn.putong.home.util.HtmlUtil
-import org.jetbrains.anko.AnkoContext
+import kotlinx.android.synthetic.main.fragment_postdetail.*
+import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
 
 @SuppressLint("ValidFragment")
-class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosition: Int)
-    : BaseFragment(), IDetailView {
+class PostDetailFragment(
+        private val mNewData: PostModel.Post,
+        private val mPosition: Int) : BaseFragment(), IDetailView {
 
-    private lateinit var mUi: PostDetailFragmentUi
     private lateinit var mDetailPreSenter: DetailPresenter
 
-//    override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-//            mUi.createView(AnkoContext.Companion.create(context, owner = this))
-
-    override fun initUi() {
-        mUi = PostDetailFragmentUi()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_postdetail)
     }
 
     override fun initData() {
@@ -39,11 +39,11 @@ class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosi
     }
 
     private fun initNewData() {
-        mUi.picview.setImageURI(mNewData.custom_fields.thumb_c[0])
-        mUi.post_title.text = mNewData.title
-        mUi.author.text = mNewData.author.nickname
-        mUi.time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
-        mUi.excerpt.text = mNewData.excerpt
+        picview.setImageURI(mNewData.custom_fields.thumb_c[0])
+        post_title.text = mNewData.title
+        author.text = mNewData.author.nickname
+        time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
+        excerpt.text = mNewData.excerpt
     }
 
     override fun initView() {
@@ -51,13 +51,13 @@ class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosi
     }
 
     private fun initToolBar() {
-        mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
-        mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
+        toolbar.setToolbar(mNewData.title, mIsBack = true)
+        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
     }
 
     private fun initWebView() {
-        if (mUi.webview != null)
-            mUi.webview!!.setWebView()
+        if (webview != null)
+            webview.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -66,24 +66,24 @@ class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosi
     }
 
     override fun showLoading() {
-        if (mUi.progressbar != null)
-            mUi.progressbar!!.visibility = View.VISIBLE
+        if (progressbar != null)
+            progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        if (mUi.progressbar != null)
-            mUi.progressbar!!.visibility = View.GONE
+        if (progressbar != null)
+            progressbar.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-        if (mUi.webview != null) {
+        if (webview != null) {
             HtmlUtil.CONTENT = (model as PostDetailModel).post.content
-            HtmlUtil.setUrl(mUi.webview!!)
+            HtmlUtil.setUrl(webview)
         }
     }
 
     override fun error(msg: String) {
-        TipBar.showTip(mUi.toolbar, msg)
+        TipBar.showTip(toolbar, msg)
     }
 
     override fun getDataId() = mNewData.id
@@ -114,6 +114,9 @@ class PostDetailFragment(private val mNewData: PostModel.Post, private val mPosi
         when (item!!.itemId) {
             R.id.action_comment ->
                 start(PostCommentFragment(mNewData))
+            R.id.action_more -> {
+
+            }
         }
         return true
     }
