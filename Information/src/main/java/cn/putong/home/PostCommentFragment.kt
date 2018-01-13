@@ -7,23 +7,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.util.setColor
+import cn.putong.commonlibrary.util.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
+import cn.putong.home.adapter.PostCommentAdapter
 import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.home.mvp.detail.model.PostCommentModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
 import cn.putong.home.ui.PostCommentFragmentUi
 import org.jetbrains.anko.AnkoContext
 
-/**
- * 新闻类型数据评论界面
- * Created by xinyi on 2018/1/12.
- */
-@SuppressLint("ValidFragment")
+@SuppressLint(value = ["ValidFragment"])
 class PostCommentFragment(private val mNewData: PostModel.Post) :
         BaseFragment(), IDetailView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var mUi: PostCommentFragmentUi
     private lateinit var mCommentPreSenter: DetailPresenter
+
+    private lateinit var mCommentsAdapter: PostCommentAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
@@ -34,12 +35,22 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun initData() {
-        mCommentPreSenter = DetailPresenter(this)
+        mCommentPreSenter = DetailPresenter(IDetailView = this)
+        initAdapter()
+    }
+
+    private fun initAdapter() {
+        mCommentsAdapter = PostCommentAdapter()
     }
 
     override fun initView() {
-        initRefreshLayout()
         initToolBar()
+        initRefreshLayout()
+        initListView()
+    }
+
+    private fun initToolBar() {
+        mUi.toolbar.setToolbar(getString(R.string.postcomment_toolbar_title), mIsBack = true)
     }
 
     private fun initRefreshLayout() {
@@ -47,12 +58,9 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
         mUi.refresh.setOnRefreshListener(this)
     }
 
-    private fun initToolBar() {
-        mUi.toolbar.setToolbar(getString(R.string.postcomment_toolbar_title), mIsBack = true)
-    }
-
-    override fun loadData() {
-        mCommentPreSenter.getNewThingsComments()
+    private fun initListView() {
+        mUi.listview.setDefaultDivider(context)
+        mUi.listview.adapter = mCommentsAdapter
     }
 
     override fun showLoading() {
@@ -64,7 +72,8 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     }
 
     override fun successful(model: Any) {
-
+        val mPostCommentModel = model as PostCommentModel
+        mPostCommentModel.updateListView()
     }
 
     override fun getDataId() = mNewData.id
@@ -73,8 +82,16 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
         TipBar.showTip(mUi.toolbar, msg)
     }
 
+    override fun onEnterAnimationEnd(savedInstanceState: Bundle?) {
+        super.onEnterAnimationEnd(savedInstanceState)
+        mCommentPreSenter.getNewThingsComments()
+    }
+
     override fun onRefresh() {
         mCommentPreSenter.getNewThingsComments()
     }
 
+    private fun PostCommentModel.updateListView() {
+        mCommentsAdapter.updateList(post.comments.sortedByDescending { it.date })
+    }
 }

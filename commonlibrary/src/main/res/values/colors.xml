@@ -10,4 +10,5 @@
     <color name="app_color_black_pressed">#000000</color>
 
     <color name="tablayout_text_color">#7A7A7A</color>
+    <color name="recyclerview_bg_color">#FAFAFA</color>
 </resources>

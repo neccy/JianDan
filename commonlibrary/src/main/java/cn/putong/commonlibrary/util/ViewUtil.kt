@@ -1,6 +1,5 @@
 package cn.putong.commonlibrary.util
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
@@ -30,8 +29,7 @@ fun SwipeRefreshLayout.setColor(resid: Int = R.color.colorAccent) {
     setColorSchemeResources(resid)
 }
 
-@SuppressLint("SetJavaScriptEnabled")
-        /**
+/**
  * WebView相关设置
  */
 fun WebView.setWebView() {

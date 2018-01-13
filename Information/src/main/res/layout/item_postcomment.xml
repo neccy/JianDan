@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/postcomment_item_main_padding">
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/positive_count"
+        android:textColor="@android:color/black"
+        android:textSize="?attr/tv_size_14sp"
+        tools:text="阿三" />
+
+    <TextView
+        android:id="@+id/positive_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/negative_count"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="OO 6" />
+
+    <TextView
+        android:id="@+id/negative_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/postcomment_item_negative_count_horizontal_margin"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="XX 16" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/author"
+        android:layout_marginTop="@dimen/postcomment_item_time_vertical_margin"
+        android:textSize="?attr/tv_size_12sp"
+        tools:text="3小时前" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:layout_marginTop="@dimen/postcomment_item_content_vertical_margin"
+        android:textColor="@color/postcomment_item_content"
+        android:textSize="?attr/tv_size"
+        tools:text="这是一条测试的评论内容，没事作用，就是看看效果，实在不知道怎么写了，啦啦啦啦" />
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package cn.putong.home.ui
 
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import cn.putong.home.PostCommentFragment
@@ -24,6 +25,8 @@ class PostCommentFragmentUi : AnkoComponent<PostCommentFragment> {
             }.lparams(width = matchParent)
             refresh = swipeRefreshLayout {
                 listview = recyclerView {
+                    backgroundResource = R.color.recyclerview_bg_color
+                    layoutManager = LinearLayoutManager(context)
                 }
             }.lparams(width = matchParent, height = matchParent) {
                 below(R.id.appbarlayout)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--New Item-->
+
+    <!--Post Item-->
     <dimen name="post_item_main_padding">16dp</dimen>
     <dimen name="post_item_margin">@dimen/post_item_main_padding</dimen>
     <dimen name="post_item_pic_width">95dp</dimen>
@@ -9,56 +10,46 @@
     <!--Comment Item-->
     <dimen name="comment_item_main_horizontal_margin">8dp</dimen>
     <dimen name="comment_item_main_vertical_margin">6dp</dimen>
-
     <dimen name="comment_item_content_main_horizontal_margin">16dp</dimen>
     <dimen name="comment_item_content_main_vertical_margin">8dp</dimen>
-
     <dimen name="comment_item_content_author_horizontal_margin">16dp</dimen>
     <dimen name="comment_item_content_author_vertical_margin">8dp</dimen>
-
     <dimen name="comment_item_content_time_horizontal_margin">16dp</dimen>
     <dimen name="comment_item_content_time_vertical_margin">16dp</dimen>
-
     <dimen name="comment_item_content_content_horizontal_margin">16dp</dimen>
     <dimen name="comment_item_content_content_vertical_margin">8dp</dimen>
-
     <dimen name="comment_item_content_message_vertical_margin">8dp</dimen>
     <dimen name="comment_item_content_message_horizontal_margin">16dp</dimen>
-
     <dimen name="comment_item_content_picpager_height">350dp</dimen>
     <dimen name="comment_item_content_picpager_vertical_margin">8dp</dimen>
-
     <dimen name="comment_item_content_positive_horizontal_margin_left">8dp</dimen>
     <dimen name="comment_item_content_positive_horizontal_margin_right">16dp</dimen>
     <dimen name="comment_item_content_positive_padding">8dp</dimen>
-
     <dimen name="comment_item_content_negative_horizontal_margin">16dp</dimen>
     <dimen name="comment_item_content_negative_padding">8dp</dimen>
-
     <dimen name="comment_item_content_comment_padding">8dp</dimen>
-
     <dimen name="comment_item_content_more_horiz_margin">16dp</dimen>
 
-    <!--New Detail-->
+    <!--Post Detail-->
     <dimen name="post_detail_pic_height">200dp</dimen>
-
     <dimen name="post_detail_title_horizontal_margin">16dp</dimen>
     <dimen name="post_detail_title_vertical_margin">32dp</dimen>
     <dimen name="post_detail_title_padding">4dp</dimen>
-
     <dimen name="post_detail_author_content_vertical_padding">16dp</dimen>
     <dimen name="post_detail_author_horizontal_margin">8dp</dimen>
-
     <dimen name="post_detail_excerpt_vertical_margin">16dp</dimen>
     <dimen name="post_detail_excerpt_horizontal_margin">16dp</dimen>
-
     <dimen name="post_detail_line_width">100dp</dimen>
     <dimen name="post_detail_line_height">3px</dimen>
     <dimen name="post_detail_line_vertical_margin">32dp</dimen>
     <dimen name="post_detail_line_horizontal_margin">16dp</dimen>
-
     <dimen name="post_detail_webview_content_vertical_margin">16dp</dimen>
-
     <dimen name="post_detail_toolbar_height">47dp</dimen>
+
+    <!--PostComment Item-->
+    <dimen name="postcomment_item_main_padding">16dp</dimen>
+    <dimen name="postcomment_item_negative_count_horizontal_margin">16dp</dimen>
+    <dimen name="postcomment_item_time_vertical_margin">8dp</dimen>
+    <dimen name="postcomment_item_content_vertical_margin">16dp</dimen>
 
 </resources>

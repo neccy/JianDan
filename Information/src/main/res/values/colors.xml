@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--New Item-->
-    <color name="post_listview_bg">#FAFAFA</color>
+    <!--Post Item-->
     <color name="post_item_img_placeholder">#E6E6E6</color>
 
     <!--Comment Content-->
     <color name="comment_item_content_pic_placeholder">@color/post_item_img_placeholder</color>
 
-    <!--New Detail-->
+    <!--Post Detail-->
     <color name="post_detail_pic_placeholder">@color/post_item_img_placeholder</color>
     <color name="post_detail_main_bg">#F9F9F9</color>
     <color name="post_detail_lin_bg">#DDDDDD</color>
     <color name="post_detail_toolbar_bg">#FEFEFE</color>
     <color name="post_detail_toolbar_line">@color/post_detail_lin_bg</color>
 
-    <color name="test_bg">#FF56</color>
+    <!--PostComment Item-->
+    <color name="postcomment_item_content">#202020</color>
+
 </resources>
