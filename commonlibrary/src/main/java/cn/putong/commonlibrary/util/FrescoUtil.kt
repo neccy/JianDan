@@ -17,8 +17,6 @@ object FrescoUtil {
      * 主要用于加载GIF
      */
     fun setAnimatorController(uri: Uri, mSimpleDraweeView: SimpleDraweeView) {
-
-
         val request = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
                 .build()

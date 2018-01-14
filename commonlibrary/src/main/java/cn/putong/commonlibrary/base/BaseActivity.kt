@@ -34,4 +34,5 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
         return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
                 R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
     }
+
 }
