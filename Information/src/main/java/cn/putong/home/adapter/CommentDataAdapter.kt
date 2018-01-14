@@ -17,7 +17,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 
 /**
- * Card类型数据适配器
+ * Comment类型数据适配器
  * Created by lala on 2018/1/8.
  */
 class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = ArrayList())

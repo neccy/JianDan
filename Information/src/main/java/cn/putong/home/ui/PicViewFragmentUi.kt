@@ -1,6 +1,5 @@
 package cn.putong.home.ui
 
-import android.graphics.Color
 import android.support.v4.view.ViewPager
 import cn.putong.home.PicViewFragment
 import cn.putong.home.R
