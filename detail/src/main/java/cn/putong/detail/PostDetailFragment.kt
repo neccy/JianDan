@@ -53,6 +53,9 @@ class PostDetailFragment(
     private fun initToolBar() {
         toolbar.setToolbar(mNewData.title, mIsBack = true)
         toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
+        toolbar.setNavigationOnClickListener {
+            activity.finish()
+        }
     }
 
     private fun initWebView() {
