@@ -1,4 +1,4 @@
-package cn.putong.home.ui
+package cn.putong.detail.ui
 
 import android.graphics.Color
 import android.support.v7.widget.Toolbar
@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import cn.putong.commonlibrary.anko.simpleDraweeView
-import cn.putong.home.PostDetailFragment
-import cn.putong.home.R
+import cn.putong.detail.PostDetailFragment
+import cn.putong.detail.R
 import com.facebook.drawee.view.SimpleDraweeView
 import org.jetbrains.anko.*
 

@@ -1,4 +1,4 @@
-package cn.putong.home
+package cn.putong.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
-import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.adapter.PostCommentAdapter
-import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
 import cn.putong.commonlibrary.mvp.detail.presenter.DetailPresenter
 import cn.putong.commonlibrary.mvp.detail.view.IDetailView
-import cn.putong.home.ui.PostCommentFragmentUi
+import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.widget.TipBar
+import cn.putong.detail.adapter.PostCommentAdapter
+import cn.putong.detail.ui.PostCommentFragmentUi
 import org.jetbrains.anko.AnkoContext
 
 @SuppressLint(value = ["ValidFragment"])

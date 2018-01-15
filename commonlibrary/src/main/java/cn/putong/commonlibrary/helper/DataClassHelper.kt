@@ -1,4 +1,4 @@
-package cn.putong.home.helper
+package cn.putong.commonlibrary.helper
 
 /**
  * 数据类型分类
@@ -6,9 +6,9 @@ package cn.putong.home.helper
  */
 object DataClassHelper {
     // 新鲜事
-    val CLASS_NEWTHINGS = 1
+    val CLASS_NEWTHINGS = 0
     // 无聊图
-    val CLASS_BORINGPICTURES = 2
+    val CLASS_BORINGPICTURES = 1
     // 段子
-    val CLASS_DUANZI = 3
+    val CLASS_DUANZI = 2
 }

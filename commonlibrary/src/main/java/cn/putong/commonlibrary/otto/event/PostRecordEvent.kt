@@ -1,4 +1,4 @@
-package cn.putong.home.event
+package cn.putong.commonlibrary.otto.event
 
 /**
  * 用于存储已看记录后通知新闻列表更新适配器

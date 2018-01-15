@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Post Detail-->
+    <dimen name="post_detail_pic_height">200dp</dimen>
+    <dimen name="post_detail_title_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_title_vertical_margin">32dp</dimen>
+    <dimen name="post_detail_title_padding">4dp</dimen>
+    <dimen name="post_detail_author_content_vertical_padding">16dp</dimen>
+    <dimen name="post_detail_author_horizontal_margin">8dp</dimen>
+    <dimen name="post_detail_excerpt_vertical_margin">16dp</dimen>
+    <dimen name="post_detail_excerpt_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_line_width">100dp</dimen>
+    <dimen name="post_detail_line_height">3px</dimen>
+    <dimen name="post_detail_line_vertical_margin">32dp</dimen>
+    <dimen name="post_detail_line_horizontal_margin">16dp</dimen>
+    <dimen name="post_detail_webview_content_vertical_margin">16dp</dimen>
+    <dimen name="post_detail_toolbar_height">47dp</dimen>
+
+    <!--PostComment Item-->
+    <dimen name="postcomment_item_main_padding">16dp</dimen>
+    <dimen name="postcomment_item_negative_count_horizontal_margin">16dp</dimen>
+    <dimen name="postcomment_item_time_vertical_margin">8dp</dimen>
+    <dimen name="postcomment_item_content_vertical_margin">16dp</dimen>
+
+</resources>

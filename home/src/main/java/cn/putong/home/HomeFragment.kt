@@ -6,7 +6,7 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.home.helper.HawkHelper
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.ui.HomeFragmentUi
-import cn.putong.home.helper.DataClassHelper
+import cn.putong.commonlibrary.helper.DataClassHelper
 import org.jetbrains.anko.AnkoContext
 
 /**

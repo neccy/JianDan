@@ -19,8 +19,8 @@ import cn.putong.commonlibrary.mvp.home.view.IDataView
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
-import cn.putong.home.event.PostRecordEvent
-import cn.putong.home.helper.DataClassHelper
+import cn.putong.commonlibrary.otto.event.PostRecordEvent
+import cn.putong.commonlibrary.helper.DataClassHelper
 import cn.putong.home.ui.DataListFragmentUi
 import com.alibaba.android.arouter.launcher.ARouter
 import com.squareup.otto.Subscribe
@@ -62,6 +62,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         mPostAdapter = PostDataAdapter { position ->
             ARouter.getInstance()
                     .build(ModuleHelper.DETAIL_MOUDLE_PATH)
+                    .withInt(ModuleHelper.PARAM_DATA_CLASS, mClass)
                     .withInt(ModuleHelper.PARAM_POST_MODEL_POSITION, position)
                     .withSerializable(ModuleHelper.PARAM_POST_MODEL, mPostDatas[position])
                     .navigation()

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--通用AppBarLayout Id-->
-    <item name="appbarlayout" type="id" />
-
     <!--HomeFragment FrameLayout Id-->
     <item name="home_fl" type="id" />
 

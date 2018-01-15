@@ -1,4 +1,4 @@
-package cn.putong.home.adapter
+package cn.putong.detail.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.text.Html
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.helper.TimeHelper
-import cn.putong.home.R
 import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
+import cn.putong.detail.R
 import kotlinx.android.synthetic.main.item_postcomment.view.*
 
 /**

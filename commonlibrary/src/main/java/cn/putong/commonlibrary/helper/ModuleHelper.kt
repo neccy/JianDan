@@ -10,6 +10,8 @@ object ModuleHelper {
     val PARAM_POST_MODEL = "postmodel"
     // 新闻类型数据下标参数
     val PARAM_POST_MODEL_POSITION = "postmodel_position"
+    // 数据类型所属分类
+    val PARAM_DATA_CLASS = "data_class"
 
     // 首页组件路径
     const val HOME_MODULE_PATH = "/home/main"

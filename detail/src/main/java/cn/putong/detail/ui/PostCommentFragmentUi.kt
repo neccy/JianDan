@@ -1,11 +1,11 @@
-package cn.putong.home.ui
+package cn.putong.detail.ui
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import cn.putong.home.PostCommentFragment
-import cn.putong.home.R
+import cn.putong.detail.PostCommentFragment
+import cn.putong.detail.R
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.appBarLayout
 import org.jetbrains.anko.recyclerview.v7.recyclerView

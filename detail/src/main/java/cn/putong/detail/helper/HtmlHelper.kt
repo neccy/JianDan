@@ -1,4 +1,4 @@
-package cn.putong.home.helper
+package cn.putong.detail.helper
 
 import android.webkit.WebView
 
@@ -24,7 +24,7 @@ object HtmlHelper {
         sb.append("<html dir=\"ltr\" lang=\"zh\">")
         sb.append("<head>")
         sb.append("<meta name=\"viewport\" content=\"width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\" />")
-        sb.append("<link rel=\"stylesheet\" href='file:///android_asset/$CSS' type=\"text/css\" media=\"screen\" />")
+        sb.append("<link rel=\"stylesheet\" href='file:///android_asset/${CSS}' type=\"text/css\" media=\"screen\" />")
         sb.append("</head>")
         sb.append("<body style=\"padding:0px 8px 8px 8px;\">")
         sb.append("<div id=\"pagewrapper\">")
@@ -52,10 +52,10 @@ object HtmlHelper {
      */
     fun setUrl(webView: WebView) {
         webView.loadDataWithBaseURL(
-                HtmlHelper.BASEURL,
-                HtmlHelper.getHtml(),
-                HtmlHelper.MIMETYPE,
-                HtmlHelper.ENCODING,
-                HtmlHelper.HISTORYURL)
+                BASEURL,
+                getHtml(),
+                MIMETYPE,
+                ENCODING,
+                HISTORYURL)
     }
 }
