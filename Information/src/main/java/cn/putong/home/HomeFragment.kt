@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.helper.HawkHelper
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.ui.HomeFragmentUi
 import cn.putong.home.util.DataClass
@@ -26,6 +27,12 @@ class HomeFragment : BaseFragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             mUi.createView(AnkoContext.Companion.create(context, owner = this))
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // 记录Tab下标
+        HawkHelper.saveTabSelection(mUi.viewpager.currentItem)
+    }
 
     override fun initUi() {
         mUi = HomeFragmentUi()
@@ -67,6 +74,7 @@ class HomeFragment : BaseFragment() {
         mUi.viewpager.adapter = mFragmentsAdapter
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
         mUi.tablayout.setupWithViewPager(mUi.viewpager)
+        mUi.viewpager.currentItem = HawkHelper.getTabSelection()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

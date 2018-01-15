@@ -11,6 +11,7 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
+import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
@@ -21,6 +22,7 @@ import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import cn.putong.home.ui.DataListFragmentUi
 import cn.putong.home.util.DataClass
+import com.google.gson.Gson
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -128,6 +130,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mCommentDatas.addAll(mBoringPicturesModel.comments)
             mCommentAdapter.updateList(mCommentDatas)
         }
+        if (mCurrentPage == 1)
+            InformationDB.saveCacheData(cache_data = if (mClass == DataClass.CLASS_NEWTHINGS)
+                Gson().toJson(mPostDatas)
+            else
+                Gson().toJson(mCommentDatas), type = mClass)
     }
 
     override fun error(msg: String) {

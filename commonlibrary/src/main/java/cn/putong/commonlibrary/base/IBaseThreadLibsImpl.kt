@@ -19,6 +19,11 @@ interface IBaseThreadLibsImpl {
     /**
      * 初始化数据库
      */
-    fun initRealm(){}
+    fun initRealm()
+
+    /**
+     * 初始化Hawk(键值对库)
+     */
+    fun initHawk()
 
 }

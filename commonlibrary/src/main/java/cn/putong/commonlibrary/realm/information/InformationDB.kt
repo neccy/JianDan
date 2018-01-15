@@ -1,6 +1,7 @@
 package cn.putong.commonlibrary.realm.information
 
 import cn.putong.commonlibrary.realm.AppDB
+import cn.putong.commonlibrary.realm.information.table.CacheTable
 import cn.putong.commonlibrary.realm.information.table.PostRecordTable
 
 /**
@@ -34,6 +35,26 @@ object InformationDB {
         return AppDB.getInstance().where(PostRecordTable::class.java).equalTo(fieldName, id).findFirst()
     }
 
+    /**
+     * 保存缓存数据
+     */
+    fun saveCacheData(cache_data: String, type: Int) {
+        // 先删除数据库中当前分类对应的数据再添加,缓存数据只保存当前最新的第一页数据
+        val fieldName = "type"
+        val mCacheDatas = AppDB
+                .getInstance()
+                .where(CacheTable::class.java)
+                .equalTo(fieldName, type)
+                .findAll()
 
+        AppDB.getInstance().executeTransaction { realm ->
+            if (mCacheDatas.isNotEmpty())
+                mCacheDatas.deleteAllFromRealm()
+
+            val mCacheTb = realm.createObject(CacheTable::class.java)
+            mCacheTb.cache_data = cache_data
+            mCacheTb.type = type
+        }
+    }
 
 }

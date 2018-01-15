@@ -4,6 +4,7 @@ import android.app.Application
 import cn.putong.commonlibrary.R
 import cn.putong.commonlibrary.realm.information.module.InformationModule
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.orhanobut.hawk.Hawk
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -22,6 +23,7 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
         initArouter()
         initFresco()
         initRealm()
+        initHawk()
     }
 
     override fun initArouter() {}
@@ -31,7 +33,6 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
     }
 
     override fun initRealm() {
-        super.initRealm()
         val filename = getString(R.string.app_db_name)
         val schemaVersion: Long = 1
         Realm.init(this)
@@ -43,4 +44,10 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
                 .build()
         Realm.setDefaultConfiguration(realmConfig)
     }
+
+    override fun initHawk() {
+        Hawk.init(this).build()
+    }
+
+
 }
