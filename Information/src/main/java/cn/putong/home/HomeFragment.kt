@@ -1,15 +1,12 @@
 package cn.putong.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.ViewGroup
+import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.HawkHelper
+import cn.putong.home.helper.HawkHelper
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.ui.HomeFragmentUi
-import cn.putong.home.util.DataClass
+import cn.putong.home.helper.DataClassHelper
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -49,9 +46,9 @@ class HomeFragment : BaseFragment() {
 
     private fun initFragmentList() {
         mFragments = ArrayList()
-        mFragments.add(DataListFragment(DataClass.CLASS_NEWTHINGS))
-        mFragments.add(DataListFragment(DataClass.CLASS_BORINGPICTURES))
-        mFragments.add(DataListFragment(DataClass.CLASS_DUANZI))
+        mFragments.add(DataListFragment(DataClassHelper.CLASS_NEWTHINGS))
+        mFragments.add(DataListFragment(DataClassHelper.CLASS_BORINGPICTURES))
+        mFragments.add(DataListFragment(DataClassHelper.CLASS_DUANZI))
         mFragmentsAdapter =
                 DataListFragmentAdapter(childFragmentManager, mFragments, mClassItems)
     }

@@ -11,18 +11,16 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
-import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
 import cn.putong.home.event.PostRecordEvent
+import cn.putong.home.helper.DataClassHelper
 import cn.putong.home.mvp.data.model.CommentModel
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import cn.putong.home.ui.DataListFragmentUi
-import cn.putong.home.util.DataClass
-import com.google.gson.Gson
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -53,7 +51,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun initData() {
-        mDataPrenSent = DataPresenter(this)
+        mDataPrenSent = DataPresenter(IDataView = this)
         initAdapter()
     }
 
@@ -81,7 +79,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initListView() {
         mUi.listview.adapter = getAdapter()
-        if (mClass == DataClass.CLASS_NEWTHINGS)
+        if (mClass == DataClassHelper.CLASS_NEWTHINGS)
             mUi.listview.setDefaultDivider(context)
     }
 
@@ -121,7 +119,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun successful(model: Any) {
-        if (mClass == DataClass.CLASS_NEWTHINGS) {
+        if (mClass == DataClassHelper.CLASS_NEWTHINGS) {
             val mNewThingsModel = model as PostModel
             mPostDatas.addAll(mNewThingsModel.posts)
             mPostAdapter.updateList(mPostDatas)
@@ -130,11 +128,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mCommentDatas.addAll(mBoringPicturesModel.comments)
             mCommentAdapter.updateList(mCommentDatas)
         }
-        if (mCurrentPage == 1)
-            InformationDB.saveCacheData(cache_data = if (mClass == DataClass.CLASS_NEWTHINGS)
-                Gson().toJson(mPostDatas)
-            else
-                Gson().toJson(mCommentDatas), type = mClass)
     }
 
     override fun error(msg: String) {
@@ -147,7 +140,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      * 根据类型获取对应适配器
      */
     private fun getAdapter(): BaseRecyclerAdapter {
-        return if (mClass == DataClass.CLASS_NEWTHINGS)
+        return if (mClass == DataClassHelper.CLASS_NEWTHINGS)
             mPostAdapter
         else
             mCommentAdapter
@@ -170,11 +163,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             getAdapter().addFooter()
 
         when (mClass) {
-            DataClass.CLASS_NEWTHINGS ->
+            DataClassHelper.CLASS_NEWTHINGS ->
                 mDataPrenSent.getNewThings()
-            DataClass.CLASS_BORINGPICTURES ->
+            DataClassHelper.CLASS_BORINGPICTURES ->
                 mDataPrenSent.getBoringPictures()
-            DataClass.CLASS_DUANZI ->
+            DataClassHelper.CLASS_DUANZI ->
                 mDataPrenSent.getDuanZis()
         }
     }
@@ -184,7 +177,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mClass == DataClass.CLASS_NEWTHINGS)
+        if (mClass == DataClassHelper.CLASS_NEWTHINGS)
             getAdapter().notifyItemChanged(recordEvent.position)
     }
 

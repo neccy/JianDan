@@ -17,7 +17,7 @@ import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
-import cn.putong.home.util.HtmlHelper
+import cn.putong.home.helper.HtmlHelper
 import kotlinx.android.synthetic.main.fragment_postdetail.*
 import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
 
