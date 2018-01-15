@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
@@ -21,6 +23,7 @@ import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.data.prensent.DataPresenter
 import cn.putong.home.mvp.data.view.IDataView
 import cn.putong.home.ui.DataListFragmentUi
+import com.alibaba.android.arouter.launcher.ARouter
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -58,7 +61,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-            mParentFragment.start(PostDetailFragment(mPostDatas[position], position))
+            ARouter.getInstance()
+                    .build(ModuleHelper.DETAIL_MOUDLE_PATH)
+                    .withInt(ModuleHelper.PARAM_POST_MODEL_POSITION, position)
+                    .withSerializable(ModuleHelper.PARAM_POST_MODEL, mPostDatas[position])
+                    .navigation()
         }
         mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
             mParentFragment.start(PicViewFragment(pics))

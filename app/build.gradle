@@ -49,5 +49,6 @@ dependencies {
 
      // LiBrary
     implementation project(':commonlibrary')
-    implementation project(':Information')
+    implementation project(':home')
+    implementation project(':detail')
 }

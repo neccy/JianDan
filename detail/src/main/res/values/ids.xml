@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--DetailActivity FragmeLayout id-->
+    <item name="detail_fl" type="id" />
+
+</resources>

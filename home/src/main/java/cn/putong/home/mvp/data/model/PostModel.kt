@@ -1,5 +1,10 @@
 package cn.putong.home.mvp.data.model
 
+import android.content.Context
+import com.alibaba.android.arouter.facade.service.SerializationService
+import java.io.Serializable
+import java.lang.reflect.Type
+
 /**
  * 新鲜事模型
  * Created by lala on 2018/1/8.
@@ -12,7 +17,8 @@ class PostModel {
     var pages: Int = 0
     var posts: List<Post> = listOf()
 
-    class Post {
+    class Post :Serializable {
+
         var id: Int = 0
         val url: String = ""
         val title: String = ""
@@ -25,7 +31,7 @@ class PostModel {
         val custom_fields: CustomFields = CustomFields()
         var have_seen: Boolean = false
 
-        class Tag {
+        class Tag :Serializable{
             val id: Int = 0
             val slug: String = ""
             val title: String = ""
@@ -33,7 +39,7 @@ class PostModel {
             val post_count: Int = 0
         }
 
-        class Author {
+        class Author :Serializable {
             val id: Int = 0
             val slug: String = ""
             val name: String = ""
@@ -44,7 +50,7 @@ class PostModel {
             val description: String = ""
         }
 
-        class CustomFields {
+        class CustomFields :Serializable {
             val thumb_c: List<String> = listOf()
         }
     }
