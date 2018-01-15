@@ -184,8 +184,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mClass == DataClassHelper.CLASS_NEWTHINGS)
-            getAdapter().notifyItemChanged(recordEvent.position)
+        if (mClass == DataClassHelper.CLASS_NEWTHINGS) {
+            mPostDatas[recordEvent.position].have_seen = true
+            mPostAdapter.notifyItemChanged(recordEvent.position)
+        }
     }
 
 }
