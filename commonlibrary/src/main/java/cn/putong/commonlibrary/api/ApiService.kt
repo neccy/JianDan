@@ -1,9 +1,9 @@
-package cn.putong.home.api
+package cn.putong.commonlibrary.api
 
-import cn.putong.home.mvp.data.model.CommentModel
-import cn.putong.home.mvp.data.model.PostModel
-import cn.putong.home.mvp.detail.model.PostCommentModel
-import cn.putong.home.mvp.detail.model.PostDetailModel
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
+import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

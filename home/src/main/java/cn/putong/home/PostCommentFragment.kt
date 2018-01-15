@@ -10,10 +10,10 @@ import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.PostCommentAdapter
-import cn.putong.home.mvp.data.model.PostModel
-import cn.putong.home.mvp.detail.model.PostCommentModel
-import cn.putong.home.mvp.detail.present.DetailPresenter
-import cn.putong.home.mvp.detail.view.IDetailView
+import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
+import cn.putong.commonlibrary.mvp.detail.presenter.DetailPresenter
+import cn.putong.commonlibrary.mvp.detail.view.IDetailView
 import cn.putong.home.ui.PostCommentFragmentUi
 import org.jetbrains.anko.AnkoContext
 

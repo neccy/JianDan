@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.detail.model
+package cn.putong.commonlibrary.mvp.detail.model
 
 /**
  * 新闻类型数据评论Model

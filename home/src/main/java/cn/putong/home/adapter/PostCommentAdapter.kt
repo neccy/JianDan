@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.home.R
-import cn.putong.home.mvp.detail.model.PostCommentModel
+import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
 import kotlinx.android.synthetic.main.item_postcomment.view.*
 
 /**

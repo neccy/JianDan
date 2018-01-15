@@ -1,8 +1,8 @@
-package cn.putong.home.mvp.data.prensent
+package cn.putong.commonlibrary.mvp.home.present
 
 import cn.putong.commonlibrary.base.IBaseApiResultListener
-import cn.putong.home.mvp.data.biz.DataBiz
-import cn.putong.home.mvp.data.view.IDataView
+import cn.putong.commonlibrary.mvp.home.biz.DataBiz
+import cn.putong.commonlibrary.mvp.home.view.IDataView
 
 /**
  * 数据Present

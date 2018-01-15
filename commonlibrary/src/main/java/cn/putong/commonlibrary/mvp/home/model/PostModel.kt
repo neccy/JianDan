@@ -1,9 +1,6 @@
-package cn.putong.home.mvp.data.model
+package cn.putong.commonlibrary.mvp.home.model
 
-import android.content.Context
-import com.alibaba.android.arouter.facade.service.SerializationService
 import java.io.Serializable
-import java.lang.reflect.Type
 
 /**
  * 新鲜事模型

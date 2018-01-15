@@ -13,10 +13,10 @@ import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.helper.setWebView
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.event.PostRecordEvent
-import cn.putong.home.mvp.data.model.PostModel
-import cn.putong.home.mvp.detail.model.PostDetailModel
-import cn.putong.home.mvp.detail.present.DetailPresenter
-import cn.putong.home.mvp.detail.view.IDetailView
+import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
+import cn.putong.commonlibrary.mvp.detail.presenter.DetailPresenter
+import cn.putong.commonlibrary.mvp.detail.view.IDetailView
 import cn.putong.home.helper.HtmlHelper
 import kotlinx.android.synthetic.main.fragment_postdetail.*
 import kotlinx.android.synthetic.main.view_postdetail_toolbar.*

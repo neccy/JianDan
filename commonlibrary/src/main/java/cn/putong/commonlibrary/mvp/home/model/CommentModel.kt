@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.data.model
+package cn.putong.commonlibrary.mvp.home.model
 
 /**
  * 卡片类型视图Model

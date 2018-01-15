@@ -1,7 +1,7 @@
 package cn.putong.home.helper
 
-import cn.putong.home.mvp.data.model.CommentModel
-import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
 import com.orhanobut.hawk.Hawk
 
 /**

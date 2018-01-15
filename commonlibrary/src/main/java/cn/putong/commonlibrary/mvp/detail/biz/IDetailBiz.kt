@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.detail.biz
+package cn.putong.commonlibrary.mvp.detail.biz
 
 import cn.putong.commonlibrary.base.IBaseApiResultListener
 

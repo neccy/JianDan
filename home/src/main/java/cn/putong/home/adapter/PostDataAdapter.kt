@@ -10,7 +10,7 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.home.R
-import cn.putong.home.mvp.data.model.PostModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
 import kotlinx.android.synthetic.main.item_post.view.*
 import org.jetbrains.anko.textColor
 

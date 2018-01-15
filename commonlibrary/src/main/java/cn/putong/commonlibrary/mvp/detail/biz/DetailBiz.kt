@@ -1,12 +1,12 @@
-package cn.putong.home.mvp.detail.biz
+package cn.putong.commonlibrary.mvp.detail.biz
 
+import cn.putong.commonlibrary.api.ApiService
 import cn.putong.commonlibrary.base.IBaseApiResultListener
+import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
+import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import cn.putong.commonlibrary.network.NetWoks
-import cn.putong.home.api.ApiService
-import cn.putong.home.mvp.detail.model.PostCommentModel
-import cn.putong.home.mvp.detail.model.PostDetailModel
 import retrofit2.Call
-import retrofit2.Callback;
+import retrofit2.Callback
 import retrofit2.Response
 
 /**

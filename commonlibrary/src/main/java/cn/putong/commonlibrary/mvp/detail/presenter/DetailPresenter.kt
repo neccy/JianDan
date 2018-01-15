@@ -1,8 +1,8 @@
-package cn.putong.home.mvp.detail.present
+package cn.putong.commonlibrary.mvp.detail.presenter
 
 import cn.putong.commonlibrary.base.IBaseApiResultListener
-import cn.putong.home.mvp.detail.biz.DetailBiz
-import cn.putong.home.mvp.detail.view.IDetailView
+import cn.putong.commonlibrary.mvp.detail.biz.DetailBiz
+import cn.putong.commonlibrary.mvp.detail.view.IDetailView
 
 /**
  * 详情presenter

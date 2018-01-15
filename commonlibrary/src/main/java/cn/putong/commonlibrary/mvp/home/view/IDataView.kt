@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.data.view
+package cn.putong.commonlibrary.mvp.home.view
 
 import cn.putong.commonlibrary.base.IBaseViewImpl
 

@@ -1,4 +1,4 @@
-package cn.putong.home.mvp.detail.model
+package cn.putong.commonlibrary.mvp.detail.model
 
 /**
  * 新闻类型数据详情Model
@@ -7,7 +7,7 @@ package cn.putong.home.mvp.detail.model
 class PostDetailModel {
 
     var status: String = ""
-    var post: Post =Post()
+    var post: Post = Post()
     var previous_url: String = ""
     var next_url: String = ""
 
