@@ -56,11 +56,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initAdapter() {
+        val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-            (parentFragment as HomeFragment).
-                    start(PostDetailFragment(mPostDatas[position], position))
+            mParentFragment.start(PostDetailFragment(mPostDatas[position], position))
         }
-        mCommentAdapter = CommentDataAdapter()
+        mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
+            mParentFragment.start(PicViewFragment(pics))
+        })
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {

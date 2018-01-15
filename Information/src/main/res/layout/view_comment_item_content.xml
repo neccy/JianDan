@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -43,20 +44,21 @@
         tools:text="这是一条测试内容"
         tools:visibility="visible" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/picviewpager"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/pic"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/comment_item_content_picpager_height"
+        android:layout_height="@dimen/comment_item_content_pic_height"
         android:layout_below="@+id/content"
-        android:layout_marginBottom="@dimen/comment_item_content_picpager_vertical_margin"
+        android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"
         android:visibility="gone"
+        app:placeholderImage="@color/post_detail_pic_placeholder"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/positive_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/picviewpager"
+        android:layout_below="@+id/pic"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_positive_horizontal_margin_right"
         android:layout_marginStart="@dimen/comment_item_content_positive_horizontal_margin_left"
@@ -68,7 +70,7 @@
         android:id="@+id/negative_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/picviewpager"
+        android:layout_below="@+id/pic"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
@@ -80,7 +82,7 @@
         android:id="@+id/comment_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/picviewpager"
+        android:layout_below="@+id/pic"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
         android:padding="@dimen/comment_item_content_comment_padding"
@@ -93,7 +95,7 @@
         android:layout_alignBottom="@+id/comment_count"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/comment_count"
-        android:layout_below="@+id/picviewpager"
+        android:layout_below="@+id/pic"
         android:layout_marginEnd="@dimen/comment_item_content_more_horiz_margin"
         android:src="?attr/more_horiz_small" />
 

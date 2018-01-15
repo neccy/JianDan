@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.view_comment_item_content.view.*
  * Comment类型数据适配器
  * Created by lala on 2018/1/8.
  */
-class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = ArrayList())
+class CommentDataAdapter(
+        private var mList: ArrayList<CommentModel.Comment> = ArrayList(),
+        private val onImageClickListener: (List<String>) -> Unit)
     : BaseRecyclerAdapter() {
 
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
@@ -47,10 +49,14 @@ class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = Ar
 
                 if (mComment.pics.isEmpty()) {
                     // 是段子数据,隐藏图片显示
-                    picviewpager.visibility = View.GONE
+                    pic.visibility = View.GONE
                 } else {
-                    picviewpager.adapter = PicAdapter(mPicViewList(context, mComment.pics))
-                    picviewpager.visibility = View.VISIBLE
+                    // 目前默认显示一张
+                    FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
+                    pic.visibility = View.VISIBLE
+                    pic.setOnClickListener {
+                        onImageClickListener.invoke(mComment.pics)
+                    }
                 }
 
                 positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
