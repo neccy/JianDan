@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
-import cn.putong.commonlibrary.util.setColor
-import cn.putong.commonlibrary.util.setDefaultDivider
+import cn.putong.commonlibrary.helper.setColor
+import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter

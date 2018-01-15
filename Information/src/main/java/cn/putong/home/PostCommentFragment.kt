@@ -6,8 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.util.setColor
-import cn.putong.commonlibrary.util.setDefaultDivider
+import cn.putong.commonlibrary.helper.setColor
+import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.PostCommentAdapter
 import cn.putong.home.mvp.data.model.PostModel

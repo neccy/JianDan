@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.realm.information.InformationDB
-import cn.putong.commonlibrary.util.TimeUtil
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.PostModel
 import kotlinx.android.synthetic.main.item_post.view.*
@@ -38,7 +38,7 @@ class PostDataAdapter(
                 title.text = mPost.title
 
                 author.text = mPost.author.nickname
-                time.text = TimeUtil.format(TimeUtil.getDate(mPost.date))
+                time.text = TimeHelper.format(TimeHelper.getDate(mPost.date))
 
                 comments.text = resources.getString(R.string.post_comment_count_text, mPost.comment_count)
 

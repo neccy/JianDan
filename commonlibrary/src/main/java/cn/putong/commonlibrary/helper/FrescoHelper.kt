@@ -1,4 +1,4 @@
-package cn.putong.commonlibrary.util
+package cn.putong.commonlibrary.helper
 
 import android.net.Uri
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -10,7 +10,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder
  * Fresco封装
  * Created by xinyi on 2018/1/9.
  */
-object FrescoUtil {
+object FrescoHelper {
 
     /**
      * 设置动画控制器

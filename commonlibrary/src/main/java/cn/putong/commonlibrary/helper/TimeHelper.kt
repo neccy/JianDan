@@ -1,4 +1,4 @@
-package cn.putong.commonlibrary.util
+package cn.putong.commonlibrary.helper
 
 import org.ocpsoft.prettytime.PrettyTime
 import java.text.SimpleDateFormat
@@ -9,7 +9,7 @@ import java.util.*
  * 时间工具类
  * Created by xinyi on 2018/1/8.
  */
-object TimeUtil {
+object TimeHelper {
 
     private val DEFAULT_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss"
 
@@ -27,6 +27,8 @@ object TimeUtil {
 
     /**
      *获取Date
+     * @param time 日期
+     * @param pattern 默认转换格式
      */
     fun getDate(time: String, pattern: String = DEFAULT_TIME_PATTERN): Date {
         val sdf = SimpleDateFormat(pattern)

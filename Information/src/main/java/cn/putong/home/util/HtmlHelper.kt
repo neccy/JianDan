@@ -6,7 +6,7 @@ import android.webkit.WebView
  * HTML工具类
  * Created by xinyi on 2018/1/11.
  */
-object HtmlUtil {
+object HtmlHelper {
 
     var CONTENT = ""
     private val BASEURL = ""
@@ -52,10 +52,10 @@ object HtmlUtil {
      */
     fun setUrl(webView: WebView) {
         webView.loadDataWithBaseURL(
-                HtmlUtil.BASEURL,
-                HtmlUtil.getHtml(),
-                HtmlUtil.MIMETYPE,
-                HtmlUtil.ENCODING,
-                HtmlUtil.HISTORYURL)
+                HtmlHelper.BASEURL,
+                HtmlHelper.getHtml(),
+                HtmlHelper.MIMETYPE,
+                HtmlHelper.ENCODING,
+                HtmlHelper.HISTORYURL)
     }
 }

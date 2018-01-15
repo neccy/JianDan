@@ -9,15 +9,15 @@ import android.view.View
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.realm.information.InformationDB
-import cn.putong.commonlibrary.util.TimeUtil
-import cn.putong.commonlibrary.util.setWebView
+import cn.putong.commonlibrary.helper.TimeHelper
+import cn.putong.commonlibrary.helper.setWebView
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.event.PostRecordEvent
 import cn.putong.home.mvp.data.model.PostModel
 import cn.putong.home.mvp.detail.model.PostDetailModel
 import cn.putong.home.mvp.detail.present.DetailPresenter
 import cn.putong.home.mvp.detail.view.IDetailView
-import cn.putong.home.util.HtmlUtil
+import cn.putong.home.util.HtmlHelper
 import kotlinx.android.synthetic.main.fragment_postdetail.*
 import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
 
@@ -42,7 +42,7 @@ class PostDetailFragment(
         picview.setImageURI(mNewData.custom_fields.thumb_c[0])
         post_title.text = mNewData.title
         author.text = mNewData.author.nickname
-        time.text = TimeUtil.format(TimeUtil.getDate(mNewData.date))
+        time.text = TimeHelper.format(TimeHelper.getDate(mNewData.date))
         excerpt.text = mNewData.excerpt
     }
 
@@ -77,8 +77,8 @@ class PostDetailFragment(
 
     override fun successful(model: Any) {
         if (webview != null) {
-            HtmlUtil.CONTENT = (model as PostDetailModel).post.content
-            HtmlUtil.setUrl(webview)
+            HtmlHelper.CONTENT = (model as PostDetailModel).post.content
+            HtmlHelper.setUrl(webview)
         }
     }
 

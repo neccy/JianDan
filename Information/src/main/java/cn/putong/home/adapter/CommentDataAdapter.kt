@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
-import cn.putong.commonlibrary.util.FrescoUtil
-import cn.putong.commonlibrary.util.TimeUtil
+import cn.putong.commonlibrary.helper.FrescoHelper
+import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.home.R
 import cn.putong.home.mvp.data.model.CommentModel
 import com.facebook.drawee.view.SimpleDraweeView
@@ -41,7 +41,7 @@ class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = Ar
                 val mComment = mList[position]
 
                 author.text = mComment.comment_author
-                time.text = TimeUtil.format(TimeUtil.getDate(mComment.comment_date))
+                time.text = TimeHelper.format(TimeHelper.getDate(mComment.comment_date))
                 content.text = mComment.text_content.trim()
                 content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
 
@@ -97,7 +97,7 @@ class CommentDataAdapter(private var mList: ArrayList<CommentModel.Comment> = Ar
                     LayoutInflater.from(context)
                             .inflate(R.layout.view_comment_item_pic, null)
                             as SimpleDraweeView
-            FrescoUtil.setAnimatorController(Uri.parse(it), mPicView)
+            FrescoHelper.setAnimatorController(Uri.parse(it), mPicView)
             mPicList.add(mPicView)
         }
         mPicList

@@ -1,4 +1,4 @@
-package cn.putong.commonlibrary.util
+package cn.putong.commonlibrary.helper
 
 import android.content.Context
 import android.support.v4.widget.SwipeRefreshLayout
