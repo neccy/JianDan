@@ -23,7 +23,7 @@ object ModuleHelper {
     /**
      * 获取Post类型详情界面
      */
-    fun getPostFrtailFragment(position: Int, mPostData: PostModel.Post): BaseFragment {
+    fun startPosDetailtModule(fragment: BaseFragment, position: Int, mPostData: PostModel.Post) {
         val mPostFrtailFragment = ARouter.getInstance()
                 .build(Module.MODULE_DETAIL_POST_PATH)
                 .navigation() as BaseFragment
@@ -32,13 +32,13 @@ object ModuleHelper {
         mBd.putInt(Module.PARAM_POST_MODEL_POSITION, position)
         mBd.putSerializable(Module.PARAM_POST_MODEL, mPostData)
         mPostFrtailFragment.arguments = mBd
-        return mPostFrtailFragment
+        fragment.start(mPostFrtailFragment)
     }
 
     /**
      * 获取画廊界面
      */
-    fun getGalleryFragment(pics: ArrayList<String>): BaseFragment {
+    fun startGalleryModule(fragment: BaseFragment, pics: ArrayList<String>) {
         val mGalleryFragment = ARouter.getInstance()
                 .build(Module.MODULE_GALLERY_PATH)
                 .navigation() as BaseFragment
@@ -46,7 +46,7 @@ object ModuleHelper {
         val mBd = Bundle()
         mBd.putStringArrayList(Module.PARAM_COMMENT_MODEL_PICS, pics)
         mGalleryFragment.arguments = mBd
-        return mGalleryFragment
+        fragment.start(mGalleryFragment)
     }
 
 }

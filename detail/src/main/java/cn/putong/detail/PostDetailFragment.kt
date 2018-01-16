@@ -75,7 +75,8 @@ class PostDetailFragment : BaseFragment(), IDetailView {
 
     override fun initListener() {
         mUi.picview.setOnClickListener {
-            start(ModuleHelper.getGalleryFragment(mNewData.custom_fields.thumb_c))
+            ModuleHelper
+                    .startGalleryModule(fragment = this, pics = mNewData.custom_fields.thumb_c)
         }
     }
 
