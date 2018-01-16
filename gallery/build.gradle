@@ -9,7 +9,6 @@ kapt {
         arg("moduleName", project.getName())
     }
 }
-
 android {
     compileSdkVersion 26
     defaultConfig {

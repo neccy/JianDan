@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.helper.DataClassHelper
 import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
@@ -16,11 +17,10 @@ import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.home.present.DataPresenter
 import cn.putong.commonlibrary.mvp.home.view.IDataView
+import cn.putong.commonlibrary.otto.event.PostRecordEvent
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
-import cn.putong.commonlibrary.otto.event.PostRecordEvent
-import cn.putong.commonlibrary.helper.DataClassHelper
 import cn.putong.home.ui.DataListFragmentUi
 import com.alibaba.android.arouter.launcher.ARouter
 import com.squareup.otto.Subscribe
@@ -68,7 +68,11 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
                     .navigation()
         }
         mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
-            mParentFragment.start(PicViewFragment(pics))
+            val mGalleryFragment =
+                    ARouter.getInstance()
+                            .build(ModuleHelper.GALLERY_MODULE_PATH)
+                            .navigation() as BaseFragment
+            mParentFragment.start(mGalleryFragment)
         })
     }
 

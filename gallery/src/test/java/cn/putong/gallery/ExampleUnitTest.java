@@ -1,4 +1,4 @@
-package cn.putong.picgallery;
+package cn.putong.gallery;
 
 import org.junit.Test;
 

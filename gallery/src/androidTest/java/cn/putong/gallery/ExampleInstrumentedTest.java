@@ -1,4 +1,4 @@
-package cn.putong.picgallery;
+package cn.putong.gallery;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("cn.putong.picgallery.test", appContext.getPackageName());
+        assertEquals("cn.putong.gallery.test", appContext.getPackageName());
     }
 }

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--通用AppBarLayout Id-->
-    <item name="appbarlayout" type="id" />
-
     <!--DetailActivity FragmeLayout id-->
     <item name="detail_fl" type="id" />
 

@@ -19,9 +19,5 @@ object HawkHelper {
     /**
      * 获取上次软件退出时保存的Tab下标
      */
-    fun getTabSelection(): Int = try {
-        Hawk.get(KEY_TAB_SELECTION)
-    } catch (e: Exception) {
-        0
-    }
+    fun getTabSelection(): Int = if (Hawk.contains(KEY_TAB_SELECTION)) Hawk.get(KEY_TAB_SELECTION) else 0
 }

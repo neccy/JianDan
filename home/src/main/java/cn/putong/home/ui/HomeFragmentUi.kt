@@ -31,7 +31,7 @@ class HomeFragmentUi : AnkoComponent<HomeFragment> {
 
             relativeLayout {
                 viewpager = viewPager {
-                    id = R.id.home_viewpgaer
+                    id = R.id.viewpager
                 }.lparams(width = matchParent, height = matchParent)
             }.lparams(width = matchParent, height = matchParent) {
                 behavior = AppBarLayout.ScrollingViewBehavior()

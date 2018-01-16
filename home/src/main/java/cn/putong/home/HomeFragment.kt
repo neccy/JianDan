@@ -69,9 +69,9 @@ class HomeFragment : BaseFragment() {
 
     private fun initViewPager() {
         mUi.viewpager.adapter = mFragmentsAdapter
+        mUi.viewpager.currentItem = HawkHelper.getTabSelection()
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
         mUi.tablayout.setupWithViewPager(mUi.viewpager)
-        mUi.viewpager.currentItem = HawkHelper.getTabSelection()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

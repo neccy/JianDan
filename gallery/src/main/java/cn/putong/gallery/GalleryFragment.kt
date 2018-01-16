@@ -1,4 +1,4 @@
-package cn.putong.home
+package cn.putong.gallery
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -9,19 +9,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.home.ui.PicViewFragmentUi
+import cn.putong.commonlibrary.helper.ModuleHelper
+import cn.putong.gallery.ui.GalleryFragmentUi
+import com.alibaba.android.arouter.facade.annotation.Route
 import me.relex.photodraweeview.PhotoDraweeView
 import org.jetbrains.anko.AnkoContext
 
 /**
- * 图片显示界面
- * Created by lala on 2018/1/14.
+ * 画廊界面
+ * Created by xinyi on 2018/1/16.
  */
 @SuppressLint(value = ["ValidFragment"])
-class PicViewFragment(
-        private val mPics: List<String> = listOf()) : BaseFragment() {
+@Route(path = ModuleHelper.GALLERY_MODULE_PATH)
+class GalleryFragment(private val mPics: List<String> = listOf()) : BaseFragment() {
 
-    private lateinit var mUi: PicViewFragmentUi
+    private lateinit var mUi: GalleryFragmentUi
 
     private lateinit var mPicViews: ArrayList<PhotoDraweeView>
     private lateinit var mPicViewAdapter: PicViewPagerAdapter
@@ -32,7 +34,7 @@ class PicViewFragment(
     }
 
     override fun initUi() {
-        mUi = PicViewFragmentUi()
+        mUi = GalleryFragmentUi()
     }
 
     override fun initData() {
@@ -81,5 +83,4 @@ class PicViewFragment(
             notifyDataSetChanged()
         }
     }
-
 }
