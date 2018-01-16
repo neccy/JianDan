@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.setColor
@@ -26,9 +27,10 @@ class PostCommentFragment(private val mNewData: PostModel.Post) :
     private lateinit var mCommentPreSenter: DetailPresenter
     private lateinit var mCommentsAdapter: PostCommentAdapter
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    }
 
     override fun initUi() {
         mUi = PostCommentFragmentUi()

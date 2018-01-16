@@ -57,18 +57,11 @@ class PostDetailFragment(
     private fun initToolBar() {
         mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
         mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
-        mUi.toolbar.setNavigationOnClickListener {
-            activity.finish()
-        }
+        mUi.toolbar.setNavigationOnClickListener { activity.finish() }
     }
 
     private fun initWebView() {
         mUi.webview.setWebView()
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        mDetailPreSenter.getNewThingsDetail()
     }
 
     override fun initListener() {
@@ -102,14 +95,14 @@ class PostDetailFragment(
     override fun onEnterAnimationEnd(savedInstanceState: Bundle?) {
         super.onEnterAnimationEnd(savedInstanceState)
         initWebView()
+        mDetailPreSenter.getNewThingsDetail()
     }
 
     override fun onSupportVisible() {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
         InformationDB.savePostRecord(mNewData.id, { result ->
-            if (result)
-                AppEvent.post(PostRecordEvent(mPosition))
+            if (result) AppEvent.post(PostRecordEvent(mPosition))
         })
     }
 

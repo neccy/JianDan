@@ -7,4 +7,5 @@
         android:supportsRtl="true">
         <activity android:name=".DetailActivity" />
     </application>
+
 </manifest>
