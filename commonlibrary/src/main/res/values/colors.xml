@@ -5,10 +5,6 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#f44336</color>
 
-    <color name="app_color_black">#000000</color>
-    <color name="app_color_black_disabled">#000000</color>
-    <color name="app_color_black_pressed">#000000</color>
-
     <color name="tablayout_text_color">#7A7A7A</color>
     <color name="recyclerview_bg_color">#FAFAFA</color>
     <color name="textview_black_color">#202020</color>

@@ -44,9 +44,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private lateinit var mDataPrenSent: DataPresenter
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    }
 
     override fun initUi() {
         mUi = DataListFragmentUi()

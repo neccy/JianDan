@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -13,11 +13,11 @@ kapt {
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "cn.putong.jiandan"
         minSdkVersion 18
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,31 +26,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
-    }
 }
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    //Support
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // Support
     implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
 
-    //ARouter
+    // ARouter
     compile 'com.alibaba:arouter-api:1.3.1'
     kapt 'com.alibaba:arouter-compiler:1.1.4'
 
-    //Tests
+    // Tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-     // LiBrary
+    // Common Library
     implementation project(':commonlibrary')
-    implementation project(':home')
-    implementation project(':detail')
-    implementation project(':gallery')
-    implementation project(':setting')
 }
