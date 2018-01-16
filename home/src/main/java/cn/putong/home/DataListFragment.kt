@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.DataClassHelper
-import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
+import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.home.present.DataPresenter
@@ -22,7 +22,6 @@ import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
 import cn.putong.home.ui.DataListFragmentUi
-import com.alibaba.android.arouter.launcher.ARouter
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -59,19 +58,14 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initAdapter() {
+        val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-            ARouter.getInstance()
-                    .build(ModuleHelper.DETAIL_MOUDLE_PATH)
-                    .withInt(ModuleHelper.PARAM_DATA_CLASS, mClass)
-                    .withInt(ModuleHelper.PARAM_POST_MODEL_POSITION, position)
-                    .withSerializable(ModuleHelper.PARAM_POST_MODEL, mPostDatas[position])
-                    .navigation()
+            mParentFragment.
+                    start(ModuleHelper.getPostFrtailFragment(position, mPostDatas[position]))
         }
         mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
-            ARouter.getInstance()
-                    .build(ModuleHelper.GALLERY_MODULE_PATH)
-                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, pics)
-                    .navigation()
+            mParentFragment.
+                    start(ModuleHelper.getGalleryFragment(pics))
         })
     }
 

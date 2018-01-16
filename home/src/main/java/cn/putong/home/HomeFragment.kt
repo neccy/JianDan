@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.DataClassHelper
-import cn.putong.commonlibrary.helper.ModuleHelper
+import cn.putong.commonlibrary.module.Module
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import cn.putong.home.ui.HomeFragmentUi
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.AnkoContext
 
 /**
- * 首页
+ * 首页组件入口
  * Created by xinyi on 2018/1/6.
  */
+@Route(path = Module.MODULE_HOME_PATH)
 class HomeFragment : BaseFragment() {
 
     private lateinit var mUi: HomeFragmentUi
@@ -85,7 +87,7 @@ class HomeFragment : BaseFragment() {
         // 设置
             R.id.action_setting ->
                 start(ARouter.getInstance()
-                        .build(ModuleHelper.SETTING_MOUDLE_PATH)
+                        .build(Module.MODULE_SETTING_PATH)
                         .navigation() as BaseFragment)
         }
         return true

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.ModuleHelper
+import cn.putong.commonlibrary.module.Module
 import com.alibaba.android.arouter.facade.annotation.Route
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.appBarLayout
@@ -16,7 +16,7 @@ import org.jetbrains.anko.design.appBarLayout
  * 设置页面
  * Created by xinyi on 2018/1/16.
  */
-@Route(path = ModuleHelper.SETTING_MOUDLE_PATH)
+@Route(path = Module.MODULE_SETTING_PATH)
 class SetFragment : BaseFragment() {
 
     private lateinit var mUi: SetFragmentUi

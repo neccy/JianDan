@@ -1,6 +1,5 @@
 package cn.putong.gallery
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
@@ -9,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.ModuleHelper
+import cn.putong.commonlibrary.module.Module
 import cn.putong.gallery.ui.GalleryFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import me.relex.photodraweeview.PhotoDraweeView
@@ -19,13 +18,15 @@ import org.jetbrains.anko.AnkoContext
  * 画廊界面
  * Created by xinyi on 2018/1/16.
  */
-@SuppressLint(value = ["ValidFragment"])
-class GalleryFragment(private val mPics: List<String> = listOf()) : BaseFragment() {
+@Route(path = Module.MODULE_GALLERY_PATH)
+class GalleryFragment() : BaseFragment() {
 
     private lateinit var mUi: GalleryFragmentUi
 
     private lateinit var mPicViews: ArrayList<PhotoDraweeView>
     private lateinit var mPicViewAdapter: PicViewPagerAdapter
+
+    private lateinit var mPics: ArrayList<String>
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,8 +38,13 @@ class GalleryFragment(private val mPics: List<String> = listOf()) : BaseFragment
     }
 
     override fun initData() {
+        initArgumentData()
         initPicViewList()
         initAdapter()
+    }
+
+    private fun initArgumentData() {
+        mPics = arguments.getStringArrayList(Module.PARAM_COMMENT_MODEL_PICS)
     }
 
     private fun initPicViewList() {

@@ -1,22 +1,25 @@
-package cn.putong.commonlibrary.helper
+package cn.putong.commonlibrary.module
 
 /**
- * 组件工具类
+ * 组件配置工具类
  * Created by xinyi on 2018/1/6.
  */
-object ModuleHelper {
+object Module {
 
     // 首页组件路径
-    const val HOME_MODULE_PATH = "/home/main"
+    const val MODULE_HOME_PATH = "/home/main"
 
-    // 详情组件路径
-    const val DETAIL_MOUDLE_PATH = "/detail/main"
+    // 详情组件Post类型路径
+    const val MODULE_DETAIL_POST_PATH = "/detail/post"
+
+    // 详情组件Comment类型路径
+    const val MODULE_DETAIL_COMMENT_PATH = "/detail/comment"
 
     // 画廊组件路径
-    const val GALLERY_MODULE_PATH = "/gallery/main"
+    const val MODULE_GALLERY_PATH = "/gallery/main"
 
     // 设置组件路径
-    const val SETTING_MOUDLE_PATH = "/setting/main"
+    const val MODULE_SETTING_PATH = "/setting/main"
 
 
     // 数据类型所属分类

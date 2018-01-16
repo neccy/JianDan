@@ -1,12 +1,12 @@
 package cn.putong.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.helper.setWebView
+import cn.putong.commonlibrary.module.Module
+import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import cn.putong.commonlibrary.mvp.detail.presenter.DetailPresenter
 import cn.putong.commonlibrary.mvp.detail.view.IDetailView
@@ -17,16 +17,20 @@ import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.detail.helper.HtmlHelper
 import cn.putong.detail.ui.PostDetailFragmentUi
-import com.alibaba.android.arouter.launcher.ARouter
+import com.alibaba.android.arouter.facade.annotation.Route
 import org.jetbrains.anko.AnkoContext
 
-@SuppressLint(value = ["ValidFragment"])
-class PostDetailFragment(
-        private val mNewData: PostModel.Post,
-        private val mPosition: Int) : BaseFragment(), IDetailView {
+/**
+ * Post类型数据详情页面
+ */
+@Route(path = Module.MODULE_DETAIL_POST_PATH)
+class PostDetailFragment : BaseFragment(), IDetailView {
 
     private lateinit var mUi: PostDetailFragmentUi
     private lateinit var mDetailPreSenter: DetailPresenter
+
+    private var mPosition = 0
+    private lateinit var mNewData: PostModel.Post
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,7 +43,13 @@ class PostDetailFragment(
 
     override fun initData() {
         mDetailPreSenter = DetailPresenter(IDetailView = this)
+        initArgumentData()
         initNewData()
+    }
+
+    private fun initArgumentData() {
+        mPosition = arguments.getInt(Module.PARAM_POST_MODEL_POSITION, mPosition)
+        mNewData = arguments.getSerializable(Module.PARAM_POST_MODEL) as PostModel.Post
     }
 
     private fun initNewData() {
@@ -57,7 +67,6 @@ class PostDetailFragment(
     private fun initToolBar() {
         mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
         mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
-        mUi.toolbar.setNavigationOnClickListener { activity.finish() }
     }
 
     private fun initWebView() {
@@ -66,10 +75,7 @@ class PostDetailFragment(
 
     override fun initListener() {
         mUi.picview.setOnClickListener {
-            ARouter.getInstance()
-                    .build(ModuleHelper.GALLERY_MODULE_PATH)
-                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, mNewData.custom_fields.thumb_c)
-                    .navigation()
+            start(ModuleHelper.getGalleryFragment(mNewData.custom_fields.thumb_c))
         }
     }
 
