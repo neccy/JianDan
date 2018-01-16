@@ -15,6 +15,9 @@ object ModuleHelper {
     // 画廊组件路径
     const val GALLERY_MODULE_PATH = "/gallery/main"
 
+    // 设置组件路径
+    const val SETTING_MOUDLE_PATH = "/setting/main"
+
 
     // 数据类型所属分类
     val PARAM_DATA_CLASS = "data_class"

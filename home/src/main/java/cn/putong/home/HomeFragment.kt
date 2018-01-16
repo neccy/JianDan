@@ -1,15 +1,14 @@
 package cn.putong.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.ViewGroup
+import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.DataClassHelper
+import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import cn.putong.home.ui.HomeFragmentUi
+import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -79,6 +78,17 @@ class HomeFragment : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_home, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+        // 设置
+            R.id.action_setting ->
+                start(ARouter.getInstance()
+                        .build(ModuleHelper.SETTING_MOUDLE_PATH)
+                        .navigation() as BaseFragment)
+        }
+        return true
     }
 
 }
