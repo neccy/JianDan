@@ -12,6 +12,15 @@ import com.alibaba.android.arouter.launcher.ARouter
 object ModuleHelper {
 
     /**
+     * 获取HomeFragment
+     */
+    fun geHomeFragment(): BaseFragment {
+        return ARouter.getInstance()
+                .build(Module.MODULE_HOME_PATH)
+                .navigation() as BaseFragment
+    }
+
+    /**
      * 获取Post类型详情界面
      */
     fun getPostFrtailFragment(position: Int, mPostData: PostModel.Post): BaseFragment {
