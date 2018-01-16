@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:title="@string/set_screen_title">
 
     <PreferenceCategory android:title="@string/set_category_basic_title">
-        <SwitchPreference
-            android:title="@string/set_preference_meizi_title" />
+        <SwitchPreference android:title="@string/set_preference_meizi_title" />
         <SwitchPreference
             android:summary="@string/set_preference_unwelcome_content_summary"
             android:title="@string/set_preference_unwelcome_content_title" />
-        <Preference
-            android:title="@string/set_preference_gifautoplay_title" />
-        <CheckBoxPreference
-            android:title="@string/set_preference_usechrome_title" />
+        <Preference android:title="@string/set_preference_gifautoplay_title" />
+        <CheckBoxPreference android:title="@string/set_preference_usechrome_title" />
         <Preference
             android:summary="@string/set_preference_account_summary"
             android:title="@string/set_preference_account_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/set_category_other_title">
+        <Preference android:title="@string/set_preference_about_title" />
         <Preference
-            android:title="@string/set_preference_about_title" />
-        <Preference
-            tools:summary = "1.0.0"
-            android:title="@string/set_preference_version_title" />
+            android:title="@string/set_preference_version_title"
+            tools:summary="1.0.0" />
     </PreferenceCategory>
 
 </PreferenceScreen>
