@@ -12,8 +12,8 @@ class App : BaseApplication() {
 
     override fun initArouter() {
         super.initArouter()
-        ARouter.openLog();
-        ARouter.openDebug();
-        ARouter.init(this);
+        ARouter.openLog()
+        ARouter.openDebug()
+        ARouter.init(this)
     }
 }

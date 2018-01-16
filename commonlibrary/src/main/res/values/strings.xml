@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">煎蛋</string>
     <string name="app_db_name">jiandan.realm</string>
+
+    <string name="comment_content_positive_symbol">OO&#160;%1$s</string>
+    <string name="comment_content_negative_symbol">XX&#160;%1$s</string>
+    <string name="comment_content_comment_count_text">吐槽&#160;%1$s</string>
 </resources>

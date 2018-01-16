@@ -14,8 +14,8 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initUi()
-        initView()
         initData()
+        initView()
         initListener()
         loadData()
     }

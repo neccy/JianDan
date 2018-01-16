@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Post Detail-->
+    <color name="post_detail_pic_placeholder">#E6E6E6</color>
+    <color name="post_detail_main_bg">#F9F9F9</color>
+    <color name="post_detail_lin_bg">#DDDDDD</color>
+    <color name="post_detail_toolbar_bg">#FEFEFE</color>
+    <color name="post_detail_toolbar_line">@color/post_detail_lin_bg</color>
+
+</resources>

@@ -1,0 +1,135 @@
+package cn.putong.home.adapter
+
+import android.content.Context
+import android.net.Uri
+import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import cn.putong.commonlibrary.base.BaseRecyclerAdapter
+import cn.putong.commonlibrary.helper.FrescoHelper
+import cn.putong.commonlibrary.helper.TimeHelper
+import cn.putong.home.R
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import com.facebook.drawee.view.SimpleDraweeView
+import kotlinx.android.synthetic.main.view_comment_item_content.view.*
+
+/**
+ * Comment类型数据适配器
+ * Created by lala on 2018/1/8.
+ */
+class CommentDataAdapter(
+        private var mList: ArrayList<CommentModel.Comment> = ArrayList(),
+        private val onImageClickListener: (List<String>) -> Unit)
+    : BaseRecyclerAdapter() {
+
+    private var FOOTER: CommentModel.Comment = CommentModel.Comment()
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        val attachToRoot = false
+        return if (viewType == TYPE_NORMAL)
+            CardViewHolder(LayoutInflater.from(parent?.context).
+                    inflate(R.layout.item_comment, parent, attachToRoot))
+        else
+            PostDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
+                    inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        if (holder is CardViewHolder)
+            with(holder.itemView!!) {
+                val mComment = mList[position]
+
+                author.text = mComment.comment_author
+                time.text = TimeHelper.format(TimeHelper.getDate(mComment.comment_date))
+                content.text = mComment.text_content.trim()
+                content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
+
+                if (mComment.pics.isEmpty()) {
+                    // 是段子数据,隐藏图片显示
+                    pic.visibility = View.GONE
+                } else {
+                    // 目前默认显示一张
+                    FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
+                    pic.visibility = View.VISIBLE
+                    pic.setOnClickListener {
+                        onImageClickListener.invoke(mComment.pics)
+                    }
+                }
+
+                positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
+                negative_count.text = resources.getString(R.string.comment_content_negative_symbol, mComment.vote_negative)
+                comment_count.text = resources.getString(R.string.comment_content_comment_count_text, mComment.sub_comment_count)
+            }
+    }
+
+    override fun getItemCount() = mList.size
+
+    override fun getItemViewType(position: Int): Int {
+        return if (mList[position].comment_ID.isEmpty())
+            TYPE_FOOTER
+        else
+            TYPE_NORMAL
+    }
+
+    fun updateList(mList: ArrayList<CommentModel.Comment>) {
+        this.mList = mList
+        notifyDataSetChanged()
+    }
+
+    override fun addFooter() {
+        mList.add(FOOTER)
+        notifyItemInserted(mList.size - 1)
+    }
+
+    override fun removeFooter() {
+        mList.removeAt(mList.size - 1)
+        notifyItemRemoved(mList.size)
+    }
+
+    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    /**
+     * 图片View列表
+     */
+    private val mPicViewList = { context: Context, pics: List<String> ->
+        val mPicList = ArrayList<SimpleDraweeView>()
+        pics.forEach {
+            val mPicView =
+                    LayoutInflater.from(context)
+                            .inflate(R.layout.view_comment_item_pic, null)
+                            as SimpleDraweeView
+            FrescoHelper.setAnimatorController(Uri.parse(it), mPicView)
+            mPicList.add(mPicView)
+        }
+        mPicList
+    }
+
+    /**
+     * 图片Pager适配器
+     */
+    class PicAdapter(private var mViewList: List<SimpleDraweeView> = listOf()) : PagerAdapter() {
+
+        override fun isViewFromObject(view: View?, `object`: Any?) = view == `object`
+
+        override fun getCount() = mViewList.size
+
+        override fun instantiateItem(container: ViewGroup?, position: Int): Any {
+            (container as ViewPager).addView(mViewList.get(position))
+            return mViewList[position]
+        }
+
+        override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
+            (container as ViewPager).removeView(mViewList.get(position))
+        }
+
+        fun updatePicList(mViewList: List<SimpleDraweeView>) {
+            this.mViewList = mViewList
+            notifyDataSetChanged()
+        }
+    }
+}

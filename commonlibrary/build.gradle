@@ -44,7 +44,6 @@ dependencies {
 
     // UI
     compile 'me.yokeyword:fragmentation:1.2.4'
-    compile 'com.gordonwong:material-sheet-fab:1.2.1'
 
     // NetWork
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

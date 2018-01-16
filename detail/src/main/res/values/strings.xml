@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">煎蛋</string>
+
+    <string name="post_detail_menu_action_comment">评论</string>
+    <string name="post_detail_menu_action_more">更多</string>
+
+    <string name="postcomment_toolbar_title">评论</string>
+</resources>
