@@ -2,10 +2,7 @@ package cn.putong.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.helper.setWebView
@@ -18,32 +15,37 @@ import cn.putong.commonlibrary.otto.event.PostRecordEvent
 import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.detail.helper.HtmlHelper
-import kotlinx.android.synthetic.main.fragment_postdetail.*
-import kotlinx.android.synthetic.main.view_postdetail_toolbar.*
+import cn.putong.detail.ui.PostDetailFragmentUi
+import org.jetbrains.anko.AnkoContext
 
 @SuppressLint(value = ["ValidFragment"])
 class PostDetailFragment(
         private val mNewData: PostModel.Post,
         private val mPosition: Int) : BaseFragment(), IDetailView {
 
+    private lateinit var mUi: PostDetailFragmentUi
     private lateinit var mDetailPreSenter: DetailPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_postdetail)
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    }
+
+    override fun initUi() {
+        mUi = PostDetailFragmentUi()
     }
 
     override fun initData() {
-        mDetailPreSenter = DetailPresenter(this)
+        mDetailPreSenter = DetailPresenter(IDetailView = this)
         initNewData()
     }
 
     private fun initNewData() {
-        picview.setImageURI(mNewData.custom_fields.thumb_c[0])
-        post_title.text = mNewData.title
-        author.text = mNewData.author.nickname
-        time.text = TimeHelper.format(TimeHelper.getDate(mNewData.date))
-        excerpt.text = mNewData.excerpt
+        mUi.picview.setImageURI(mNewData.custom_fields.thumb_c[0])
+        mUi.post_title.text = mNewData.title
+        mUi.author.text = mNewData.author.nickname
+        mUi.time.text = TimeHelper.format(TimeHelper.getDate(mNewData.date))
+        mUi.excerpt.text = mNewData.excerpt
     }
 
     override fun initView() {
@@ -51,16 +53,16 @@ class PostDetailFragment(
     }
 
     private fun initToolBar() {
-        toolbar.setToolbar(mNewData.title, mIsBack = true)
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
-        toolbar.setNavigationOnClickListener {
+        mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
+        mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
+        mUi.toolbar.setNavigationOnClickListener {
             activity.finish()
         }
     }
 
     private fun initWebView() {
-        if (webview != null)
-            webview.setWebView()
+        if (mUi.webview != null)
+            mUi.webview!!.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -69,24 +71,24 @@ class PostDetailFragment(
     }
 
     override fun showLoading() {
-        if (progressbar != null)
-            progressbar.visibility = View.VISIBLE
+        if (mUi.progressbar != null)
+            mUi.progressbar!!.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        if (progressbar != null)
-            progressbar.visibility = View.GONE
+        if (mUi.progressbar != null)
+            mUi.progressbar!!.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-        if (webview != null) {
+        if (mUi.webview != null) {
             HtmlHelper.CONTENT = (model as PostDetailModel).post.content
-            HtmlHelper.setUrl(webview)
+            HtmlHelper.setUrl(mUi.webview!!)
         }
     }
 
     override fun error(msg: String) {
-        TipBar.showTip(toolbar, msg)
+        TipBar.showTip(mUi.toolbar, msg)
     }
 
     override fun getDataId() = mNewData.id
