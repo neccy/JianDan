@@ -28,8 +28,8 @@ class PostDetailFragment(
     private lateinit var mUi: PostDetailFragmentUi
     private lateinit var mDetailPreSenter: DetailPresenter
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return mUi.createView(AnkoContext.Companion.create(context, owner = this))
     }
 
@@ -75,9 +75,7 @@ class PostDetailFragment(
         mUi.picview.setOnClickListener {
             ARouter.getInstance()
                     .build(ModuleHelper.GALLERY_MODULE_PATH)
-                    .withStringArrayList(
-                            ModuleHelper.PARAM_COMMENT_MODEL_PICS,
-                            mNewData.custom_fields.thumb_c)
+                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, mNewData.custom_fields.thumb_c)
                     .navigation()
         }
     }
@@ -111,7 +109,6 @@ class PostDetailFragment(
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
         InformationDB.savePostRecord(mNewData.id, { result ->
             if (result)
-            // 通知更新列表
                 AppEvent.post(PostRecordEvent(mPosition))
         })
     }
