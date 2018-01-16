@@ -14,7 +14,7 @@ class PostModel {
     var pages: Int = 0
     var posts: List<Post> = listOf()
 
-    class Post :Serializable {
+    class Post : Serializable {
 
         var id: Int = 0
         val url: String = ""
@@ -28,7 +28,7 @@ class PostModel {
         val custom_fields: CustomFields = CustomFields()
         var have_seen: Boolean = false
 
-        class Tag :Serializable{
+        class Tag : Serializable {
             val id: Int = 0
             val slug: String = ""
             val title: String = ""
@@ -36,7 +36,7 @@ class PostModel {
             val post_count: Int = 0
         }
 
-        class Author :Serializable {
+        class Author : Serializable {
             val id: Int = 0
             val slug: String = ""
             val name: String = ""
@@ -47,8 +47,8 @@ class PostModel {
             val description: String = ""
         }
 
-        class CustomFields :Serializable {
-            val thumb_c: List<String> = listOf()
+        class CustomFields : Serializable {
+            val thumb_c: ArrayList<String> = ArrayList()
         }
     }
 

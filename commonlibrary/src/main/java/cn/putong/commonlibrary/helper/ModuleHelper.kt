@@ -27,4 +27,5 @@ object ModuleHelper {
 
     // Comment类型图片列表数据参数
     val PARAM_COMMENT_MODEL_PICS = "commentmodel_pics"
+
 }

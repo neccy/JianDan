@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.helper.ModuleHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.helper.setWebView
 import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
@@ -16,6 +17,7 @@ import cn.putong.commonlibrary.realm.information.InformationDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.detail.helper.HtmlHelper
 import cn.putong.detail.ui.PostDetailFragmentUi
+import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.AnkoContext
 
 @SuppressLint(value = ["ValidFragment"])
@@ -61,8 +63,7 @@ class PostDetailFragment(
     }
 
     private fun initWebView() {
-        if (mUi.webview != null)
-            mUi.webview!!.setWebView()
+            mUi.webview.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -70,21 +71,26 @@ class PostDetailFragment(
         mDetailPreSenter.getNewThingsDetail()
     }
 
+    override fun initListener() {
+        mUi.picview.setOnClickListener {
+            ARouter.getInstance()
+                    .build(ModuleHelper.GALLERY_MODULE_PATH)
+                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, mNewData.custom_fields.thumb_c)
+                    .navigation()
+        }
+    }
+
     override fun showLoading() {
-        if (mUi.progressbar != null)
-            mUi.progressbar!!.visibility = View.VISIBLE
+            mUi.progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        if (mUi.progressbar != null)
-            mUi.progressbar!!.visibility = View.GONE
+            mUi.progressbar.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-        if (mUi.webview != null) {
             HtmlHelper.CONTENT = (model as PostDetailModel).post.content
-            HtmlHelper.setUrl(mUi.webview!!)
-        }
+            HtmlHelper.setUrl(mUi.webview)
     }
 
     override fun error(msg: String) {

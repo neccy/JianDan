@@ -25,8 +25,8 @@ class PostDetailFragmentUi : AnkoComponent<PostDetailFragment> {
     lateinit var time: TextView
     lateinit var excerpt: TextView
     lateinit var toolbar: Toolbar
-    var webview: WebView? = null
-    var progressbar: ProgressBar? = null
+    lateinit var webview: WebView
+    lateinit var progressbar: ProgressBar
 
     override fun createView(ui: AnkoContext<PostDetailFragment>) = with(ui) {
         relativeLayout {
