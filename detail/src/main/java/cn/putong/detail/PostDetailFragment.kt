@@ -63,7 +63,7 @@ class PostDetailFragment(
     }
 
     private fun initWebView() {
-            mUi.webview.setWebView()
+        mUi.webview.setWebView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -75,22 +75,24 @@ class PostDetailFragment(
         mUi.picview.setOnClickListener {
             ARouter.getInstance()
                     .build(ModuleHelper.GALLERY_MODULE_PATH)
-                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, mNewData.custom_fields.thumb_c)
+                    .withStringArrayList(
+                            ModuleHelper.PARAM_COMMENT_MODEL_PICS,
+                            mNewData.custom_fields.thumb_c)
                     .navigation()
         }
     }
 
     override fun showLoading() {
-            mUi.progressbar.visibility = View.VISIBLE
+        mUi.progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-            mUi.progressbar.visibility = View.GONE
+        mUi.progressbar.visibility = View.GONE
     }
 
     override fun successful(model: Any) {
-            HtmlHelper.CONTENT = (model as PostDetailModel).post.content
-            HtmlHelper.setUrl(mUi.webview)
+        HtmlHelper.CONTENT = (model as PostDetailModel).post.content
+        HtmlHelper.setUrl(mUi.webview)
     }
 
     override fun error(msg: String) {
