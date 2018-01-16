@@ -28,14 +28,9 @@ class DetailActivity : BaseActivity() {
         mNewData = intent.getSerializableExtra(ModuleHelper.PARAM_POST_MODEL) as PostModel.Post
     }
 
-    override fun initView() {
-        initRootFragment()
-    }
-
-    private fun initRootFragment() {
+    override fun initRootFragment() {
         if (mClass == DataClassHelper.CLASS_NEWTHINGS)
             if (findFragment(PostDetailFragment::class.java) == null)
                 loadRootFragment(R.id.detail_fl, PostDetailFragment(mNewData, mPosition))
     }
-
 }

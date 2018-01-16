@@ -14,7 +14,10 @@ object ModuleHelper {
 
     // 画廊组件路径
     const val GALLERY_MODULE_PATH = "/gallery/main"
-    
+
+
+    // 数据类型所属分类
+    val PARAM_DATA_CLASS = "data_class"
 
     // 新闻类型数据参数
     val PARAM_POST_MODEL = "postmodel"
@@ -22,6 +25,6 @@ object ModuleHelper {
     // 新闻类型数据下标参数
     val PARAM_POST_MODEL_POSITION = "postmodel_position"
 
-    // 数据类型所属分类
-    val PARAM_DATA_CLASS = "data_class"
+    // Comment类型图片列表数据参数
+    val PARAM_COMMENT_MODEL_PICS = "commentmodel_pics"
 }

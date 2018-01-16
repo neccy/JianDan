@@ -16,11 +16,7 @@ class HomeActivity : BaseActivity() {
         frameLayout { id = R.id.home_fl }
     }
 
-    override fun initView() {
-        initRootFragment()
-    }
-
-    private fun initRootFragment() {
+    override fun initRootFragment() {
         if (findFragment(HomeFragment::class.java) == null)
             loadRootFragment(R.id.home_fl, HomeFragment())
     }

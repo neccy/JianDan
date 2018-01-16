@@ -16,6 +16,7 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
         initUi()
         initData()
         initView()
+        initRootFragment()
         initListener()
         loadData()
     }
@@ -29,6 +30,8 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
     override fun initListener() {}
 
     override fun loadData() {}
+
+    open fun initRootFragment() {}
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,

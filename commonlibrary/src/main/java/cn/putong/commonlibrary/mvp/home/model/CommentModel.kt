@@ -1,5 +1,7 @@
 package cn.putong.commonlibrary.mvp.home.model
 
+import java.util.ArrayList
+
 /**
  * 卡片类型视图Model
  * Created by lala on 2018/1/8.
@@ -24,7 +26,7 @@ class CommentModel {
         var vote_negative: String = ""
         var sub_comment_count: String = ""
         var text_content: String = ""
-        var pics: List<String> = listOf()
+        var pics: ArrayList<String> = ArrayList()
     }
 
 }

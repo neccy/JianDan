@@ -20,7 +20,6 @@ import org.jetbrains.anko.AnkoContext
  * Created by xinyi on 2018/1/16.
  */
 @SuppressLint(value = ["ValidFragment"])
-@Route(path = ModuleHelper.GALLERY_MODULE_PATH)
 class GalleryFragment(private val mPics: List<String> = listOf()) : BaseFragment() {
 
     private lateinit var mUi: GalleryFragmentUi

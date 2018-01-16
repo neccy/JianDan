@@ -58,7 +58,6 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     private fun initAdapter() {
-        val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
             ARouter.getInstance()
                     .build(ModuleHelper.DETAIL_MOUDLE_PATH)
@@ -68,11 +67,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
                     .navigation()
         }
         mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
-            val mGalleryFragment =
-                    ARouter.getInstance()
-                            .build(ModuleHelper.GALLERY_MODULE_PATH)
-                            .navigation() as BaseFragment
-            mParentFragment.start(mGalleryFragment)
+            ARouter.getInstance()
+                    .build(ModuleHelper.GALLERY_MODULE_PATH)
+                    .withStringArrayList(ModuleHelper.PARAM_COMMENT_MODEL_PICS, pics)
+                    .navigation()
         })
     }
 

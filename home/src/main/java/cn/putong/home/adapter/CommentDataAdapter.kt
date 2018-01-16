@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.view_comment_item_content.view.*
  */
 class CommentDataAdapter(
         private var mList: ArrayList<CommentModel.Comment> = ArrayList(),
-        private val onImageClickListener: (List<String>) -> Unit)
+        private val onImageClickListener: (ArrayList<String>) -> Unit)
     : BaseRecyclerAdapter() {
 
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
@@ -55,7 +55,7 @@ class CommentDataAdapter(
                     FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
-                        onImageClickListener.invoke(mComment.pics)
+                            onImageClickListener.invoke(mComment.pics)
                     }
                 }
 
