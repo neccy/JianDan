@@ -1,17 +1,16 @@
 package cn.putong.setting
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.preference.PreferenceFragment
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.ModuleHelper
 import com.alibaba.android.arouter.facade.annotation.Route
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.*
+import org.jetbrains.anko.design.appBarLayout
 
 /**
  * 设置页面
@@ -32,13 +31,21 @@ class SetFragment : BaseFragment() {
     }
 
     override fun initView() {
-        activity.fragmentManager.beginTransaction().replace(R.id.set_fl, SetPreferenceFragment())
+        activity.fragmentManager
+                .beginTransaction()
+                .replace(R.id.set_fl, SetPreferenceFragment())
+                .commit()
     }
 
     class SetFragmentUi : AnkoComponent<SetFragment> {
         override fun createView(ui: AnkoContext<SetFragment>) = with(ui) {
-            frameLayout {
-                id = R.id.set_fl
+            verticalLayout {
+                appBarLayout {
+                    include<Toolbar>(R.layout.view_toolbar)
+                }.lparams(width = matchParent)
+                frameLayout {
+                    id = R.id.set_fl
+                }.lparams(width = matchParent, height = matchParent)
             }
         }
 
