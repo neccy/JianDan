@@ -33,4 +33,5 @@ class DetailActivity : BaseActivity() {
             if (findFragment(PostDetailFragment::class.java) == null)
                 loadRootFragment(R.id.detail_fl, PostDetailFragment(mNewData, mPosition))
     }
+
 }

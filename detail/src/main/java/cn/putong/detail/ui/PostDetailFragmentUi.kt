@@ -105,7 +105,9 @@ class PostDetailFragmentUi : AnkoComponent<PostDetailFragment> {
                         topMargin = dip(value = 16)
                     }
                 }.lparams(width = matchParent, height = matchParent)
-            }.lparams(width = matchParent, height = matchParent)
+            }.lparams(width = matchParent, height = matchParent) {
+                bottomMargin = dip(value = 47)
+            }
 
             linearLayout {
                 orientation = LinearLayout.VERTICAL

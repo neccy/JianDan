@@ -18,7 +18,7 @@ object HtmlHelper {
     /**
      * 根据新鲜事接口返回内容信息生成HTML
      */
-    fun getHtml(): String {
+    private fun getHtml(): String {
         val sb = StringBuilder()
         sb.append("<!DOCTYPE html>")
         sb.append("<html dir=\"ltr\" lang=\"zh\">")
