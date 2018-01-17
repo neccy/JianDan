@@ -109,7 +109,10 @@ class PostDetailFragment : BaseFragment(), IDetailView {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
         InformationDB.savePostRecord(mNewData.id, { result ->
-            if (result) AppEvent.post(PostRecordEvent(mPosition))
+            if (result) {
+                mNewData.have_seen = true
+                AppEvent.post(PostRecordEvent(mPosition))
+            }
         })
     }
 

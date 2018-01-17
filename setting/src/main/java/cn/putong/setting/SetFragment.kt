@@ -61,7 +61,7 @@ class SetFragment : BaseFragment() {
             addPreferencesFromResource(R.xml.preferences_set)
         }
 
-        override fun initView() {
+        override fun initPreference() {
             preference_meizi = preferenceManager
                     .findPreference(getString(R.string.key_preference_meizi))
             preference_unwelcome = preferenceManager

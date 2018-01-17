@@ -12,14 +12,14 @@ open class BasePreferenceFragment : PreferenceFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initResource()
-        initView()
+        initPreference()
         initData()
         initListener()
     }
 
     open fun initResource() {}
 
-    open fun initView() {}
+    open fun initPreference() {}
 
     open fun initData() {}
 
