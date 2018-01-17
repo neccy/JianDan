@@ -4,20 +4,35 @@
     android:title="@string/set_screen_title">
 
     <PreferenceCategory android:title="@string/set_category_basic_title">
-        <SwitchPreference android:title="@string/set_preference_meizi_title" />
         <SwitchPreference
+            android:key="@string/key_preference_meizi"
+            android:title="@string/set_preference_meizi_title" />
+        <SwitchPreference
+            android:key="@string/key_preference_unwelcome"
             android:summary="@string/set_preference_unwelcome_content_summary"
             android:title="@string/set_preference_unwelcome_content_title" />
-        <Preference android:title="@string/set_preference_gifautoplay_title" />
-        <CheckBoxPreference android:title="@string/set_preference_usechrome_title" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/preference_gifautoplay_entries"
+            android:entryValues="@array/preference_gifautoplay_values"
+            android:key="@string/key_preference_gifautoplay"
+            android:title="@string/set_preference_gifautoplay_title"
+            tools:summary="使用移动流量和WIFI" />
+        <CheckBoxPreference
+            android:key="@string/key_preference_usechrome"
+            android:title="@string/set_preference_usechrome_title" />
         <Preference
+            android:key="@string/key_preference_account"
             android:summary="@string/set_preference_account_summary"
             android:title="@string/set_preference_account_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/set_category_other_title">
-        <Preference android:title="@string/set_preference_about_title" />
         <Preference
+            android:key="@string/key_preference_about"
+            android:title="@string/set_preference_about_title" />
+        <Preference
+            android:key="@string/key_preference_version"
             android:title="@string/set_preference_version_title"
             tools:summary="1.0.0" />
     </PreferenceCategory>

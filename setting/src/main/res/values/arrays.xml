@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="preference_gifautoplay_entries">
+        <item>使用移动流量和WIFI</item>
+        <item>仅WIFI</item>
+        <item>关闭</item>
+    </string-array>
+
+    <string-array name="preference_gifautoplay_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

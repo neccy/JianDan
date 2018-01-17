@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">煎蛋</string>
 
+    <string name="set_toolbar_title">设置</string>
+
+    <!--Preference Title Summary-->
     <string name="set_screen_title">设置</string>
     <string name="set_category_basic_title">基本设置</string>
     <string name="set_category_other_title">其它</string>
@@ -13,4 +16,15 @@
     <string name="set_preference_account_summary">内容的评论和发布账号</string>
     <string name="set_preference_about_title">关于煎蛋</string>
     <string name="set_preference_version_title">版本信息</string>
+
+    <!--Preference Key-->
+    <string name="key_preference_meizi">key_meizi_set</string>
+    <string name="key_preference_unwelcome">key_unwelcome_set</string>
+    <string name="key_preference_gifautoplay">key_gifautoplay_set</string>
+    <string name="key_preference_usechrome">key_usechrome_set</string>
+    <string name="key_preference_account">key_account_set</string>
+    <string name="key_preference_about">key_about_set</string>
+    <string name="key_preference_version">key_version_set</string>
+
+
 </resources>
