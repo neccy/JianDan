@@ -10,5 +10,5 @@ object DataClassHelper {
     // 无聊图
     val CLASS_BORINGPICTURES = 1
     // 段子
-    val CLASS_DUANZI = 2
+    val CLASS_DUANZI = 3
 }

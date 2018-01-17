@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // 记录Tab下标
         HawkHelper.saveTabSelection(mUi.viewpager.currentItem)
     }
 
@@ -84,8 +83,8 @@ class HomeFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-        // 设置
             R.id.action_setting ->
+                // 设置
                 ModuleHelper.startSetModule(fragment = this)
         }
         return true

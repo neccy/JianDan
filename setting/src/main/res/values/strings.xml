@@ -17,14 +17,4 @@
     <string name="set_preference_about_title">关于煎蛋</string>
     <string name="set_preference_version_title">版本信息</string>
 
-    <!--Preference Key-->
-    <string name="key_preference_meizi">key_preference_meizi</string>
-    <string name="key_preference_unwelcome">key_preference_unwelcome</string>
-    <string name="key_preference_gifautoplay">key_preference_gifautoplay</string>
-    <string name="key_preference_usechrome">key_preference_usechrome</string>
-    <string name="key_preference_account">key_preference_account</string>
-    <string name="key_preference_about">key_preference_about</string>
-    <string name="key_preference_version">key_preference_version</string>
-
-
 </resources>
