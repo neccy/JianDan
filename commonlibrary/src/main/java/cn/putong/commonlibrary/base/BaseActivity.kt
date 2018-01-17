@@ -3,6 +3,7 @@ package cn.putong.commonlibrary.base
 import android.os.Bundle
 import cn.putong.commonlibrary.R
 import me.yokeyword.fragmentation.SupportActivity
+import me.yokeyword.fragmentation.anim.DefaultNoAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 /**
@@ -34,8 +35,9 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
     open fun initRootFragment() {}
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
-                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
+//        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
+//                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
+        return DefaultNoAnimator()
     }
 
 }
