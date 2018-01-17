@@ -5,11 +5,11 @@ import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.DataClassHelper
 import cn.putong.commonlibrary.module.Module
+import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import cn.putong.home.ui.HomeFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -86,9 +86,7 @@ class HomeFragment : BaseFragment() {
         when (item!!.itemId) {
         // 设置
             R.id.action_setting ->
-                start(ARouter.getInstance()
-                        .build(Module.MODULE_SETTING_PATH)
-                        .navigation() as BaseFragment)
+                ModuleHelper.startSetModule(fragment = this)
         }
         return true
     }

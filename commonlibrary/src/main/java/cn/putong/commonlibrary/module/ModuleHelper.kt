@@ -21,7 +21,7 @@ object ModuleHelper {
     }
 
     /**
-     * 获取Post类型详情界面
+     * 启动Post类型详情界面
      */
     fun startPosDetailtModule(fragment: BaseFragment, position: Int, mPostData: PostModel.Post) {
         val mPostFrtailFragment = ARouter.getInstance()
@@ -36,7 +36,7 @@ object ModuleHelper {
     }
 
     /**
-     * 获取画廊界面
+     * 启动画廊组件
      */
     fun startGalleryModule(fragment: BaseFragment, pics: ArrayList<String>) {
         val mGalleryFragment = ARouter.getInstance()
@@ -47,6 +47,15 @@ object ModuleHelper {
         mBd.putStringArrayList(Module.PARAM_COMMENT_MODEL_PICS, pics)
         mGalleryFragment.arguments = mBd
         fragment.start(mGalleryFragment)
+    }
+
+    /**
+     * 启动设置组件
+     */
+    fun startSetModule(fragment: BaseFragment) {
+        fragment.start(ARouter.getInstance()
+                .build(Module.MODULE_SETTING_PATH)
+                .navigation() as BaseFragment)
     }
 
 }

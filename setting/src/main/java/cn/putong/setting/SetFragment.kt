@@ -1,12 +1,13 @@
 package cn.putong.setting
 
 import android.os.Bundle
+import android.preference.ListPreference
 import android.preference.Preference
-import android.preference.PreferenceFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.base.BasePreferenceFragment
 import cn.putong.commonlibrary.module.Module
 import cn.putong.setting.ui.SetFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -46,50 +47,67 @@ class SetFragment : BaseFragment() {
                 .commit()
     }
 
-    class SetPreferenceFragment : PreferenceFragment() {
+    class SetPreferenceFragment : BasePreferenceFragment() {
 
-        // 妹子图
-        private lateinit var key_preference_meizi: Preference
-        // 不受欢迎内容
-        private lateinit var key_preference_unwelcome: Preference
-        // 动画自动播放
-        private lateinit var key_preference_gifautoplay: Preference
-        // 使用Chrome打开链接
-        private lateinit var key_preference_usechrome: Preference
-        // 游客账号
-        private lateinit var key_preference_account: Preference
-        // 关于
-        private lateinit var key_preference_about: Preference
-        // 版本
-        private lateinit var key_preference_version: Preference
+        private lateinit var preference_meizi: Preference
+        private lateinit var preference_unwelcome: Preference
+        private lateinit var preference_gifautoplay: ListPreference
+        private lateinit var preference_usechrome: Preference
+        private lateinit var preference_account: Preference
+        private lateinit var preference_about: Preference
+        private lateinit var preference_version: Preference
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+        override fun initResource() {
             addPreferencesFromResource(R.xml.preferences_set)
-            initView()
-            initData()
         }
 
-        private fun initView() {
-            key_preference_meizi = preferenceManager
-                    .findPreference(R.string.key_preference_meizi.toString())
-            key_preference_unwelcome = preferenceManager
-                    .findPreference(R.string.key_preference_unwelcome.toString())
-            key_preference_gifautoplay = preferenceManager
-                    .findPreference(R.string.key_preference_gifautoplay.toString())
-            key_preference_usechrome = preferenceManager
-                    .findPreference(R.string.key_preference_usechrome.toString())
-            key_preference_account = preferenceManager
-                    .findPreference(R.string.key_preference_account.toString())
-            key_preference_about = preferenceManager
-                    .findPreference(R.string.key_preference_about.toString())
-            key_preference_version = preferenceManager
-                    .findPreference(R.string.key_preference_version.toString())
+        override fun initView() {
+            preference_meizi = preferenceManager
+                    .findPreference(getString(R.string.key_preference_meizi))
+            preference_unwelcome = preferenceManager
+                    .findPreference(getString(R.string.key_preference_unwelcome))
+            preference_gifautoplay = preferenceManager
+                    .findPreference(getString(R.string.key_preference_gifautoplay))
+                    as ListPreference
+            preference_usechrome = preferenceManager
+                    .findPreference(getString(R.string.key_preference_usechrome))
+            preference_account = preferenceManager
+                    .findPreference(getString(R.string.key_preference_account))
+            preference_about = preferenceManager
+                    .findPreference(getString(R.string.key_preference_about))
+            preference_version = preferenceManager
+                    .findPreference(getString(R.string.key_preference_version))
         }
 
-        private fun initData() {
-
+        override fun initData() {
+            initGifAutoPlayer()
         }
+
+        /**
+         * 初始化动画自动播放偏好
+         */
+        private fun initGifAutoPlayer() {
+            preference_gifautoplay.summary =
+                    getGifAutoPlaySummary(preference_gifautoplay.value)
+        }
+
+        /**
+         * 获取动画自动播放偏好Summary
+         */
+        private fun getGifAutoPlaySummary(value: String): String {
+            val mEntries = resources
+                    .getStringArray(R.array.preference_gifautoplay_entries)
+            return mEntries[value.toInt()]
+        }
+
+        override fun initListener() {
+            preference_gifautoplay.setOnPreferenceChangeListener { preference, newValue ->
+                preference_gifautoplay.summary = getGifAutoPlaySummary(newValue.toString())
+                preference_gifautoplay.setValueIndex(newValue.toString().toInt())
+                super.onPreferenceTreeClick(preferenceScreen, preference)
+            }
+        }
+
     }
 
 }
