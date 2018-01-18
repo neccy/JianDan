@@ -3,10 +3,10 @@
 
     <!--首页分类-->
     <string-array name="template_item">
-        <item>新鲜事</item>
-        <item>无聊图</item>
-        <item>段子</item>
-        <item>妹子图</item>
+        <item>@string/home_template_newthings</item>
+        <item>@string/home_template_boringpics</item>
+        <item>@string/home_template_duanzis</item>
+        <item>@string/home_template_meizipics</item>
     </string-array>
 
 </resources>

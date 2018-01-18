@@ -11,7 +11,7 @@ import cn.putong.home.DataListFragment
 class DataListFragmentAdapter(
         mFragmentManager: FragmentManager,
         private var mFragments: List<DataListFragment>,
-        private val mTitles: Array<String?>) :
+        private var mTitles: Array<String?>) :
         FragmentPagerAdapter(mFragmentManager) {
 
     override fun getItem(position: Int) = mFragments[position]
@@ -20,8 +20,10 @@ class DataListFragmentAdapter(
 
     override fun getPageTitle(position: Int) = mTitles[position]
 
-    fun updateList(mFragments: List<DataListFragment>){
+    fun updateList(mFragments: List<DataListFragment>,
+                   mTitles: Array<String?>){
         this.mFragments = mFragments
+        this.mTitles = mTitles
         notifyDataSetChanged()
     }
 

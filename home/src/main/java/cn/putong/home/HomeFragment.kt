@@ -28,6 +28,9 @@ class HomeFragment : BaseFragment() {
     private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mTemplates: Array<String?>
 
+    // (～￣▽￣)～ 模版下标
+    private val mMeiZiIndex = 3
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return mUi.createView(AnkoContext.Companion.create(context, owner = this))
@@ -50,10 +53,6 @@ class HomeFragment : BaseFragment() {
 
     private fun initTemplates() {
         mTemplates = resources.getStringArray(R.array.template_item)
-        if (!getMeiZiValue(context))
-            mTemplates.filter {
-                it != getString(R.string.home_template_meizipics)
-            }
     }
 
     private fun initFragments() {
@@ -61,10 +60,9 @@ class HomeFragment : BaseFragment() {
                 DataListFragment(TemPlateHelper.NEWTHINGS),
                 DataListFragment(TemPlateHelper.BORINGPICS),
                 DataListFragment(TemPlateHelper.DUANZI),
-                DataListFragment(TemPlateHelper.MEIZIPICS)
-        )
-        if (!getMeiZiValue(context))
-            mFragments.removeAt(3)
+                DataListFragment(TemPlateHelper.MEIZIPICS))
+
+        if (!getMeiZiValue(context)) mFragments.removeAt(mMeiZiIndex)
     }
 
     private fun initAdapter() {
@@ -113,17 +111,18 @@ class HomeFragment : BaseFragment() {
      */
     @Subscribe
     fun updateTemplate(templateEvent: TemplateEvent) {
-        var mMeiZiIndex = 3
+        val mCurrentItem: Int
         if (templateEvent.meizi_value) {
+            mCurrentItem = 3
             mFragments.add(mMeiZiIndex,
                     DataListFragment(TemPlateHelper.MEIZIPICS))
         } else {
-            mMeiZiIndex = 2
             mFragments.removeAt(mMeiZiIndex)
+            mCurrentItem = 2
         }
-        mFragmentsAdapter.updateList(mFragments)
+        mFragmentsAdapter.updateList(mFragments, mTemplates)
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
-        mUi.viewpager.currentItem = mMeiZiIndex
+        mUi.viewpager.currentItem = mCurrentItem
     }
 
 }
