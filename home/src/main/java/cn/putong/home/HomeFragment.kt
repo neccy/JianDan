@@ -115,12 +115,10 @@ class HomeFragment : BaseFragment() {
             mFragments.add(TemPlateHelper.MEIZIPICS,
                     DataListFragment(TemPlateHelper.MEIZIPICS))
         } else {
-            mFragments.removeAt(TemPlateHelper.MEIZIPICS)
             mCurrentItem = 2
+            mFragments.removeAt(TemPlateHelper.MEIZIPICS)
         }
         mFragmentsAdapter.updateList(mFragments, mTemplates)
-        if (!templateEvent.meizi_value)
-            mUi.viewpager.adapter = mFragmentsAdapter
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
         mUi.viewpager.currentItem = mCurrentItem
     }
