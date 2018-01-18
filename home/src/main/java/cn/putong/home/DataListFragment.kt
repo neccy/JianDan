@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.TemPlateHelper
+import cn.putong.commonlibrary.helper.getUnWelcomeValue
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.module.ModuleHelper
@@ -129,7 +130,15 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             mPostAdapter.updateList(mPostDatas)
         } else {
             val mBoringPicturesModel = model as CommentModel
-            mCommentDatas.addAll(mBoringPicturesModel.comments)
+            mCommentDatas.addAll(
+                    // 开启不受欢迎内容,隐藏[踩]大于100的数据
+                    if (getUnWelcomeValue(context))
+                        mBoringPicturesModel.comments.filter {
+                            it.vote_negative.toInt() < 100
+                        }
+                    else
+                        mBoringPicturesModel.comments
+            )
             mCommentAdapter.updateList(mCommentDatas)
         }
     }

@@ -1,6 +1,7 @@
 package cn.putong.home
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.TemPlateHelper
@@ -14,6 +15,7 @@ import cn.putong.home.ui.HomeFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.forEachChild
 
 /**
  * 首页组件入口

@@ -10,7 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/gallery/gallery.iml" filepath="$PROJECT_DIR$/gallery/gallery.iml" />
       <module fileurl="file://$PROJECT_DIR$/home/home.iml" filepath="$PROJECT_DIR$/home/home.iml" />
       <module fileurl="file://$PROJECT_DIR$/setting/setting.iml" filepath="$PROJECT_DIR$/setting/setting.iml" />
-      <module fileurl="file://D:\Development\Android\AndroidProject\JianDan\setting\setting.iml" filepath="D:\Development\Android\AndroidProject\JianDan\setting\setting.iml" />
     </modules>
   </component>
 </project>
