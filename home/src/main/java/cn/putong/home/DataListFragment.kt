@@ -27,7 +27,7 @@ import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
 @SuppressLint(value = ["ValidFragment"])
-class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
+class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
     private lateinit var mUi: DataListFragmentUi
 
@@ -84,7 +84,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initListView() {
         mUi.listview.adapter = getAdapter()
-        if (mClass == TemPlateHelper.NEWTHINGS)
+        if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mUi.listview.setDefaultDivider(context)
     }
 
@@ -124,7 +124,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun successful(model: Any) {
-        if (mClass == TemPlateHelper.NEWTHINGS) {
+        if (mTemPlate == TemPlateHelper.NEWTHINGS) {
             val mNewThingsModel = model as PostModel
             mPostDatas.addAll(mNewThingsModel.posts)
             mPostAdapter.updateList(mPostDatas)
@@ -153,7 +153,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      * 根据类型获取对应适配器
      */
     private fun getAdapter(): BaseRecyclerAdapter {
-        return if (mClass == TemPlateHelper.NEWTHINGS)
+        return if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mPostAdapter
         else
             mCommentAdapter
@@ -175,7 +175,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         if (mLoading)
             getAdapter().addFooter()
 
-        when (mClass) {
+        when (mTemPlate) {
             TemPlateHelper.NEWTHINGS ->
                 mDataPrenSent.getNewThings()
             TemPlateHelper.BORINGPICS ->
@@ -192,7 +192,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mClass == TemPlateHelper.NEWTHINGS) {
+        if (mTemPlate == TemPlateHelper.NEWTHINGS) {
             mPostAdapter.notifyItemChanged(recordEvent.position)
         }
     }
