@@ -10,7 +10,9 @@ interface IDataBiz {
 
     fun getNewThings(page: Int, resultListener: IBaseApiResultListener)
 
-    fun getBoringPictures(page: Int, resultListener: IBaseApiResultListener)
+    fun getBoringPics(page: Int, resultListener: IBaseApiResultListener)
+
+    fun getMeiZiPics(page: Int, resultListener: IBaseApiResultListener)
 
     fun getDuanZis(page: Int, resultListener: IBaseApiResultListener)
 }

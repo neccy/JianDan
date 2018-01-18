@@ -30,8 +30,21 @@ class DataBiz : IDataBiz {
         })
     }
 
-    override fun getBoringPictures(page: Int, resultListener: IBaseApiResultListener) {
+    override fun getBoringPics(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getBoringPictures(page).
+                clone().enqueue(object : Callback<CommentModel> {
+            override fun onResponse(call: Call<CommentModel>?, response: Response<CommentModel>?) {
+                resultListener.successful(response?.body()!!)
+            }
+
+            override fun onFailure(call: Call<CommentModel>?, t: Throwable?) {
+                resultListener.faild(t?.message!!)
+            }
+        })
+    }
+
+    override fun getMeiZiPics(page: Int, resultListener: IBaseApiResultListener) {
+        NetWoks.configRetrofit(ApiService::class.java).getMeiZiPics(page).
                 clone().enqueue(object : Callback<CommentModel> {
             override fun onResponse(call: Call<CommentModel>?, response: Response<CommentModel>?) {
                 resultListener.successful(response?.body()!!)
@@ -55,5 +68,6 @@ class DataBiz : IDataBiz {
             }
         })
     }
+
 
 }

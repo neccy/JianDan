@@ -6,5 +6,5 @@ package cn.putong.commonlibrary.otto.event
  */
 class TemplateEvent(
         // 妹子模版状态
-        val meizi_status: Boolean
+        val meizi_value: Boolean
 )

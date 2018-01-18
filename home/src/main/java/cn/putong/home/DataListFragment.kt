@@ -169,8 +169,10 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
         when (mClass) {
             DataClassHelper.CLASS_NEWTHINGS ->
                 mDataPrenSent.getNewThings()
-            DataClassHelper.CLASS_BORINGPICTURES ->
-                mDataPrenSent.getBoringPictures()
+            DataClassHelper.CLASS_BORINGPICS ->
+                mDataPrenSent.getBoringPics()
+            DataClassHelper.CLASS_MEIZIPICS ->
+                mDataPrenSent.getMeiZiPics()
             DataClassHelper.CLASS_DUANZI ->
                 mDataPrenSent.getDuanZis()
         }

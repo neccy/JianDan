@@ -34,9 +34,27 @@ class DataPresenter(IDataView: IDataView) {
     /**
      * 获取无聊图数据列表
      */
-    fun getBoringPictures() {
+    fun getBoringPics() {
         dataView.showLoading()
-        dataBiz.getBoringPictures(dataView.getCurrentPage(), object : IBaseApiResultListener {
+        dataBiz.getBoringPics(dataView.getCurrentPage(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+                dataView.hideLoading()
+                dataView.successful(model)
+            }
+
+            override fun faild(msg: String) {
+                dataView.error(msg)
+                dataView.hideLoading()
+            }
+        })
+    }
+
+    /**
+     * 获取妹子图数据列表
+     */
+    fun getMeiZiPics() {
+        dataView.showLoading()
+        dataBiz.getMeiZiPics(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
                 dataView.hideLoading()
                 dataView.successful(model)
@@ -66,4 +84,5 @@ class DataPresenter(IDataView: IDataView) {
             }
         })
     }
+
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.DataClassHelper
+import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.otto.event.TemplateEvent
@@ -25,7 +26,9 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
-    private lateinit var mClassItems: Array<String>
+    private lateinit var mClassItems: Array<String?>
+
+    private var mMeiZiValue: Boolean = false
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
@@ -46,14 +49,26 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initClassItems() {
-        mClassItems = resources.getStringArray(R.array.home_class_item)
+        mMeiZiValue = getMeiZiValue(context)
+
+        mClassItems = arrayOfNulls<String>(size = 4)
+        mClassItems[0] = getString(R.string.home_template_newthings)
+        mClassItems[1] = getString(R.string.home_template_boringpics)
+        mClassItems[2] = if (mMeiZiValue)
+            getString(R.string.home_template_meizipics)
+        else
+            getString(R.string.home_template_duanzis)
+        if (mMeiZiValue)
+            mClassItems[3] = getString(R.string.home_template_duanzis)
     }
 
     private fun initFragmentList() {
         mFragments = ArrayList()
         mFragments.add(DataListFragment(DataClassHelper.CLASS_NEWTHINGS))
-        mFragments.add(DataListFragment(DataClassHelper.CLASS_BORINGPICTURES))
+        mFragments.add(DataListFragment(DataClassHelper.CLASS_BORINGPICS))
+        if (mMeiZiValue) mFragments.add(DataListFragment(DataClassHelper.CLASS_MEIZIPICS))
         mFragments.add(DataListFragment(DataClassHelper.CLASS_DUANZI))
+
         mFragmentsAdapter =
                 DataListFragmentAdapter(childFragmentManager, mFragments, mClassItems)
     }
@@ -97,8 +112,12 @@ class HomeFragment : BaseFragment() {
      */
     @Subscribe
     fun updateTemplate(templateEvent: TemplateEvent) {
-        if (templateEvent.meizi_status) {
-
+        if (templateEvent.meizi_value) {
+            mClassItems[2] = "妹子图"
+            mClassItems[3] = "段子"
+            mFragments[2] = DataListFragment(DataClassHelper.CLASS_MEIZIPICS)
+            mFragments.add(3, DataListFragment(DataClassHelper.CLASS_BORINGPICS))
+            mFragmentsAdapter.notifyDataSetChanged()
         } else {
 
         }

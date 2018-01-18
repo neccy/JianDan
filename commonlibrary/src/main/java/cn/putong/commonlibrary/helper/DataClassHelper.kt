@@ -8,7 +8,9 @@ object DataClassHelper {
     // 新鲜事
     val CLASS_NEWTHINGS = 0
     // 无聊图
-    val CLASS_BORINGPICTURES = 1
+    val CLASS_BORINGPICS = 1
+    // 妹子图
+    val CLASS_MEIZIPICS = 2
     // 段子
     val CLASS_DUANZI = 3
 }

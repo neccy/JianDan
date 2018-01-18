@@ -1,9 +1,9 @@
 package cn.putong.commonlibrary.api
 
-import cn.putong.commonlibrary.mvp.home.model.CommentModel
-import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
 import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -37,6 +37,12 @@ interface ApiService {
      */
     @GET("/?oxwlxojflwblxbsapi=jandan.get_pic_comments&page=?")
     fun getBoringPictures(@Query("page") page: Int): Call<CommentModel>
+
+    /**
+     * 获取妹子图列表
+     */
+    @GET("/?oxwlxojflwblxbsapi=jandan.get_ooxx_comments&page=?")
+    fun getMeiZiPics(@Query("page") page: Int): Call<CommentModel>
 
     /**
      * 获取段子数据列表

@@ -120,7 +120,7 @@ class SetFragment : BaseFragment() {
                 true
             }
 
-            // 妹子偏好点击
+            // 妹子开关偏好点击
             preference_meizi.setOnPreferenceChangeListener { _, newValue ->
                 AppEvent.post(TemplateEvent(newValue as Boolean))
                 true
