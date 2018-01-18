@@ -28,9 +28,6 @@ class HomeFragment : BaseFragment() {
     private lateinit var mFragments: ArrayList<DataListFragment>
     private lateinit var mTemplates: Array<String?>
 
-    // (～￣▽￣)～ 模版下标
-    private val mMeiZiIndex = 3
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return mUi.createView(AnkoContext.Companion.create(context, owner = this))
@@ -60,9 +57,10 @@ class HomeFragment : BaseFragment() {
                 DataListFragment(TemPlateHelper.NEWTHINGS),
                 DataListFragment(TemPlateHelper.BORINGPICS),
                 DataListFragment(TemPlateHelper.DUANZI),
-                DataListFragment(TemPlateHelper.MEIZIPICS))
-
-        if (!getMeiZiValue(context)) mFragments.removeAt(mMeiZiIndex)
+                DataListFragment(TemPlateHelper.MEIZIPICS)
+        )
+        if (!getMeiZiValue(context))
+            mFragments.removeAt(TemPlateHelper.MEIZIPICS)
     }
 
     private fun initAdapter() {
@@ -114,13 +112,15 @@ class HomeFragment : BaseFragment() {
         val mCurrentItem: Int
         if (templateEvent.meizi_value) {
             mCurrentItem = 3
-            mFragments.add(mMeiZiIndex,
+            mFragments.add(TemPlateHelper.MEIZIPICS,
                     DataListFragment(TemPlateHelper.MEIZIPICS))
         } else {
-            mFragments.removeAt(mMeiZiIndex)
+            mFragments.removeAt(TemPlateHelper.MEIZIPICS)
             mCurrentItem = 2
         }
         mFragmentsAdapter.updateList(mFragments, mTemplates)
+        if (!templateEvent.meizi_value)
+            mUi.viewpager.adapter = mFragmentsAdapter
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
         mUi.viewpager.currentItem = mCurrentItem
     }
