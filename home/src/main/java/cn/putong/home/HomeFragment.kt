@@ -3,7 +3,7 @@ package cn.putong.home
 import android.os.Bundle
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.DataClassHelper
+import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
@@ -26,13 +26,12 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
-    private lateinit var mClassItems: Array<String?>
+    private lateinit var mTemplates: Array<String?>
 
-    private var mMeiZiValue: Boolean = false
-
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
+        return mUi.createView(AnkoContext.Companion.create(context, owner = this))
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -44,33 +43,34 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initData() {
-        initClassItems()
-        initFragmentList()
+        initTemplates()
+        initFragments()
+        initAdapter()
     }
 
-    private fun initClassItems() {
-        mMeiZiValue = getMeiZiValue(context)
-        mClassItems = arrayOfNulls<String>(size = 4)
-        mClassItems[0] = getString(R.string.home_template_newthings)
-        mClassItems[1] = getString(R.string.home_template_boringpics)
-        mClassItems[2] =
-                if (mMeiZiValue)
-                    getString(R.string.home_template_meizipics)
-                else
-                    getString(R.string.home_template_duanzis)
-        if (mMeiZiValue)
-            mClassItems[3] = getString(R.string.home_template_duanzis)
+    private fun initTemplates() {
+        mTemplates = resources.getStringArray(R.array.template_item)
+        if (!getMeiZiValue(context))
+            mTemplates.filter {
+                it != getString(R.string.home_template_meizipics)
+            }
     }
 
-    private fun initFragmentList() {
-        mFragments = ArrayList()
-        mFragments.add(DataListFragment(DataClassHelper.CLASS_NEWTHINGS))
-        mFragments.add(DataListFragment(DataClassHelper.CLASS_BORINGPICS))
-        if (mMeiZiValue)
-            mFragments.add(DataListFragment(DataClassHelper.CLASS_MEIZIPICS))
-        mFragments.add(DataListFragment(DataClassHelper.CLASS_DUANZI))
+    private fun initFragments() {
+        mFragments = arrayListOf(
+                DataListFragment(TemPlateHelper.NEWTHINGS),
+                DataListFragment(TemPlateHelper.BORINGPICS),
+                DataListFragment(TemPlateHelper.DUANZI),
+                DataListFragment(TemPlateHelper.MEIZIPICS)
+        )
+        if (!getMeiZiValue(context))
+            mFragments.removeAt(3)
+    }
+
+    private fun initAdapter() {
         mFragmentsAdapter =
-                DataListFragmentAdapter(childFragmentManager, mFragments, mClassItems)
+                DataListFragmentAdapter(
+                        childFragmentManager, mFragments, mTemplates)
     }
 
     override fun initView() {
@@ -84,7 +84,9 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initTabLayout() {
-        mClassItems.forEach { mUi.tablayout.addTab(mUi.tablayout.newTab().setText(it)) }
+        mTemplates.forEach {
+            mUi.tablayout.addTab(mUi.tablayout.newTab().setText(it))
+        }
     }
 
     private fun initViewPager() {
@@ -101,7 +103,6 @@ class HomeFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.action_setting ->
-                // 设置
                 ModuleHelper.startSetModule(fragment = this)
         }
         return true
@@ -112,19 +113,17 @@ class HomeFragment : BaseFragment() {
      */
     @Subscribe
     fun updateTemplate(templateEvent: TemplateEvent) {
+        var mMeiZiIndex = 3
         if (templateEvent.meizi_value) {
-            mClassItems[2] = getString(R.string.home_template_meizipics)
-            mClassItems[3] = getString(R.string.home_template_duanzis)
-            mFragments[2] = DataListFragment(DataClassHelper.CLASS_MEIZIPICS)
-            mFragments.add(3, DataListFragment(DataClassHelper.CLASS_DUANZI))
+            mFragments.add(mMeiZiIndex,
+                    DataListFragment(TemPlateHelper.MEIZIPICS))
         } else {
-            mClassItems[2] = getString(R.string.home_template_duanzis)
-            mFragments[2] = DataListFragment(DataClassHelper.CLASS_BORINGPICS)
-            mFragments.removeAt(2)
+            mMeiZiIndex = 2
+            mFragments.removeAt(mMeiZiIndex)
         }
-        mFragmentsAdapter.notifyDataSetChanged()
+        mFragmentsAdapter.updateList(mFragments)
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
-        mUi.viewpager.currentItem = 2
+        mUi.viewpager.currentItem = mMeiZiIndex
     }
 
 }

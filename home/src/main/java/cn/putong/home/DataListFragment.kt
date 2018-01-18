@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
-import cn.putong.commonlibrary.helper.DataClassHelper
+import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.helper.setColor
 import cn.putong.commonlibrary.helper.setDefaultDivider
 import cn.putong.commonlibrary.module.ModuleHelper
@@ -83,7 +83,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
 
     private fun initListView() {
         mUi.listview.adapter = getAdapter()
-        if (mClass == DataClassHelper.CLASS_NEWTHINGS)
+        if (mClass == TemPlateHelper.NEWTHINGS)
             mUi.listview.setDefaultDivider(context)
     }
 
@@ -123,7 +123,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
     }
 
     override fun successful(model: Any) {
-        if (mClass == DataClassHelper.CLASS_NEWTHINGS) {
+        if (mClass == TemPlateHelper.NEWTHINGS) {
             val mNewThingsModel = model as PostModel
             mPostDatas.addAll(mNewThingsModel.posts)
             mPostAdapter.updateList(mPostDatas)
@@ -144,7 +144,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      * 根据类型获取对应适配器
      */
     private fun getAdapter(): BaseRecyclerAdapter {
-        return if (mClass == DataClassHelper.CLASS_NEWTHINGS)
+        return if (mClass == TemPlateHelper.NEWTHINGS)
             mPostAdapter
         else
             mCommentAdapter
@@ -167,13 +167,13 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
             getAdapter().addFooter()
 
         when (mClass) {
-            DataClassHelper.CLASS_NEWTHINGS ->
+            TemPlateHelper.NEWTHINGS ->
                 mDataPrenSent.getNewThings()
-            DataClassHelper.CLASS_BORINGPICS ->
+            TemPlateHelper.BORINGPICS ->
                 mDataPrenSent.getBoringPics()
-            DataClassHelper.CLASS_MEIZIPICS ->
+            TemPlateHelper.MEIZIPICS ->
                 mDataPrenSent.getMeiZiPics()
-            DataClassHelper.CLASS_DUANZI ->
+            TemPlateHelper.DUANZI ->
                 mDataPrenSent.getDuanZis()
         }
     }
@@ -183,7 +183,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mClass == DataClassHelper.CLASS_NEWTHINGS) {
+        if (mClass == TemPlateHelper.NEWTHINGS) {
             mPostAdapter.notifyItemChanged(recordEvent.position)
         }
     }

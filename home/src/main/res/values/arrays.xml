@@ -2,10 +2,11 @@
 <resources>
 
     <!--首页分类-->
-    <string-array name="home_class_item">
+    <string-array name="template_item">
         <item>新鲜事</item>
         <item>无聊图</item>
         <item>段子</item>
+        <item>妹子图</item>
     </string-array>
 
 </resources>
