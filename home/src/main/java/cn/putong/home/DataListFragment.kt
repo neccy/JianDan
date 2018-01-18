@@ -173,7 +173,7 @@ class DataListFragment(private val mClass: Int) : BaseFragment(), IDataView {
                 mDataPrenSent.getBoringPics()
             TemPlateHelper.MEIZIPICS ->
                 mDataPrenSent.getMeiZiPics()
-            TemPlateHelper.DUANZI ->
+            TemPlateHelper.DUANZIS ->
                 mDataPrenSent.getDuanZis()
         }
     }

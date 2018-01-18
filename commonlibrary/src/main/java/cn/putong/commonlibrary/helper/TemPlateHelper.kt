@@ -10,7 +10,7 @@ object TemPlateHelper {
     // 无聊图
     val BORINGPICS = 1
     // 段子
-    val DUANZI = 2
+    val DUANZIS = 2
     // 妹子图
     val MEIZIPICS = 3
 }

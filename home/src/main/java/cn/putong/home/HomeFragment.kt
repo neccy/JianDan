@@ -56,17 +56,15 @@ class HomeFragment : BaseFragment() {
         mFragments = arrayListOf(
                 DataListFragment(TemPlateHelper.NEWTHINGS),
                 DataListFragment(TemPlateHelper.BORINGPICS),
-                DataListFragment(TemPlateHelper.DUANZI),
-                DataListFragment(TemPlateHelper.MEIZIPICS)
-        )
-        if (!getMeiZiValue(context))
-            mFragments.removeAt(TemPlateHelper.MEIZIPICS)
+                DataListFragment(TemPlateHelper.DUANZIS))
+
+        if (getMeiZiValue(context))
+            mFragments.add(DataListFragment(TemPlateHelper.MEIZIPICS))
     }
 
     private fun initAdapter() {
-        mFragmentsAdapter =
-                DataListFragmentAdapter(
-                        childFragmentManager, mFragments, mTemplates)
+        mFragmentsAdapter = DataListFragmentAdapter(
+                childFragmentManager, mFragments, mTemplates)
     }
 
     override fun initView() {
