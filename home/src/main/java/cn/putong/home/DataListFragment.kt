@@ -61,12 +61,11 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-            ModuleHelper
-                    .startPosDetailtModule(mParentFragment, position, mPostDatas[position])
+            ModuleHelper.startPosDetailtModule(mParentFragment,
+                    position, mPostDatas[position])
         }
         mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
-            ModuleHelper
-                    .startGalleryModule(mParentFragment, pics)
+            ModuleHelper.startGalleryModule(mParentFragment, pics)
         })
     }
 
