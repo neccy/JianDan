@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.helper.TimeHelper
-import cn.putong.home.R
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.home.R
 import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 

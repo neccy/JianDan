@@ -50,14 +50,14 @@ class HomeFragment : BaseFragment() {
 
     private fun initClassItems() {
         mMeiZiValue = getMeiZiValue(context)
-
         mClassItems = arrayOfNulls<String>(size = 4)
         mClassItems[0] = getString(R.string.home_template_newthings)
         mClassItems[1] = getString(R.string.home_template_boringpics)
-        mClassItems[2] = if (mMeiZiValue)
-            getString(R.string.home_template_meizipics)
-        else
-            getString(R.string.home_template_duanzis)
+        mClassItems[2] =
+                if (mMeiZiValue)
+                    getString(R.string.home_template_meizipics)
+                else
+                    getString(R.string.home_template_duanzis)
         if (mMeiZiValue)
             mClassItems[3] = getString(R.string.home_template_duanzis)
     }
@@ -66,9 +66,9 @@ class HomeFragment : BaseFragment() {
         mFragments = ArrayList()
         mFragments.add(DataListFragment(DataClassHelper.CLASS_NEWTHINGS))
         mFragments.add(DataListFragment(DataClassHelper.CLASS_BORINGPICS))
-        if (mMeiZiValue) mFragments.add(DataListFragment(DataClassHelper.CLASS_MEIZIPICS))
+        if (mMeiZiValue)
+            mFragments.add(DataListFragment(DataClassHelper.CLASS_MEIZIPICS))
         mFragments.add(DataListFragment(DataClassHelper.CLASS_DUANZI))
-
         mFragmentsAdapter =
                 DataListFragmentAdapter(childFragmentManager, mFragments, mClassItems)
     }
@@ -113,14 +113,18 @@ class HomeFragment : BaseFragment() {
     @Subscribe
     fun updateTemplate(templateEvent: TemplateEvent) {
         if (templateEvent.meizi_value) {
-            mClassItems[2] = "妹子图"
-            mClassItems[3] = "段子"
+            mClassItems[2] = getString(R.string.home_template_meizipics)
+            mClassItems[3] = getString(R.string.home_template_duanzis)
             mFragments[2] = DataListFragment(DataClassHelper.CLASS_MEIZIPICS)
-            mFragments.add(3, DataListFragment(DataClassHelper.CLASS_BORINGPICS))
-            mFragmentsAdapter.notifyDataSetChanged()
+            mFragments.add(3, DataListFragment(DataClassHelper.CLASS_DUANZI))
         } else {
-
+            mClassItems[2] = getString(R.string.home_template_duanzis)
+            mFragments[2] = DataListFragment(DataClassHelper.CLASS_BORINGPICS)
+            mFragments.removeAt(2)
         }
+        mFragmentsAdapter.notifyDataSetChanged()
+        mUi.viewpager.offscreenPageLimit = mFragments.size - 1
+        mUi.viewpager.currentItem = 2
     }
 
 }
