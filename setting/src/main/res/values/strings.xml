@@ -8,6 +8,7 @@
     <string name="set_category_basic_title">基本设置</string>
     <string name="set_category_other_title">其它</string>
     <string name="set_preference_meizi_title">妹子图</string>
+    <string name="set_preference_meizi_summaryon">(～￣▽￣)～</string>
     <string name="set_preference_unwelcome_content_title">隐藏不受欢迎内容</string>
     <string name="set_preference_unwelcome_content_summary">隐藏无聊图、妹子图和段子板块中不受欢迎的内容</string>
     <string name="set_preference_gifautoplay_title">动画自动播放设置</string>

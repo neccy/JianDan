@@ -6,10 +6,12 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.DataClassHelper
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
+import cn.putong.commonlibrary.otto.event.TemplateEvent
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import cn.putong.home.ui.HomeFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -88,6 +90,18 @@ class HomeFragment : BaseFragment() {
                 ModuleHelper.startSetModule(fragment = this)
         }
         return true
+    }
+
+    /**
+     * 更新首页模版
+     */
+    @Subscribe
+    fun updateTemplate(templateEvent: TemplateEvent) {
+        if (templateEvent.meizi_status) {
+
+        } else {
+
+        }
     }
 
 }

@@ -13,7 +13,7 @@ open class BasePreferenceFragment : PreferenceFragment() {
         super.onCreate(savedInstanceState)
         initResource()
         initPreference()
-        initData()
+        initConfig()
         initListener()
     }
 
@@ -21,7 +21,7 @@ open class BasePreferenceFragment : PreferenceFragment() {
 
     open fun initPreference() {}
 
-    open fun initData() {}
+    open fun initConfig() {}
 
     open fun initListener() {}
 }

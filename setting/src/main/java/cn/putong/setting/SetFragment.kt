@@ -3,12 +3,15 @@ package cn.putong.setting
 import android.os.Bundle
 import android.preference.ListPreference
 import android.preference.Preference
+import android.preference.SwitchPreference
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BasePreferenceFragment
 import cn.putong.commonlibrary.module.Module
+import cn.putong.commonlibrary.otto.AppEvent
+import cn.putong.commonlibrary.otto.event.TemplateEvent
 import cn.putong.setting.ui.SetFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import org.jetbrains.anko.AnkoContext
@@ -49,7 +52,7 @@ class SetFragment : BaseFragment() {
 
     class SetPreferenceFragment : BasePreferenceFragment() {
 
-        private lateinit var preference_meizi: Preference
+        private lateinit var preference_meizi: SwitchPreference
         private lateinit var preference_unwelcome: Preference
         private lateinit var preference_gifautoplay: ListPreference
         private lateinit var preference_usechrome: Preference
@@ -64,6 +67,7 @@ class SetFragment : BaseFragment() {
         override fun initPreference() {
             preference_meizi = preferenceManager
                     .findPreference(getString(R.string.key_preference_meizi))
+                    as SwitchPreference
             preference_unwelcome = preferenceManager
                     .findPreference(getString(R.string.key_preference_unwelcome))
             preference_gifautoplay = preferenceManager
@@ -79,16 +83,24 @@ class SetFragment : BaseFragment() {
                     .findPreference(getString(R.string.key_preference_version))
         }
 
-        override fun initData() {
-            initGifAutoPlayer()
+        override fun initConfig() {
+            initAutoPlayerPrefConfig()
+            initMeiZiPrefConfig()
         }
 
         /**
          * 初始化动画自动播放偏好
          */
-        private fun initGifAutoPlayer() {
+        private fun initAutoPlayerPrefConfig() {
             preference_gifautoplay.summary =
                     getGifAutoPlaySummary(preference_gifautoplay.value)
+        }
+
+        /**
+         * 初始化妹子开关偏好
+         */
+        private fun initMeiZiPrefConfig() {
+            preference_meizi.summaryOn = getString(R.string.set_preference_meizi_summaryon)
         }
 
         /**
@@ -101,13 +113,19 @@ class SetFragment : BaseFragment() {
         }
 
         override fun initListener() {
+            // 动画自动播放偏好点击
             preference_gifautoplay.setOnPreferenceChangeListener { preference, newValue ->
                 preference_gifautoplay.summary = getGifAutoPlaySummary(newValue.toString())
                 preference_gifautoplay.setValueIndex(newValue.toString().toInt())
-                super.onPreferenceTreeClick(preferenceScreen, preference)
+                true
+            }
+
+            // 妹子偏好点击
+            preference_meizi.setOnPreferenceChangeListener { _, newValue ->
+                AppEvent.post(TemplateEvent(newValue as Boolean))
+                true
             }
         }
-
     }
 
 }
