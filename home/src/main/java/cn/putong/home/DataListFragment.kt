@@ -182,12 +182,10 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     private fun updateCommentList() {
-        // 隐藏不受欢迎内容条件
-        val mNgCondition = 100
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
-                        it.vote_negative.toInt() < mNgCondition
+                        it.vote_negative.toInt() < 100
                     } as ArrayList<CommentModel.Comment>
                 else
                     mCommentCaches

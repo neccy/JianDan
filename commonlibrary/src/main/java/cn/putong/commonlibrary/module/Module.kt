@@ -21,6 +21,9 @@ object Module {
     // 设置组件路径
     const val MODULE_SETTING_PATH = "/setting/main"
 
+    // WEB组件路径
+    const val MODULE_WEB_PATH = "/web/main"
+
 
     // 数据类型所属分类
     val PARAM_DATA_CLASS = "data_class"

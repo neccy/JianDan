@@ -1,1 +1,1 @@
-include ':app', ':commonlibrary', ':home', ':detail', ':gallery', ':setting'
+include ':app', ':commonlibrary', ':home', ':detail', ':gallery', ':setting', ':web'
