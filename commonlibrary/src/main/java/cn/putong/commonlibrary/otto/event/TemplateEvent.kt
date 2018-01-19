@@ -1,7 +1,7 @@
 package cn.putong.commonlibrary.otto.event
 
 /**
- * 首页模版Event
+ * 传递设置界面相关设置
  * Created by xinyi on 2018/1/18.
  */
 class TemplateEvent(

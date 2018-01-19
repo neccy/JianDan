@@ -49,5 +49,4 @@ open class BaseApplication : Application(), IBaseThreadLibsImpl {
         Hawk.init(this).build()
     }
 
-
 }

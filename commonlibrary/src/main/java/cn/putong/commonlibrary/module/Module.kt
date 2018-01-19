@@ -28,6 +28,9 @@ object Module {
     // 新闻类型数据参数
     val PARAM_POST_MODEL = "postmodel"
 
+    // 评论类型数据参数
+    val PARAM_COMMENT_MODEL = "commentmodel"
+
     // 新闻类型数据下标参数
     val PARAM_POST_MODEL_POSITION = "postmodel_position"
 

@@ -55,7 +55,7 @@ class CommentDataAdapter(
                     FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
-                            onImageClickListener.invoke(mComment.pics)
+                        onImageClickListener.invoke(mComment.pics)
                     }
                 }
 

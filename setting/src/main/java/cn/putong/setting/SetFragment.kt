@@ -12,9 +12,11 @@ import cn.putong.commonlibrary.base.BasePreferenceFragment
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.TemplateEvent
+import cn.putong.commonlibrary.otto.event.UnWelComeEvent
 import cn.putong.setting.ui.SetFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.defaultSharedPreferences
 
 /**
  * 设置页面
@@ -123,6 +125,16 @@ class SetFragment : BaseFragment() {
             // 妹子开关偏好点击
             preference_meizi.setOnPreferenceChangeListener { _, newValue ->
                 AppEvent.post(TemplateEvent(newValue as Boolean))
+                true
+            }
+
+            // 隐藏不受欢迎内容偏好点击
+            preference_unwelcome.setOnPreferenceChangeListener { _, newValue ->
+                defaultSharedPreferences.edit().putBoolean(
+                        getString(R.string.key_preference_unwelcome),
+                        newValue as Boolean
+                ).apply()
+                AppEvent.post(UnWelComeEvent())
                 true
             }
         }

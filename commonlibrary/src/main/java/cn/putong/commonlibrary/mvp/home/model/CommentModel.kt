@@ -1,5 +1,6 @@
 package cn.putong.commonlibrary.mvp.home.model
 
+import java.io.Serializable
 import java.util.ArrayList
 
 /**
@@ -14,7 +15,7 @@ class CommentModel {
     var count: Int = 0
     var comments: List<Comment> = listOf()
 
-    class Comment {
+    class Comment : Serializable {
         var comment_ID: String = ""
         var comment_post_ID: String = ""
         var comment_author: String = ""

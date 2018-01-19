@@ -2,6 +2,7 @@ package cn.putong.commonlibrary.module
 
 import android.os.Bundle
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import com.alibaba.android.arouter.launcher.ARouter
 
@@ -23,16 +24,29 @@ object ModuleHelper {
     /**
      * 启动Post类型详情界面
      */
-    fun startPosDetailtModule(fragment: BaseFragment, position: Int, mPostData: PostModel.Post) {
+    fun startPosDetailtModule(fragment: BaseFragment, position: Int, postData: PostModel.Post) {
         val mPostFrtailFragment = ARouter.getInstance()
                 .build(Module.MODULE_DETAIL_POST_PATH)
                 .navigation() as BaseFragment
 
         val mBd = Bundle()
         mBd.putInt(Module.PARAM_POST_MODEL_POSITION, position)
-        mBd.putSerializable(Module.PARAM_POST_MODEL, mPostData)
+        mBd.putSerializable(Module.PARAM_POST_MODEL, postData)
         mPostFrtailFragment.arguments = mBd
         fragment.start(mPostFrtailFragment)
+    }
+
+    /**
+     * 启动Comment类型详情界面
+     */
+    fun startCommentDetailModule(fragment: BaseFragment, commentData: CommentModel.Comment) {
+        val mCommentDetailFragment = ARouter.getInstance()
+                .build(Module.MODULE_DETAIL_COMMENT_PATH)
+                .navigation() as BaseFragment
+        val mBd = Bundle()
+        mBd.putSerializable(Module.PARAM_COMMENT_MODEL, commentData)
+        mCommentDetailFragment.arguments = mBd
+        fragment.start(mCommentDetailFragment)
     }
 
     /**

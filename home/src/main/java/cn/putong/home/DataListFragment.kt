@@ -19,6 +19,7 @@ import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.home.present.DataPresenter
 import cn.putong.commonlibrary.mvp.home.view.IDataView
 import cn.putong.commonlibrary.otto.event.PostRecordEvent
+import cn.putong.commonlibrary.otto.event.UnWelComeEvent
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
@@ -29,20 +30,18 @@ import org.jetbrains.anko.AnkoContext
 @SuppressLint(value = ["ValidFragment"])
 class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
-    private lateinit var mUi: DataListFragmentUi
-
     private var mCurrentPage = 1
     private var mLongingMore = false
 
-    // 新闻类型数据(新鲜事)
+    private lateinit var mUi: DataListFragmentUi
+    private lateinit var mDataPrenSent: DataPresenter
+
     private lateinit var mPostDatas: ArrayList<PostModel.Post>
     private lateinit var mPostAdapter: PostDataAdapter
 
-    // 评论类型数据(无聊图,段子)
     private lateinit var mCommentDatas: ArrayList<CommentModel.Comment>
+    private lateinit var mCommentCaches: ArrayList<CommentModel.Comment>
     private lateinit var mCommentAdapter: CommentDataAdapter
-
-    private lateinit var mDataPrenSent: DataPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -69,10 +68,13 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         })
     }
 
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
+    override fun initView() {
         initRefreshLayout()
         initListView()
+    }
+
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
         getData()
     }
 
@@ -107,15 +109,12 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     override fun hideLoading() {
-        // 正在首次刷新
         if (mUi.progressbar.visibility == View.VISIBLE)
             mUi.progressbar.visibility = View.GONE
 
-        // 正在刷新
         if (mUi.refresh.isRefreshing)
             mUi.refresh.isRefreshing = false
 
-        // 正在加载
         if (mLongingMore) {
             mLongingMore = false
             getAdapter().removeFooter()
@@ -126,19 +125,11 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         if (mTemPlate == TemPlateHelper.NEWTHINGS) {
             val mNewThingsModel = model as PostModel
             mPostDatas.addAll(mNewThingsModel.posts)
-            mPostAdapter.updateList(mPostDatas)
+            updatePostList()
         } else {
             val mBoringPicturesModel = model as CommentModel
-            mCommentDatas.addAll(
-                    // 开启不受欢迎内容,隐藏[踩]大于100的数据
-                    if (getUnWelcomeValue(context))
-                        mBoringPicturesModel.comments.filter {
-                            it.vote_negative.toInt() < 100
-                        }
-                    else
-                        mBoringPicturesModel.comments
-            )
-            mCommentAdapter.updateList(mCommentDatas)
+            mCommentCaches.addAll(mBoringPicturesModel.comments)
+            updateCommentList()
         }
     }
 
@@ -167,6 +158,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
             mCurrentPage = 1
             mPostDatas = ArrayList()
             mCommentDatas = ArrayList()
+            mCommentCaches = ArrayList()
         } else {
             mCurrentPage += 1
         }
@@ -186,14 +178,36 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         }
     }
 
+    private fun updatePostList() {
+        mPostAdapter.updateList(mPostDatas)
+    }
+
+    private fun updateCommentList() {
+        mCommentDatas =
+                if (getUnWelcomeValue(context))
+                    mCommentCaches.filter {
+                        it.vote_negative.toInt() < 100
+                    } as ArrayList<CommentModel.Comment>
+                else
+                    mCommentCaches
+        mCommentAdapter.updateList(mCommentDatas)
+    }
+
     /**
      * 根据详情页面发送过来的下标更新适配器
      */
     @Subscribe
     fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
-        if (mTemPlate == TemPlateHelper.NEWTHINGS) {
+        if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mPostAdapter.notifyItemChanged(recordEvent.position)
-        }
+    }
+
+    /**
+     * 获取不受欢迎内容Value
+     */
+    @Subscribe
+    fun getUnWelComeValue(unWelCome: UnWelComeEvent) {
+        updateCommentList()
     }
 
 }
