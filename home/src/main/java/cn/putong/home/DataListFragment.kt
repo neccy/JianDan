@@ -60,9 +60,8 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-//            ModuleHelper.startPosDetailtModule(mParentFragment,
-//                    position, mPostDatas[position])
-            ModuleHelper.startWebModule(mParentFragment,"http://www.baidu.com")
+            ModuleHelper.startPosDetailtModule(mParentFragment,
+                    position, mPostDatas[position])
         }
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)
@@ -186,7 +185,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
-                        it.vote_negative.toInt() < 100
+                        it.vote_negative.toInt() < 10
                     } as ArrayList<CommentModel.Comment>
                 else
                     mCommentCaches

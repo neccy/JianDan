@@ -18,7 +18,6 @@ import cn.putong.commonlibrary.module.Module
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.fragment_web.*
 
-
 /**
  * Web组件入口
  * Created by xinyi on 2018/1/19.

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BasePreferenceFragment
+import cn.putong.commonlibrary.helper.saveBooleanValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.TemplateEvent
@@ -130,11 +131,15 @@ class SetFragment : BaseFragment() {
 
             // 隐藏不受欢迎内容偏好点击
             preference_unwelcome.setOnPreferenceChangeListener { _, newValue ->
-                defaultSharedPreferences.edit().putBoolean(
-                        getString(R.string.key_preference_unwelcome),
-                        newValue as Boolean
-                ).apply()
+                saveBooleanValue(getString(R.string.key_preference_unwelcome),
+                        newValue as Boolean)
                 AppEvent.post(UnWelComeEvent())
+                true
+            }
+
+            preference_usechrome.setOnPreferenceChangeListener { _, newValue ->
+                saveBooleanValue(getString(R.string.key_preference_usechrome),
+                        newValue as Boolean)
                 true
             }
         }
