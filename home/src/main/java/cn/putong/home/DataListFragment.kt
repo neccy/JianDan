@@ -62,6 +62,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mPostAdapter = PostDataAdapter { position ->
             ModuleHelper.startPosDetailtModule(mParentFragment,
                     position, mPostDatas[position])
+
         }
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)

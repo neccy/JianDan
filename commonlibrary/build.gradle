@@ -39,6 +39,7 @@ dependencies {
     // Support
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:design:$support_version"
+    compile "com.android.support:customtabs:$support_version"
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
