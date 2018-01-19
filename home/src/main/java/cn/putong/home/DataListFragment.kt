@@ -186,7 +186,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
-                        it.vote_negative.toInt() < 10
+                        it.vote_negative.toInt() < 100
                     } as ArrayList<CommentModel.Comment>
                 else
                     mCommentCaches
