@@ -197,9 +197,9 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
      * 根据详情页面发送过来的下标更新适配器
      */
     @Subscribe
-    fun getPositionUpdateAdapter(recordEvent: PostRecordEvent) {
+    fun getPositionUpdateAdapter(record: PostRecordEvent) {
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
-            mPostAdapter.notifyItemChanged(recordEvent.position)
+            mPostAdapter.notifyItemChanged(record.position)
     }
 
     /**
