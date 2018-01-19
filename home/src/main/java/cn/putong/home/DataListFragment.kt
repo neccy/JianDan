@@ -63,7 +63,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
             ModuleHelper.startPosDetailtModule(mParentFragment,
                     position, mPostDatas[position])
         }
-        mCommentAdapter = CommentDataAdapter(arrayListOf(), { pics ->
+        mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)
         })
     }
@@ -137,11 +137,10 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         TipBar.showTip(mUi.listview, msg)
     }
 
-    override fun getCurrentPage() = mCurrentPage
+    override fun getCurrentPage(): Int {
+        return mCurrentPage
+    }
 
-    /**
-     * 根据类型获取对应适配器
-     */
     private fun getAdapter(): BaseRecyclerAdapter {
         return if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mPostAdapter
@@ -183,10 +182,12 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     private fun updateCommentList() {
+        // 隐藏不受欢迎内容条件
+        val mNgCondition = 100
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
-                        it.vote_negative.toInt() < 100
+                        it.vote_negative.toInt() < mNgCondition
                     } as ArrayList<CommentModel.Comment>
                 else
                     mCommentCaches
@@ -194,7 +195,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     /**
-     * 根据详情页面发送过来的下标更新适配器
+     * 根据详情页面发送过来的下标更新已看状态
      */
     @Subscribe
     fun getPositionUpdateAdapter(record: PostRecordEvent) {
@@ -203,7 +204,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     /**
-     * 获取不受欢迎内容Value
+     * 根据发送过来的通知更新Comment适配器
      */
     @Subscribe
     fun getUnWelComeValue(unWelCome: UnWelComeEvent) {
