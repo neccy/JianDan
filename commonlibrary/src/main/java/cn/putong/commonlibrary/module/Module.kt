@@ -40,4 +40,6 @@ object Module {
     // Comment类型图片列表数据参数
     val PARAM_COMMENT_MODEL_PICS = "commentmodel_pics"
 
+    // URL地址
+    val PARAM_WEB_URL = "url"
 }

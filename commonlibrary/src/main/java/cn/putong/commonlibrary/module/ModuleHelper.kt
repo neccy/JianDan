@@ -72,4 +72,18 @@ object ModuleHelper {
                 .navigation() as BaseFragment)
     }
 
+    /**
+     * 启动Web组件
+     */
+    fun startWebModule(fragment: BaseFragment, url: String) {
+        val mWebFragment = ARouter.getInstance()
+                .build(Module.MODULE_WEB_PATH)
+                .navigation() as BaseFragment
+
+        val mBd = Bundle()
+        mBd.putString(Module.PARAM_WEB_URL, url)
+        mWebFragment.arguments = mBd
+        fragment.start(mWebFragment)
+    }
+
 }

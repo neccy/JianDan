@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">web</string>
+    <string name="web_menu_action_refresh">刷新</string>
+    <string name="web_menu_action_share">分享</string>
+    <string name="web_menu_action_copylink">复制链接</string>
+    <string name="web_menu_action_browser">在浏览器打开</string>
 </resources>

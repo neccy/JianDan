@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/web_menu_action_refresh"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/web_menu_action_share"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_copylink"
+        android:title="@string/web_menu_action_copylink"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_browser"
+        android:title="@string/web_menu_action_browser"
+        app:showAsAction="never" />
+
+</menu>

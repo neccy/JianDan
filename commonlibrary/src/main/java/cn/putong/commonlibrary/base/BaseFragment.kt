@@ -10,7 +10,7 @@ import cn.putong.commonlibrary.otto.AppEvent
 import me.yokeyword.fragmentation.SupportFragment
 
 @SuppressLint("ValidFragment")
-open class BaseFragment : SupportFragment(), IBaseImpl{
+open class BaseFragment : SupportFragment(), IBaseImpl {
 
     private var mView: View? = null
     private var mContainer: ViewGroup? = null
@@ -35,6 +35,10 @@ open class BaseFragment : SupportFragment(), IBaseImpl{
 
     fun setContentView(viewId: Int) {
         mView = layoutInflater.inflate(viewId, mContainer, false)
+    }
+
+    fun getContentView(): View {
+        return mView!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
