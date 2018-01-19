@@ -3,5 +3,4 @@
     <string name="web_menu_action_share">分享</string>
     <string name="web_menu_action_copylink">复制链接</string>
     <string name="web_menu_action_browser">在浏览器打开</string>
-    <string name="web_copy_successful">已复制到剪切板</string>
 </resources>

@@ -1,7 +1,5 @@
 package cn.putong.web
 
-import android.content.ClipData
-import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
@@ -12,11 +10,11 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.helper.copyText
 import cn.putong.commonlibrary.helper.openBrowser
 import cn.putong.commonlibrary.helper.setWebView
 import cn.putong.commonlibrary.helper.shareText
 import cn.putong.commonlibrary.module.Module
-import cn.putong.commonlibrary.widget.TipBar
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.fragment_web.*
 
@@ -91,20 +89,11 @@ class WebFragment : BaseFragment() {
             R.id.action_share ->
                 activity.shareText(webview.url)
             R.id.action_copylink ->
-                copyLink()
+                activity.copyText(webview, webview.url)
             R.id.action_browser ->
                 activity.openBrowser(webview.url)
         }
         return true
-    }
-
-    private fun copyLink() {
-        val clipboardManager = context
-                .getSystemService(Context.CLIPBOARD_SERVICE)
-                as android.content.ClipboardManager
-        clipboardManager.primaryClip =
-                ClipData.newPlainText(null, webview.url)
-        TipBar.showTip(webview, getString(R.string.web_copy_successful))
     }
 
     override fun onBackPressedSupport(): Boolean {
