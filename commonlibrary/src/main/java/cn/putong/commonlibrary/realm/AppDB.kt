@@ -35,4 +35,5 @@ object AppDB {
         val fieldName = "post_id"
         return getInstance().where(PostHaveSeeTable::class.java).equalTo(fieldName, id).findFirst()
     }
+
 }
