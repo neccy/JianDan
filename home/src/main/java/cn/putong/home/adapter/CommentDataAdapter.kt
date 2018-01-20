@@ -15,7 +15,6 @@ import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.home.R
 import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
-import org.w3c.dom.Comment
 
 /**
  * Comment类型数据适配器
@@ -50,7 +49,11 @@ class CommentDataAdapter(
                 author.text = mComment.comment_author
                 time.text = TimeHelper.format(TimeHelper.getDate(mComment.comment_date))
                 content.text = mComment.text_content.trim()
-                content.visibility = if (mComment.text_content.trim().isEmpty()) View.GONE else View.VISIBLE
+                content.visibility =
+                        if (mComment.text_content.trim().isEmpty())
+                            View.GONE
+                        else
+                            View.VISIBLE
 
                 if (mComment.pics.isEmpty()) {
                     // 是段子数据,隐藏图片显示

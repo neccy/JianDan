@@ -43,8 +43,6 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private lateinit var mPostAdapter:
             PostDataAdapter
 
-    private lateinit var mCommentData:
-            CommentModel.Comment
     private lateinit var mCommentDatas:
             ArrayList<CommentModel.Comment>
     private lateinit var mCommentCaches:
@@ -76,14 +74,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)
         }, { comment ->
-            mCommentData = comment
-            // 直接更改状态并更新
-            mCommentData.positive_status = true
-
-            // 后台提交
-            mDataPrenSenter.positive()
-            // 提交成功后保存本地记录
-
+            mDataPrenSenter.positive(comment.comment_ID)
         }, { comment ->
 
         }, {
@@ -158,10 +149,6 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
     override fun getCurrentPage(): Int {
         return mCurrentPage
-    }
-
-    override fun getCommnentId(): Int {
-        return mCommentData.comment_ID.toInt()
     }
 
     override fun error(msg: String) {

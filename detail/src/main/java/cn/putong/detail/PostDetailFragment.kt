@@ -13,7 +13,7 @@ import cn.putong.commonlibrary.mvp.detail.view.IDetailView
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.PostRecordEvent
-import cn.putong.commonlibrary.realm.db.HomeDB
+import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.detail.helper.HtmlHelper
 import cn.putong.detail.ui.PostDetailFragmentUi
@@ -108,7 +108,7 @@ class PostDetailFragment : BaseFragment(), IDetailView {
     override fun onSupportVisible() {
         super.onSupportVisible()
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
-        HomeDB.savePostRecord(mNewData.id, { result ->
+        AppDB.savePostRecord(mNewData.id, { result ->
             if (result) {
                 mNewData.have_seen = true
                 AppEvent.post(PostRecordEvent(mPosition))

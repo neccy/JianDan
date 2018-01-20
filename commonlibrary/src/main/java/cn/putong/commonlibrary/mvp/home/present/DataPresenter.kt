@@ -90,9 +90,10 @@ class DataPresenter(IDataView: IDataView) {
     /**
      * 点赞
      */
-    fun positive() {
-        dataBiz.positive(dataView.getCommnentId(), object : IBaseApiResultListener {
+    fun positive(commentId: String) {
+        dataBiz.positive(commentId.toInt(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
+                //保存记录到数据库
 
             }
 

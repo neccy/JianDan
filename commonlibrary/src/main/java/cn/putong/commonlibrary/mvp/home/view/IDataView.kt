@@ -16,11 +16,6 @@ interface IDataView : IBaseViewImpl {
     fun getCurrentPage(): Int
 
     /**
-     * 获取Comment数据Id
-     */
-    fun getCommnentId(): Int
-
-    /**
      * 更新Post数据
      */
     fun updatePostData(postModel: PostModel)

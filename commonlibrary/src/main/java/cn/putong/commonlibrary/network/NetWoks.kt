@@ -1,7 +1,9 @@
 package cn.putong.commonlibrary.network
 
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 /**
  * Retrofit封装
@@ -12,8 +14,11 @@ object NetWoks {
     private val APIURL = "https://i.jandan.net"
 
     fun <T> configRetrofit(mService: Class<T>): T {
+        val gson = GsonBuilder()
+                .setLenient()
+                .create()
         val retrofit = Retrofit.Builder().baseUrl(APIURL).
-                addConverterFactory(GsonConverterFactory.create()).build()
+                addConverterFactory(GsonConverterFactory.create(gson)).build()
         return retrofit.create(mService)
     }
 }

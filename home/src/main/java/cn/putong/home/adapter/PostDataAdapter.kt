@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.TimeHelper
-import cn.putong.commonlibrary.realm.db.HomeDB
-import cn.putong.home.R
 import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.realm.AppDB
+import cn.putong.home.R
 import kotlinx.android.synthetic.main.item_post.view.*
 import org.jetbrains.anko.textColor
 
@@ -81,7 +81,7 @@ class PostDataAdapter(
      * 设置已看状态
      */
     private fun List<PostModel.Post>.setHaveSeenStatus() {
-        filter { HomeDB.getPostRecord(it.id) != null }.
+        filter { AppDB.getPostRecord(it.id) != null }.
                 forEach { it.have_seen = true }
     }
 
