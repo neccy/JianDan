@@ -60,6 +60,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     }
 
     override fun initData() {
+        mCommentCaches = ArrayList()
         mDataPrenSent = DataPresenter(IDataView = this)
         initAdapter()
     }
