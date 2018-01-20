@@ -18,42 +18,44 @@ interface ApiService {
     /**
      * 获取新鲜事列表
      */
-    @GET("/?oxwlxojflwblxbsapi=get_recent_posts&include=url,date,tags,author,title,excerpt,comment_count,comment_status,custom_fields&page=?&custom_fields=thumb_c,views&dev=1")
-    fun getNewThings(@Query("page") page: Int): Call<PostModel>
+    @GET(value = "/?oxwlxojflwblxbsapi=get_recent_posts&include=url,date," +
+            "tags,author,title,excerpt,comment_count,comment_status," +
+            "custom_fields&page=?&custom_fields=thumb_c,views&dev=1")
+    fun getNewThings(@Query(value = "page") page: Int): Call<PostModel>
 
     /**
      * 获取新鲜事详情
      */
-    @GET("?oxwlxojflwblxbsapi=get_post&include=content&id=")
-    fun getNewThingsDetail(@Query("id") id: Int): Call<PostDetailModel>
+    @GET(value = "?oxwlxojflwblxbsapi=get_post&include=content&id=")
+    fun getNewThingsDetail(@Query(value = "id") id: Int): Call<PostDetailModel>
 
     /**
      * 获取新鲜事评论列表
      */
-    @GET(" /?oxwlxojflwblxbsapi=get_post&id=?&include=comments")
-    fun getNewThingsComments(@Query("id") id: Int): Call<PostCommentModel>
+    @GET(value = " /?oxwlxojflwblxbsapi=get_post&id=?&include=comments")
+    fun getNewThingsComments(@Query(value = "id") id: Int): Call<PostCommentModel>
 
     /**
      * 获取无聊图列表
      */
-    @GET("/?oxwlxojflwblxbsapi=jandan.get_pic_comments&page=?")
-    fun getBoringPictures(@Query("page") page: Int): Call<CommentModel>
+    @GET(value = "/?oxwlxojflwblxbsapi=jandan.get_pic_comments&page=?")
+    fun getBoringPictures(@Query(value = "page") page: Int): Call<CommentModel>
 
     /**
      * 获取妹子图列表
      */
-    @GET("/?oxwlxojflwblxbsapi=jandan.get_ooxx_comments&page=?")
-    fun getMeiZiPics(@Query("page") page: Int): Call<CommentModel>
+    @GET(value = "/?oxwlxojflwblxbsapi=jandan.get_ooxx_comments&page=?")
+    fun getMeiZiPics(@Query(value = "page") page: Int): Call<CommentModel>
 
     /**
      * 获取段子数据列表
      */
-    @GET("/?oxwlxojflwblxbsapi=jandan.get_duan_comments&page=?")
-    fun getDuanZis(@Query("page") page: Int): Call<CommentModel>
+    @GET(value = "/?oxwlxojflwblxbsapi=jandan.get_duan_comments&page=?")
+    fun getDuanZis(@Query(value = "page") page: Int): Call<CommentModel>
 
     /**
      * 顶
      */
-//    @POST("/index.php?acv_ajax=true&option=1")
+//    @POST(value = "/index.php?acv_ajax=true&option=1")
 
 }
