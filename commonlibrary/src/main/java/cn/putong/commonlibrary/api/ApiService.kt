@@ -57,5 +57,5 @@ interface ApiService {
      */
     @FormUrlEncoded
     @POST(value = "/index.php?acv_ajax=true&option=1")
-    fun positive(@Field(value = "id") id: Int): Call<Any>
+    fun positive(@Field(value = "id") id: Int): Call<String>
 }

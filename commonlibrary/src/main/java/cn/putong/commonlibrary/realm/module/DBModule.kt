@@ -1,5 +1,6 @@
 package cn.putong.commonlibrary.realm.module
 
+import cn.putong.commonlibrary.realm.table.CommentOperatTable
 import cn.putong.commonlibrary.realm.table.PostHaveSeeTable
 import io.realm.annotations.RealmModule
 
@@ -8,5 +9,5 @@ import io.realm.annotations.RealmModule
  * RealmModule为库项目生成默认值，这会与RealmModule应用程序使用的默认值相冲突
  * Created by xinyi on 2018/1/12.
  */
-@RealmModule(library = true, classes = [(PostHaveSeeTable::class)])
+@RealmModule(library = true, classes = [(PostHaveSeeTable::class), (CommentOperatTable::class)])
 open class DBModule

@@ -8,5 +8,5 @@ import io.realm.RealmObject
  */
 open class PostHaveSeeTable(
         // 数据id
-        var post_data_id: Int = 0
+        var post_id: Int = 0
 ) : RealmObject()

@@ -70,12 +70,12 @@ class DataBiz : IDataBiz {
 
     override fun positive(id: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).positive(id)
-                .clone().enqueue(object : Callback<Any> {
-            override fun onResponse(call: Call<Any>?, response: Response<Any>?) {
+                .clone().enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>?, response: Response<String>?) {
                 resultListener.successful(response?.body()!!)
             }
 
-            override fun onFailure(call: Call<Any>?, t: Throwable?) {
+            override fun onFailure(call: Call<String>?, t: Throwable?) {
                 resultListener.faild(t?.message!!)
             }
         })

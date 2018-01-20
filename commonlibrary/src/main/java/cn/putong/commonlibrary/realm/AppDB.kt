@@ -20,7 +20,7 @@ object AppDB {
             getInstance().executeTransaction { realm ->
                 try {
                     val mNewRecordTb = realm.createObject(PostHaveSeeTable::class.java)
-                    mNewRecordTb.post_data_id = id
+                    mNewRecordTb.post_id = id
                     onResultListener.invoke(true)
                 } catch (e: Exception) {
                     onResultListener.invoke(false)
@@ -32,7 +32,7 @@ object AppDB {
      * 根据id获取已看记录
      */
     fun getPostRecord(id: Int): PostHaveSeeTable? {
-        val fieldName = "post_data_id"
+        val fieldName = "post_id"
         return getInstance().where(PostHaveSeeTable::class.java).equalTo(fieldName, id).findFirst()
     }
 }
