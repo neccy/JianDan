@@ -3,6 +3,7 @@ package cn.putong.home.ui
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.ProgressBar
 import cn.putong.home.DataListFragment
 import cn.putong.home.R
@@ -24,7 +25,9 @@ class DataListFragmentUi : AnkoComponent<DataListFragment> {
                 }
             }.lparams(width = matchParent, height = matchParent)
 
-            progressbar = progressBar().lparams {
+            progressbar = progressBar {
+                visibility = View.GONE
+            }.lparams {
                 centerInParent()
             }
         }

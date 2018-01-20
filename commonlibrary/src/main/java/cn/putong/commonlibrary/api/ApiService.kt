@@ -5,9 +5,7 @@ import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * 首页模块-新鲜事接口
@@ -54,8 +52,9 @@ interface ApiService {
     fun getDuanZis(@Query(value = "page") page: Int): Call<CommentModel>
 
     /**
-     * 顶
+     * 点赞
      */
-//    @POST(value = "/index.php?acv_ajax=true&option=1")
-
+    @FormUrlEncoded
+    @POST(value = "/index.php?acv_ajax=true&option=1")
+    fun positive(@Field(value = "id") id: Int): Call<String>
 }

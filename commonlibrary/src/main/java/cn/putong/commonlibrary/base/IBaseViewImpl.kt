@@ -9,6 +9,5 @@ import java.util.*
 interface IBaseViewImpl {
     fun showLoading()
     fun hideLoading()
-    fun successful(model:Any)
     fun error(msg: String)
 }

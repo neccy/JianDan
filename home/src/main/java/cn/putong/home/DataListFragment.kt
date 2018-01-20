@@ -43,6 +43,8 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private lateinit var mPostAdapter:
             PostDataAdapter
 
+    private lateinit var mCommentData:
+            CommentModel.Comment
     private lateinit var mCommentDatas:
             ArrayList<CommentModel.Comment>
     private lateinit var mCommentCaches:
@@ -74,7 +76,8 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)
         }, { comment ->
-
+            mCommentData = comment
+            mDataPrenSent.positive()
         }, { comment ->
 
         }, {
@@ -137,24 +140,26 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         }
     }
 
-    override fun successful(model: Any) {
-        if (mTemPlate == TemPlateHelper.NEWTHINGS) {
-            val mNewThingsModel = model as PostModel
-            mPostDatas.addAll(mNewThingsModel.posts)
-            updatePostList()
-        } else {
-            val mBoringPicturesModel = model as CommentModel
-            mCommentCaches.addAll(mBoringPicturesModel.comments)
-            updateCommentList()
-        }
+    override fun updatePostData(postModel: PostModel) {
+        mPostDatas.addAll(postModel.posts)
+        updatePostAdapter()
     }
 
-    override fun error(msg: String) {
-        TipBar.showTip(mUi.listview, msg)
+    override fun updateCommentData(commentModel: CommentModel) {
+        mCommentCaches.addAll(commentModel.comments)
+        updateCommentAdapter()
     }
 
     override fun getCurrentPage(): Int {
         return mCurrentPage
+    }
+
+    override fun getCommnentId(): Int {
+        return mCommentData.comment_ID.toInt()
+    }
+
+    override fun error(msg: String) {
+        TipBar.showTip(mUi.listview, msg)
     }
 
     private fun getAdapter(): BaseRecyclerAdapter {
@@ -164,10 +169,6 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
             mCommentAdapter
     }
 
-    /**
-     * 根据类型获取数据
-     * @param mLoading 是否加载更多
-     */
     private fun getData(mLoading: Boolean = false) {
         if (!mLoading) {
             mCurrentPage = 1
@@ -193,11 +194,11 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         }
     }
 
-    private fun updatePostList() {
+    private fun updatePostAdapter() {
         mPostAdapter.updateList(mPostDatas)
     }
 
-    private fun updateCommentList() {
+    private fun updateCommentAdapter() {
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
@@ -208,21 +209,15 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentAdapter.updateList(mCommentDatas)
     }
 
-    /**
-     * 根据详情页面发送过来的下标更新已看状态
-     */
     @Subscribe
     fun getPositionUpdateAdapter(record: PostRecordEvent) {
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mPostAdapter.notifyItemChanged(record.position)
     }
 
-    /**
-     * 根据发送过来的通知更新Comment适配器
-     */
     @Subscribe
     fun getUnWelComeValue(unWelCome: UnWelComeEvent) {
-        updateCommentList()
+        updateCommentAdapter()
     }
 
 }

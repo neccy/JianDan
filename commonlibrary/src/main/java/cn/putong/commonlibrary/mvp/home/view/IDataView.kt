@@ -1,6 +1,8 @@
 package cn.putong.commonlibrary.mvp.home.view
 
 import cn.putong.commonlibrary.base.IBaseViewImpl
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
 
 /**
  *
@@ -13,4 +15,18 @@ interface IDataView : IBaseViewImpl {
      */
     fun getCurrentPage(): Int
 
+    /**
+     * 获取Comment数据Id
+     */
+    fun getCommnentId(): Int
+
+    /**
+     * 更新Post数据
+     */
+    fun updatePostData(postModel: PostModel)
+
+    /**
+     * 更新Comment数据
+     */
+    fun updateCommentData(commentModel: CommentModel)
 }

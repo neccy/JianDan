@@ -15,6 +15,7 @@ import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.home.R
 import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
+import org.w3c.dom.Comment
 
 /**
  * Comment类型数据适配器

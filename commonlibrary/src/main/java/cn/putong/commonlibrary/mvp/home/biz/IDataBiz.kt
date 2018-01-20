@@ -15,4 +15,6 @@ interface IDataBiz {
     fun getMeiZiPics(page: Int, resultListener: IBaseApiResultListener)
 
     fun getDuanZis(page: Int, resultListener: IBaseApiResultListener)
+
+    fun positive(id:Int,resultListener: IBaseApiResultListener)
 }

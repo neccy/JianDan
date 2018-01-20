@@ -2,6 +2,8 @@ package cn.putong.commonlibrary.mvp.home.present
 
 import cn.putong.commonlibrary.base.IBaseApiResultListener
 import cn.putong.commonlibrary.mvp.home.biz.DataBiz
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.home.view.IDataView
 
 /**
@@ -21,7 +23,7 @@ class DataPresenter(IDataView: IDataView) {
         dataBiz.getNewThings(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
                 dataView.hideLoading()
-                dataView.successful(model)
+                dataView.updatePostData(model as PostModel)
             }
 
             override fun faild(msg: String) {
@@ -39,7 +41,7 @@ class DataPresenter(IDataView: IDataView) {
         dataBiz.getBoringPics(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
                 dataView.hideLoading()
-                dataView.successful(model)
+                dataView.updateCommentData(model as CommentModel)
             }
 
             override fun faild(msg: String) {
@@ -57,7 +59,7 @@ class DataPresenter(IDataView: IDataView) {
         dataBiz.getMeiZiPics(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
                 dataView.hideLoading()
-                dataView.successful(model)
+                dataView.updateCommentData(model as CommentModel)
             }
 
             override fun faild(msg: String) {
@@ -75,12 +77,27 @@ class DataPresenter(IDataView: IDataView) {
         dataBiz.getDuanZis(dataView.getCurrentPage(), object : IBaseApiResultListener {
             override fun successful(model: Any) {
                 dataView.hideLoading()
-                dataView.successful(model)
+                dataView.updateCommentData(model as CommentModel)
             }
 
             override fun faild(msg: String) {
                 dataView.error(msg)
                 dataView.hideLoading()
+            }
+        })
+    }
+
+    /**
+     * 点赞
+     */
+    fun positive() {
+        dataBiz.positive(dataView.getCommnentId(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+
+            }
+
+            override fun faild(msg: String) {
+                dataView.error(msg)
             }
         })
     }
