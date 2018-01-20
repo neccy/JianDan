@@ -29,4 +29,5 @@ interface IDataView : IBaseViewImpl {
      * 更新Comment数据
      */
     fun updateCommentData(commentModel: CommentModel)
+
 }

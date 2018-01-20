@@ -14,10 +14,16 @@ object HawkHelper {
     /**
      * 软件退出时保存当前Tab下标
      */
-    fun saveTabSelection(position: Int) = Hawk.put(KEY_TAB_SELECTION, position)
+    fun saveTabSelection(position: Int) =
+            Hawk.put(KEY_TAB_SELECTION, position)
 
     /**
      * 获取上次软件退出时保存的Tab下标
      */
-    fun getTabSelection(): Int = if (Hawk.contains(KEY_TAB_SELECTION)) Hawk.get(KEY_TAB_SELECTION) else 0
+    fun getTabSelection(): Int =
+            if (Hawk.contains(KEY_TAB_SELECTION))
+                Hawk.get(KEY_TAB_SELECTION)
+            else
+                0
+
 }

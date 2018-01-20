@@ -35,7 +35,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
     private lateinit var mUi:
             DataListFragmentUi
-    private lateinit var mDataPrenSent:
+    private lateinit var mDataPrenSenter:
             DataPresenter
 
     private lateinit var mPostDatas:
@@ -63,7 +63,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
     override fun initData() {
         mCommentCaches = ArrayList()
-        mDataPrenSent = DataPresenter(IDataView = this)
+        mDataPrenSenter = DataPresenter(IDataView = this)
         initAdapter()
     }
 
@@ -77,7 +77,13 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
             ModuleHelper.startGalleryModule(mParentFragment, pics)
         }, { comment ->
             mCommentData = comment
-            mDataPrenSent.positive()
+            // 直接更改状态并更新
+            mCommentData.positive_status = true
+
+            // 后台提交
+            mDataPrenSenter.positive()
+            // 提交成功后保存本地记录
+
         }, { comment ->
 
         }, {
@@ -184,13 +190,13 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
         when (mTemPlate) {
             TemPlateHelper.NEWTHINGS ->
-                mDataPrenSent.getNewThings()
+                mDataPrenSenter.getNewThings()
             TemPlateHelper.BORINGPICS ->
-                mDataPrenSent.getBoringPics()
+                mDataPrenSenter.getBoringPics()
             TemPlateHelper.MEIZIPICS ->
-                mDataPrenSent.getMeiZiPics()
+                mDataPrenSenter.getMeiZiPics()
             TemPlateHelper.DUANZIS ->
-                mDataPrenSent.getDuanZis()
+                mDataPrenSenter.getDuanZis()
         }
     }
 
@@ -209,12 +215,18 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentAdapter.updateList(mCommentDatas)
     }
 
+    /**
+     * 根据详情页面发送过来的下标更新已看状态
+     */
     @Subscribe
     fun getPositionUpdateAdapter(record: PostRecordEvent) {
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mPostAdapter.notifyItemChanged(record.position)
     }
 
+    /**
+     * 根据发送过来的通知更新Comment适配器
+     */
     @Subscribe
     fun getUnWelComeValue(unWelCome: UnWelComeEvent) {
         updateCommentAdapter()

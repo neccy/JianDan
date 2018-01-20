@@ -1,7 +1,7 @@
 package cn.putong.commonlibrary.mvp.home.model
 
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
 
 /**
  * 卡片类型视图Model
@@ -28,6 +28,11 @@ class CommentModel {
         var sub_comment_count: String = ""
         var text_content: String = ""
         var pics: ArrayList<String> = ArrayList()
+
+        // 是否点赞
+        var positive_status: Boolean = false
+        // 是否讨厌
+        var negative_status: Boolean = false
     }
 
 }
