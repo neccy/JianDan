@@ -6,6 +6,7 @@ import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /**
@@ -49,5 +50,10 @@ interface ApiService {
      */
     @GET("/?oxwlxojflwblxbsapi=jandan.get_duan_comments&page=?")
     fun getDuanZis(@Query("page") page: Int): Call<CommentModel>
+
+    /**
+     * 顶
+     */
+//    @POST("/index.php?acv_ajax=true&option=1")
 
 }

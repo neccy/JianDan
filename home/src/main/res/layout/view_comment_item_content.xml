@@ -63,6 +63,7 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_positive_horizontal_margin_right"
         android:layout_marginStart="@dimen/comment_item_content_positive_horizontal_margin_left"
+        android:background="@drawable/selector_view_ripple"
         android:padding="@dimen/comment_item_content_positive_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="OO 6" />
@@ -75,6 +76,7 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
+        android:background="@drawable/selector_view_ripple"
         android:padding="@dimen/comment_item_content_negative_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="XX 16" />
@@ -86,11 +88,13 @@
         android:layout_below="@+id/pic"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
+        android:background="@drawable/selector_view_ripple"
         android:padding="@dimen/comment_item_content_comment_padding"
         android:textSize="?attr/tv_size_14sp"
         tools:text="吐槽 26" />
 
     <ImageView
+        android:id="@+id/more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/comment_count"
@@ -98,6 +102,7 @@
         android:layout_alignTop="@+id/comment_count"
         android:layout_below="@+id/pic"
         android:layout_marginEnd="@dimen/comment_item_content_more_horiz_margin"
+        android:background="@drawable/selector_view_ripple"
         android:src="?attr/more_horiz_small" />
 
 </RelativeLayout>

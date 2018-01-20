@@ -22,7 +22,11 @@ import kotlinx.android.synthetic.main.view_comment_item_content.view.*
  */
 class CommentDataAdapter(
         private var mList: ArrayList<CommentModel.Comment> = ArrayList(),
-        private val onImageClickListener: (ArrayList<String>) -> Unit)
+        private val onPicClickListener: (ArrayList<String>) -> Unit,
+        private val onPositiveClickListener: (CommentModel.Comment) -> Unit,
+        private val onNegativeClickListener: (CommentModel.Comment) -> Unit,
+        private val onCommentClickListener: () -> Unit,
+        private val onMoreClickListener: () -> Unit)
     : BaseRecyclerAdapter() {
 
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
@@ -55,13 +59,30 @@ class CommentDataAdapter(
                     FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
-                        onImageClickListener.invoke(mComment.pics)
+                        onPicClickListener.invoke(mComment.pics)
                     }
                 }
 
                 positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
                 negative_count.text = resources.getString(R.string.comment_content_negative_symbol, mComment.vote_negative)
                 comment_count.text = resources.getString(R.string.comment_content_comment_count_text, mComment.sub_comment_count)
+
+                positive_count.setOnClickListener {
+                    onPositiveClickListener.invoke(mComment)
+                }
+
+                negative_count.setOnClickListener {
+                    onNegativeClickListener.invoke(mComment)
+                }
+
+                comment_count.setOnClickListener {
+                    onCommentClickListener.invoke()
+                }
+
+                more.setOnClickListener {
+                    onMoreClickListener.invoke()
+                }
+
             }
     }
 

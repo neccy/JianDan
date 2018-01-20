@@ -33,15 +33,22 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private var mCurrentPage = 1
     private var mLongingMore = false
 
-    private lateinit var mUi: DataListFragmentUi
-    private lateinit var mDataPrenSent: DataPresenter
+    private lateinit var mUi:
+            DataListFragmentUi
+    private lateinit var mDataPrenSent:
+            DataPresenter
 
-    private lateinit var mPostDatas: ArrayList<PostModel.Post>
-    private lateinit var mPostAdapter: PostDataAdapter
+    private lateinit var mPostDatas:
+            ArrayList<PostModel.Post>
+    private lateinit var mPostAdapter:
+            PostDataAdapter
 
-    private lateinit var mCommentDatas: ArrayList<CommentModel.Comment>
-    private lateinit var mCommentCaches: ArrayList<CommentModel.Comment>
-    private lateinit var mCommentAdapter: CommentDataAdapter
+    private lateinit var mCommentDatas:
+            ArrayList<CommentModel.Comment>
+    private lateinit var mCommentCaches:
+            ArrayList<CommentModel.Comment>
+    private lateinit var mCommentAdapter:
+            CommentDataAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -62,10 +69,17 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mPostAdapter = PostDataAdapter { position ->
             ModuleHelper.startPosDetailtModule(mParentFragment,
                     position, mPostDatas[position])
-
         }
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
             ModuleHelper.startGalleryModule(mParentFragment, pics)
+        }, { comment ->
+
+        }, { comment ->
+
+        }, {
+
+        }, {
+
         })
     }
 
