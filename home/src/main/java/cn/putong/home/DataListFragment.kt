@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
-import cn.putong.commonlibrary.helper.TemPlateHelper
-import cn.putong.commonlibrary.helper.getUnWelcomeValue
-import cn.putong.commonlibrary.helper.setColor
-import cn.putong.commonlibrary.helper.setDefaultDivider
+import cn.putong.commonlibrary.helper.*
 import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
@@ -76,7 +73,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         }, { comment ->
             mDataPrenSenter.positive(comment.comment_ID)
         }, { comment ->
-
+            mDataPrenSenter.negative(comment.comment_ID)
         }, {
 
         }, {
@@ -101,6 +98,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 
     private fun initListView() {
         mUi.listview.adapter = getAdapter()
+        mUi.listview.clearAnimator()
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
             mUi.listview.setDefaultDivider(context)
     }

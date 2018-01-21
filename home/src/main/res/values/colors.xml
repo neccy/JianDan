@@ -6,5 +6,6 @@
 
     <!--Comment Content-->
     <color name="comment_item_content_pic_placeholder">@color/post_item_img_placeholder</color>
-
+    <color name="comment_item_content_select_positive">@color/colorAccent</color>
+    <color name="comment_item_content_select_negative">#3F51B5</color>
 </resources>

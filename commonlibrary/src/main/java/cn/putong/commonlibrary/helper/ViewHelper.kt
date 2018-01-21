@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SimpleItemAnimator
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -20,6 +21,13 @@ import cn.putong.commonlibrary.R
  */
 fun RecyclerView.setDefaultDivider(context: Context) {
     addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+}
+
+/**
+ * 删除RecyclerView动画
+ */
+fun RecyclerView.clearAnimator() {
+    (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
 }
 
 /**

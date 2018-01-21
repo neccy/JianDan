@@ -16,5 +16,7 @@ interface IDataBiz {
 
     fun getDuanZis(page: Int, resultListener: IBaseApiResultListener)
 
-    fun positive(id:Int,resultListener: IBaseApiResultListener)
+    fun positive(id: Int, resultListener: IBaseApiResultListener)
+
+    fun negative(id: Int, resultListener: IBaseApiResultListener)
 }

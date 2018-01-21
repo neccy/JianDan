@@ -1,9 +1,7 @@
 package cn.putong.home.adapter
 
-import android.content.Context
 import android.net.Uri
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +10,10 @@ import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.home.R
-import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
+import org.jetbrains.anko.textColor
 
 /**
  * Comment类型数据适配器
@@ -67,16 +66,45 @@ class CommentDataAdapter(
                     }
                 }
 
+                positive_count.textColor =
+                        if (mComment.positive_status)
+                            ContextCompat.getColor(context,
+                                    R.color.comment_item_content_select_positive)
+                        else
+                            ContextCompat.getColor(context, R.color.textview_color)
+
+                negative_count.textColor =
+                        if (mComment.negative_status)
+                            ContextCompat.getColor(context,
+                                    R.color.comment_item_content_select_negative)
+                        else
+                            ContextCompat.getColor(context, R.color.textview_color)
+
                 positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
                 negative_count.text = resources.getString(R.string.comment_content_negative_symbol, mComment.vote_negative)
                 comment_count.text = resources.getString(R.string.comment_content_comment_count_text, mComment.sub_comment_count)
 
+
                 positive_count.setOnClickListener {
-                    onPositiveClickListener.invoke(mComment)
+                    if (!mComment.positive_status && !mComment.negative_status) {
+                        AppDB.savePositiveRecord(mComment.comment_ID)
+                        mComment.vote_positive += 1
+                        mComment.positive_status = true
+                        notifyItemChanged(position)
+                        onPositiveClickListener.invoke(mComment)
+                    }
                 }
 
                 negative_count.setOnClickListener {
-                    onNegativeClickListener.invoke(mComment)
+                    if (!mComment.negative_status) {
+                        if (!mComment.positive_status && !mComment.negative_status) {
+                            AppDB.saveNegativeRecord(mComment.comment_ID)
+                            mComment.vote_negative += 1
+                            mComment.negative_status = true
+                            notifyItemChanged(position)
+                            onNegativeClickListener.invoke(mComment)
+                        }
+                    }
                 }
 
                 comment_count.setOnClickListener {
@@ -100,8 +128,26 @@ class CommentDataAdapter(
     }
 
     fun updateList(mList: ArrayList<CommentModel.Comment>) {
+        mList.setPosAndNegaStatus()
         this.mList = mList
         notifyDataSetChanged()
+    }
+
+    /**
+     * 设置[点赞、讨厌]状态
+     */
+    private fun ArrayList<CommentModel.Comment>.setPosAndNegaStatus() {
+        for (mComment in this) {
+            if (AppDB.getPositiveRecord(mComment.comment_ID) != null) {
+                mComment.vote_positive += 1
+                mComment.positive_status = true
+            }
+
+            if (AppDB.getNegativeRecord(mComment.comment_ID) != null) {
+                mComment.vote_negative += 1
+                mComment.negative_status = true
+            }
+        }
     }
 
     override fun addFooter() {
@@ -118,43 +164,4 @@ class CommentDataAdapter(
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    /**
-     * 图片View列表
-     */
-    private val mPicViewList = { context: Context, pics: List<String> ->
-        val mPicList = ArrayList<SimpleDraweeView>()
-        pics.forEach {
-            val mPicView =
-                    LayoutInflater.from(context)
-                            .inflate(R.layout.view_comment_item_pic, null)
-                            as SimpleDraweeView
-            FrescoHelper.setAnimatorController(Uri.parse(it), mPicView)
-            mPicList.add(mPicView)
-        }
-        mPicList
-    }
-
-    /**
-     * 图片Pager适配器
-     */
-    class PicAdapter(private var mViewList: List<SimpleDraweeView> = listOf()) : PagerAdapter() {
-
-        override fun isViewFromObject(view: View?, `object`: Any?) = view == `object`
-
-        override fun getCount() = mViewList.size
-
-        override fun instantiateItem(container: ViewGroup?, position: Int): Any {
-            (container as ViewPager).addView(mViewList.get(position))
-            return mViewList[position]
-        }
-
-        override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
-            (container as ViewPager).removeView(mViewList.get(position))
-        }
-
-        fun updatePicList(mViewList: List<SimpleDraweeView>) {
-            this.mViewList = mViewList
-            notifyDataSetChanged()
-        }
-    }
 }

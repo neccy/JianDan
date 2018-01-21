@@ -3,9 +3,9 @@
     <string name="app_db_name">jiandan.realm</string>
 
     <!--通用-->
-    <string name="comment_content_positive_symbol">OO&#160;%1$s</string>
-    <string name="comment_content_negative_symbol">XX&#160;%1$s</string>
-    <string name="comment_content_comment_count_text">吐槽&#160;%1$s</string>
+    <string name="comment_content_positive_symbol">OO&#160;%1$d</string>
+    <string name="comment_content_negative_symbol">XX&#160;%1$d</string>
+    <string name="comment_content_comment_count_text">吐槽&#160;%1$d</string>
     <string name="copy_successful">已复制到剪切板</string>
 
     <!--设置组件Preference Key-->

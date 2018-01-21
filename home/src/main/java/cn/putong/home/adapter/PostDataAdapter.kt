@@ -81,7 +81,7 @@ class PostDataAdapter(
      * 设置已看状态
      */
     private fun List<PostModel.Post>.setHaveSeenStatus() {
-        filter { AppDB.getPostRecord(it.id) != null }.
+        filter { AppDB.getHaveSeeRecord(it.id) != null }.
                 forEach { it.have_seen = true }
     }
 

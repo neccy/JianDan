@@ -92,10 +92,20 @@ class DataPresenter(IDataView: IDataView) {
      */
     fun positive(commentId: String) {
         dataBiz.positive(commentId.toInt(), object : IBaseApiResultListener {
-            override fun successful(model: Any) {
-                //保存记录到数据库
+            override fun successful(model: Any) {}
 
+            override fun faild(msg: String) {
+                dataView.error(msg)
             }
+        })
+    }
+
+    /**
+     * 讨厌
+     */
+    fun negative(commentId: String) {
+        dataBiz.negative(commentId.toInt(), object : IBaseApiResultListener {
+            override fun successful(model: Any) {}
 
             override fun faild(msg: String) {
                 dataView.error(msg)

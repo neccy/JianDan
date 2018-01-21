@@ -81,4 +81,17 @@ class DataBiz : IDataBiz {
         })
     }
 
+    override fun negative(id: Int, resultListener: IBaseApiResultListener) {
+        NetWoks.configRetrofit(ApiService::class.java).negative(id)
+                .clone().enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>?, response: Response<String>?) {
+                resultListener.successful(response?.body()!!)
+            }
+
+            override fun onFailure(call: Call<String>?, t: Throwable?) {
+                resultListener.faild(t?.message!!)
+            }
+        })
+    }
+
 }

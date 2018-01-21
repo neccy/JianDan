@@ -23,9 +23,9 @@ class CommentModel {
         var comment_date_gmt: String = ""
         var comment_content: String = ""
         var user_id: String = ""
-        var vote_positive: String = ""
-        var vote_negative: String = ""
-        var sub_comment_count: String = ""
+        var vote_positive: Int = 0
+        var vote_negative: Int = 0
+        var sub_comment_count: Int = 0
         var text_content: String = ""
         var pics: ArrayList<String> = ArrayList()
 

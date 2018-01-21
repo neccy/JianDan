@@ -5,6 +5,8 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#f44336</color>
 
+    <!--TextView默认颜色-->
+    <color name="textview_color">#8a000000</color>
     <color name="tablayout_text_color">#7A7A7A</color>
     <color name="recyclerview_bg_color">#FAFAFA</color>
     <color name="textview_black_color">#202020</color>

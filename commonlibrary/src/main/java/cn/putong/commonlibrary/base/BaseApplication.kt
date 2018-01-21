@@ -2,7 +2,7 @@ package cn.putong.commonlibrary.base
 
 import android.app.Application
 import cn.putong.commonlibrary.R
-import cn.putong.commonlibrary.realm.module.DBModule
+import cn.putong.commonlibrary.realm.DBModule
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.orhanobut.hawk.Hawk
 import io.realm.Realm

@@ -7,7 +7,7 @@
     android:layout_marginLeft="@dimen/comment_item_main_horizontal_margin"
     android:layout_marginRight="@dimen/comment_item_main_horizontal_margin"
     android:layout_marginTop="@dimen/comment_item_main_vertical_margin"
-    android:foreground="?attr/selectableItemBackground"
+    android:background="?attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/card_recycler_corner_radius"
     app:cardElevation="@dimen/card_recycler_elevation">
 

@@ -4,7 +4,6 @@ import cn.putong.commonlibrary.mvp.detail.model.PostCommentModel
 import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -58,4 +57,11 @@ interface ApiService {
     @FormUrlEncoded
     @POST(value = "/index.php?acv_ajax=true&option=1")
     fun positive(@Field(value = "id") id: Int): Call<String>
+
+    /**
+     * 讨厌
+     */
+    @FormUrlEncoded
+    @POST(value = "/index.php?acv_ajax=true&option=0")
+    fun negative(@Field(value = "id") id: Int): Call<String>
 }
