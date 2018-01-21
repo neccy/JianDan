@@ -8,5 +8,5 @@
     app:tabIndicatorColor="@android:color/white"
     app:tabMode="fixed"
     app:tabSelectedTextColor="@android:color/white"
-    app:tabTextAppearance="@style/TabLayoutTextAppearance"
+    app:tabTextAppearance="@style/TableLayout.TitleText"
     app:tabTextColor="?attr/tab_tv_color" />

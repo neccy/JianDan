@@ -14,7 +14,7 @@
     <string name="set_preference_usechrome_title">使用Chrome打开链接</string>
     <string name="set_preference_account_title">游客账号</string>
     <string name="set_preference_account_summary">内容的评论和发布账号</string>
-    <string name="set_preference_about_title">关于煎蛋</string>
+    <string name="set_preference_about_title">关于煎了个蛋</string>
     <string name="set_preference_version_title">版本信息</string>
 
 </resources>

@@ -96,14 +96,12 @@ class CommentDataAdapter(
                 }
 
                 negative_count.setOnClickListener {
-                    if (!mComment.negative_status) {
-                        if (!mComment.positive_status && !mComment.negative_status) {
-                            AppDB.saveNegativeRecord(mComment.comment_ID)
-                            mComment.vote_negative += 1
-                            mComment.negative_status = true
-                            notifyItemChanged(position)
-                            onNegativeClickListener.invoke(mComment)
-                        }
+                    if (!mComment.positive_status && !mComment.negative_status) {
+                        AppDB.saveNegativeRecord(mComment.comment_ID)
+                        mComment.vote_negative += 1
+                        mComment.negative_status = true
+                        notifyItemChanged(position)
+                        onNegativeClickListener.invoke(mComment)
                     }
                 }
 
