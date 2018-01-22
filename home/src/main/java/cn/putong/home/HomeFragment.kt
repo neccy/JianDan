@@ -1,6 +1,7 @@
 package cn.putong.home
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.view.*
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.TemPlateHelper
@@ -9,6 +10,7 @@ import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.otto.event.TemplateEvent
 import cn.putong.commonlibrary.ui.ViewPagerFragmentUi
+import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -89,6 +91,18 @@ class HomeFragment : BaseFragment() {
         mUi.viewpager.currentItem = HawkHelper.getTabSelection()
         mUi.viewpager.offscreenPageLimit = mFragments.size - 1
         mUi.tablayout.setupWithViewPager(mUi.viewpager)
+    }
+
+    override fun initListener() {
+        mUi.tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                TipBar.showTip(mUi.toolbar, tab!!.position.toString())
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {}
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
