@@ -2,9 +2,11 @@
 <resources>
     <attr name="add" format="reference" />
     <attr name="back" format="reference" />
+    <attr name="whatshot" format="reference" />
     <attr name="more_horiz_small" format="reference" />
     <attr name="back_gray" format="reference" />
     <attr name="comment_gray" format="reference" />
+
 
     <!--TabLayout 默认字体颜色-->
     <attr name="tab_tv_color" format="color" />

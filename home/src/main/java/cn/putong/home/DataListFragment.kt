@@ -17,10 +17,12 @@ import cn.putong.commonlibrary.mvp.home.present.DataPresenter
 import cn.putong.commonlibrary.mvp.home.view.IDataView
 import cn.putong.commonlibrary.otto.event.PostRecordEvent
 import cn.putong.commonlibrary.otto.event.UnWelComeEvent
+import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.commonlibrary.ui.DataListFragmentUi
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
+import com.google.gson.Gson
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -80,10 +82,9 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         }, {
 
         }, { view, comment ->
-            context.showCommentMoreMenu(view, {
-
-            }, {
-
+            context.showMoreItemMenu(view, {}, {
+                AppDB.saveDataCollection(mTemPlate,
+                        Gson().toJson(comment))
             })
         })
     }

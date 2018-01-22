@@ -1,5 +1,6 @@
 package cn.putong.commonlibrary.realm
 
+import cn.putong.commonlibrary.realm.table.DataCollectionTable
 import cn.putong.commonlibrary.realm.table.HaveSeeRecordTable
 import cn.putong.commonlibrary.realm.table.NegativeRecordTable
 import cn.putong.commonlibrary.realm.table.PositiveRecordTable
@@ -13,6 +14,7 @@ import io.realm.annotations.RealmModule
 @RealmModule(library = true, classes = [
     (HaveSeeRecordTable::class),
     (PositiveRecordTable::class),
-    (NegativeRecordTable::class)
+    (NegativeRecordTable::class),
+    (DataCollectionTable::class)
 ])
 open class DBModule

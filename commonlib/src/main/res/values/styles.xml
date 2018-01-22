@@ -11,6 +11,7 @@
         <item name="add">@mipmap/ic_add_white_24dp</item>
         <item name="more_horiz_small">@mipmap/ic_dots_horizontal_grey600_24dp</item>
         <item name="back">@mipmap/ic_arrow_back_white_24dp</item>
+        <item name="whatshot">@mipmap/ic_whatshot_white_24dp</item>
         <item name="back_gray">@mipmap/ic_arrow_back_grey600_24dp</item>
         <item name="comment_gray">@mipmap/ic_comment_grey600_24dp</item>
 

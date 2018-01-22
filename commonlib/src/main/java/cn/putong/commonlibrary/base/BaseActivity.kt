@@ -34,9 +34,9 @@ open class BaseActivity : SupportActivity(), IBaseImpl {
     open fun initRootFragment() {}
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
-                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
-        //  return super.onCreateFragmentAnimator()
+//        return FragmentAnimator(R.anim.admin_fragment_enter, R.anim.admin_fragment_exit,
+//                R.anim.admin_fragment_pop_enter, R.anim.admin_fragment_pop_exit)
+        return super.onCreateFragmentAnimator()
     }
 
 }

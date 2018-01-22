@@ -13,11 +13,11 @@ import cn.putong.commonlibrary.R
 
 
 /**
- * 显示Comment数据更多Menu
+ * 显示更多选项menu
  */
-fun Context.showCommentMoreMenu(view: View,
-                                shareListener: () -> Unit,
-                                collectionListener: () -> Unit) {
+fun Context.showMoreItemMenu(view: View,
+                             shareListener: () -> Unit,
+                             collectionListener: () -> Unit) {
     val mPopupMenu = PopupMenu(this, view)
     mPopupMenu.gravity = Gravity.END
     mPopupMenu.inflate(R.menu.comment_more_items)

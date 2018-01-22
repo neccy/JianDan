@@ -99,14 +99,12 @@ class PostDetailFragment : BaseFragment(), IDetailView {
 
     override fun getDataId() = mNewData.id
 
-    override fun onEnterAnimationEnd(savedInstanceState: Bundle?) {
-        super.onEnterAnimationEnd(savedInstanceState)
-        initWebView()
-        mDetailPreSenter.getNewThingsDetail()
-    }
 
     override fun onSupportVisible() {
         super.onSupportVisible()
+        initWebView()
+        mDetailPreSenter.getNewThingsDetail()
+
         // 当前页面完全可见,添加当前新鲜事到已看记录,并更新新鲜事列表
         AppDB.saveHaveSeeRecord(mNewData.id, { result ->
             if (result) {
@@ -126,7 +124,6 @@ class PostDetailFragment : BaseFragment(), IDetailView {
             R.id.action_comment ->
                 start(PostCommentFragment(mNewData))
             R.id.action_more -> {
-
             }
         }
         return true

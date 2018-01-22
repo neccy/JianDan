@@ -2,9 +2,11 @@
     <string name="home_menu_action_night_model">夜间模式</string>
     <string name="home_menu_action_collection">我的收藏</string>
     <string name="home_menu_action_setting">设置</string>
+    <string name="home_menu_action_hotlist">热榜</string>
     <string name="home_menu_action_submission">投稿</string>
 
     <string name="post_comment_count_text">%1$d条评论</string>
 
     <string name="space_symbol">&#160;</string>
+
 </resources>
