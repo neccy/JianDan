@@ -15,6 +15,11 @@
     <string name="comment_count_text">吐槽&#160;%1$d</string>
     <string name="copy_successful">已复制到剪切板</string>
 
+    <!--菜单-->
+    <string name="menu_share">分享</string>
+    <string name="menu_collection">收藏</string>
+    <string name="menu_copytext">复制文本内容</string>
+
     <!--设置组件Preference Key-->
     <string name="key_preference_meizi">key_preference_meizi</string>
     <string name="key_preference_unwelcome">key_preference_unwelcome</string>

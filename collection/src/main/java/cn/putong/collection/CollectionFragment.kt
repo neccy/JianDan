@@ -22,7 +22,7 @@ class CollectionFragment : BaseFragment() {
 
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
-    private lateinit var mTemplates: Array<String?>
+    private lateinit var mTemplates: Array<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -62,7 +62,7 @@ class CollectionFragment : BaseFragment() {
     }
 
     private fun initToolBar() {
-        mUi.toolbar.setToolbar(getString(R.string.app_name))
+        mUi.toolbar.setToolbar(getString(R.string.collection_toolbar_title), mIsBack = true)
     }
 
     private fun initTabLayout() {

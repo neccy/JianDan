@@ -17,7 +17,6 @@ import cn.putong.commonlibrary.otto.event.UnWelComeEvent
 import cn.putong.setting.ui.SetFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.defaultSharedPreferences
 
 /**
  * 设置页面

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Comment数据更多选项-->
+
+    <item
+        android:id="@+id/item_share"
+        android:title="@string/menu_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_collection"
+        android:title="@string/menu_collection"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_copytext"
+        android:title="@string/menu_copytext"
+        app:showAsAction="never" />
+
+</menu>

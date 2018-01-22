@@ -25,7 +25,7 @@ class CommentDataAdapter(
         private val onPositiveClickListener: (CommentModel.Comment) -> Unit,
         private val onNegativeClickListener: (CommentModel.Comment) -> Unit,
         private val onCommentClickListener: () -> Unit,
-        private val onMoreClickListener: () -> Unit)
+        private val onMoreClickListener: (View) -> Unit)
     : BaseRecyclerAdapter() {
 
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
@@ -111,7 +111,7 @@ class CommentDataAdapter(
                 }
 
                 more.setOnClickListener {
-                    onMoreClickListener.invoke()
+                    onMoreClickListener.invoke(more)
                 }
 
             }

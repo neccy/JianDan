@@ -25,4 +25,8 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment() {
     override fun initUi() {
         mUi = DataListFragmentUi()
     }
+
+    override fun initData() {
+        super.initData()
+    }
 }
