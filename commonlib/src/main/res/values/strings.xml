@@ -5,6 +5,7 @@
 
     <!--数据模版-->
     <string name="template_newthings">新鲜事</string>
+    <string name="template_hot">正流行</string>
     <string name="template_boringpics">无聊图</string>
     <string name="template_duanzis">闲段子</string>
     <string name="template_meizipics">妹子图</string>
@@ -12,13 +13,13 @@
     <!--通用-->
     <string name="positive_symbol">OO&#160;%1$d</string>
     <string name="negative_symbol">XX&#160;%1$d</string>
-    <string name="comment_count_text">吐槽&#160;%1$d</string>
+    <string name="tucao_count_text">吐槽&#160;%1$d</string>
+    <string name="comment_count_text">%1$d条评论</string>
     <string name="copy_successful">已复制到剪切板</string>
 
     <!--菜单-->
     <string name="menu_share">分享</string>
     <string name="menu_collection">收藏</string>
-    <string name="menu_copytext">复制文本内容</string>
 
     <!--设置组件Preference Key-->
     <string name="key_preference_meizi">key_preference_meizi</string>

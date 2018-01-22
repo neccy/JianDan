@@ -1,4 +1,4 @@
-package cn.putong.home.adapter
+package cn.putong.commonlibrary.adapter
 
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
@@ -6,11 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.R
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.realm.AppDB
-import cn.putong.home.R
 import kotlinx.android.synthetic.main.item_post.view.*
 import org.jetbrains.anko.textColor
 
@@ -40,7 +40,7 @@ class PostDataAdapter(
                 author.text = mPost.author.nickname
                 time.text = TimeHelper.format(TimeHelper.getDate(mPost.date))
 
-                comments.text = resources.getString(R.string.post_comment_count_text, mPost.comment_count)
+                comments.text = resources.getString(R.string.comment_count_text, mPost.comment_count)
 
                 img.setImageURI(mPost.custom_fields.thumb_c[0])
                 item_main.setOnClickListener {

@@ -55,6 +55,7 @@ class HomeFragment : BaseFragment() {
     private fun initFragments() {
         mFragments = arrayListOf(
                 DataListFragment(TemPlateHelper.NEWTHINGS),
+                DataListFragment(TemPlateHelper.POPULAR),
                 DataListFragment(TemPlateHelper.BORINGPICS),
                 DataListFragment(TemPlateHelper.DUANZIS))
 
@@ -111,11 +112,11 @@ class HomeFragment : BaseFragment() {
     fun updateTemplate(templateEvent: TemplateEvent) {
         val mCurrentItem: Int
         if (templateEvent.meizi_value) {
-            mCurrentItem = 3
+            mCurrentItem = 4
             mFragments.add(TemPlateHelper.MEIZIPICS,
                     DataListFragment(TemPlateHelper.MEIZIPICS))
         } else {
-            mCurrentItem = 2
+            mCurrentItem = 3
             mFragments.removeAt(TemPlateHelper.MEIZIPICS)
         }
         mFragmentsAdapter.updateList(mFragments, mTemplates)

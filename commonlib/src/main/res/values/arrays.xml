@@ -4,6 +4,7 @@
     <!--首页分类-->
     <string-array name="template_item">
         <item>@string/template_newthings</item>
+        <item>@string/template_hot</item>
         <item>@string/template_boringpics</item>
         <item>@string/template_duanzis</item>
         <item>@string/template_meizipics</item>

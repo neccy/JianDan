@@ -29,6 +29,19 @@ class DataBiz : IDataBiz {
         })
     }
 
+    override fun getPopulars(resultListener: IBaseApiResultListener) {
+        NetWoks.configRetrofit(ApiService::class.java, NetWoks.MOYU_URL)
+                .getPopulars().clone().enqueue(object : Callback<CommentModel> {
+            override fun onResponse(call: Call<CommentModel>?, response: Response<CommentModel>?) {
+                resultListener.successful(response?.body()!!)
+            }
+
+            override fun onFailure(call: Call<CommentModel>?, t: Throwable?) {
+                resultListener.faild(t?.message!!)
+            }
+        })
+    }
+
     override fun getBoringPics(page: Int, resultListener: IBaseApiResultListener) {
         NetWoks.configRetrofit(ApiService::class.java).getBoringPictures(page)
                 .clone().enqueue(object : Callback<CommentModel> {

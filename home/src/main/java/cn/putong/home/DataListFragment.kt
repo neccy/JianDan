@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.adapter.CommentDataAdapter
+import cn.putong.commonlibrary.adapter.PostDataAdapter
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.*
@@ -20,8 +22,6 @@ import cn.putong.commonlibrary.otto.event.UnWelComeEvent
 import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.commonlibrary.ui.DataListFragmentUi
 import cn.putong.commonlibrary.widget.TipBar
-import cn.putong.home.adapter.CommentDataAdapter
-import cn.putong.home.adapter.PostDataAdapter
 import com.google.gson.Gson
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
@@ -118,8 +118,10 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
                 val linearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
                 if (!mLongingMore && linearLayoutManager.itemCount ==
                         (linearLayoutManager.findLastVisibleItemPosition() + 1)) {
-                    mLongingMore = true
-                    getData(mLongingMore)
+                    if (mTemPlate != TemPlateHelper.POPULAR) {
+                        mLongingMore = true
+                        getData(mLongingMore)
+                    }
                 }
             }
         })
@@ -184,6 +186,8 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         when (mTemPlate) {
             TemPlateHelper.NEWTHINGS ->
                 mDataPrenSenter.getNewThings()
+            TemPlateHelper.POPULAR ->
+                mDataPrenSenter.getPopulars()
             TemPlateHelper.BORINGPICS ->
                 mDataPrenSenter.getBoringPics()
             TemPlateHelper.MEIZIPICS ->
@@ -201,7 +205,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         mCommentDatas =
                 if (getUnWelcomeValue(context))
                     mCommentCaches.filter {
-                        it.vote_negative.toInt() < 100
+                        it.vote_negative < 100
                     } as ArrayList<CommentModel.Comment>
                 else
                     mCommentCaches

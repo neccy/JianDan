@@ -5,8 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.adapter.CommentDataAdapter
+import cn.putong.commonlibrary.adapter.PostDataAdapter
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.helper.TemPlateHelper
+import cn.putong.commonlibrary.mvp.home.model.CommentModel
+import cn.putong.commonlibrary.mvp.home.model.PostModel
+import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.commonlibrary.ui.DataListFragmentUi
+import com.google.gson.Gson
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -14,6 +21,16 @@ import org.jetbrains.anko.AnkoContext
  */
 @SuppressLint(value = ["ValidFragment"])
 class DataListFragment(private val mTemPlate: Int) : BaseFragment() {
+
+    private lateinit var mPostDatas:
+            ArrayList<PostModel.Post>
+    private lateinit var mPostAdapter:
+            PostDataAdapter
+
+    private lateinit var mCommentDatas:
+            ArrayList<CommentModel.Comment>
+    private lateinit var mCommentAdapter:
+            CommentDataAdapter
 
     private lateinit var mUi: DataListFragmentUi<DataListFragment>
 
@@ -28,5 +45,29 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment() {
 
     override fun initData() {
         super.initData()
+
+        mCommentDatas = ArrayList()
+        mPostDatas = ArrayList()
+
+        AppDB.getDataCollection(mTemPlate)?.forEach {
+            if (mTemPlate == TemPlateHelper.NEWTHINGS)
+                mPostDatas.add(
+                        Gson().fromJson(it.data, PostModel.Post::class.java))
+            else
+                mCommentDatas.add(
+                        Gson().fromJson(it.data, CommentModel.Comment::class.java))
+        }
+    }
+
+    override fun initView() {
+        initRefreshLayout()
+    }
+
+    private fun initRefreshLayout() {
+        mUi.refresh.isEnabled = false
+    }
+
+    private fun getAdapter() {
+
     }
 }

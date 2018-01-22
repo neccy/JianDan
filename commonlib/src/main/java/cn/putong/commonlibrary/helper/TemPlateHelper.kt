@@ -7,10 +7,12 @@ package cn.putong.commonlibrary.helper
 object TemPlateHelper {
     // 新鲜事
     const val NEWTHINGS = 0
+    // 流行
+    const val POPULAR = 1
     // 无聊图
-    const val BORINGPICS = 1
+    const val BORINGPICS = 2
     // 段子
-    const val DUANZIS = 2
+    const val DUANZIS = 3
     // 妹子图
-    const val MEIZIPICS = 3
+    const val MEIZIPICS = 4
 }

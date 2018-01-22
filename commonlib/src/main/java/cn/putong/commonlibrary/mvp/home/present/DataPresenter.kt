@@ -34,6 +34,24 @@ class DataPresenter(IDataView: IDataView) {
     }
 
     /**
+     * 获取流行数据列表
+     */
+    fun getPopulars() {
+        dataView.showLoading()
+        dataBiz.getPopulars(object : IBaseApiResultListener {
+            override fun successful(model: Any) {
+                dataView.hideLoading()
+                dataView.updateCommentData(model as CommentModel)
+            }
+
+            override fun faild(msg: String) {
+                dataView.error(msg)
+                dataView.hideLoading()
+            }
+        })
+    }
+
+    /**
      * 获取无聊图数据列表
      */
     fun getBoringPics() {

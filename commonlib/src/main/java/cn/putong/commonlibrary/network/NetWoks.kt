@@ -11,14 +11,18 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object NetWoks {
 
-    private const val APIURL = "https://i.jandan.net"
+    private const val JIANDAN_URL = "https://i.jandan.net"
+    const val MOYU_URL = "https://api.moyu.today"
 
-    fun <T> configRetrofit(mService: Class<T>): T {
+    fun <T> configRetrofit(mService: Class<T>, baseurl: String = JIANDAN_URL): T {
         val gson = GsonBuilder()
                 .setLenient()
                 .create()
-        val retrofit = Retrofit.Builder().baseUrl(APIURL).
-                addConverterFactory(GsonConverterFactory.create(gson)).build()
+        val retrofit = Retrofit
+                .Builder()
+                .baseUrl(baseurl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
         return retrofit.create(mService)
     }
 }

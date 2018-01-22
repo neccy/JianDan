@@ -30,8 +30,14 @@ interface ApiService {
     /**
      * 获取新鲜事评论列表
      */
-    @GET(value = " /?oxwlxojflwblxbsapi=get_post&id=?&include=comments")
+    @GET(value = "/?oxwlxojflwblxbsapi=get_post&id=?&include=comments")
     fun getNewThingsComments(@Query(value = "id") id: Int): Call<PostCommentModel>
+
+    /**
+     * 获取流行数据列表
+     */
+    @GET(value = "/jandan/hot?category=recent")
+    fun getPopulars(): Call<CommentModel>
 
     /**
      * 获取无聊图列表

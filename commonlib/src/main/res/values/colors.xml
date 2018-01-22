@@ -10,4 +10,12 @@
     <color name="tablayout_text_color">#7A7A7A</color>
     <color name="recyclerview_bg_color">#FAFAFA</color>
     <color name="textview_black_color">#202020</color>
+
+    <!--Post Item-->
+    <color name="post_item_img_placeholder">#E6E6E6</color>
+
+    <!--Comment Content-->
+    <color name="comment_item_content_pic_placeholder">@color/post_item_img_placeholder</color>
+    <color name="comment_item_content_select_positive">@color/colorAccent</color>
+    <color name="comment_item_content_select_negative">#3F51B5</color>
 </resources>

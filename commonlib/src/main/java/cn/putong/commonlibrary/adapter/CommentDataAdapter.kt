@@ -1,4 +1,4 @@
-package cn.putong.home.adapter
+package cn.putong.commonlibrary.adapter
 
 import android.net.Uri
 import android.support.v4.content.ContextCompat
@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.putong.commonlibrary.R
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.realm.AppDB
-import cn.putong.home.R
 import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 import org.jetbrains.anko.textColor
 
@@ -84,7 +84,7 @@ class CommentDataAdapter(
 
                 positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
                 negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
-                comment_count.text = resources.getString(R.string.comment_count_text, mComment.sub_comment_count)
+                comment_count.text = resources.getString(R.string.tucao_count_text, mComment.sub_comment_count)
 
                 positive_count.setOnClickListener {
                     if (!mComment.positive_status && !mComment.negative_status) {
