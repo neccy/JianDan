@@ -13,7 +13,7 @@ object TipBar {
      * 显示基本SnackBar
      */
     fun showTip(view: View, message: String) {
-        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
     }
 
 }

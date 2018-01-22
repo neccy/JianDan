@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cn.putong.commonlibrary.R
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.*
@@ -80,9 +79,12 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
             mDataPrenSenter.negative(comment.comment_ID)
         }, {
 
-        }, { view ->
-            context.showCommentMoreMenu(view,
-                    R.menu.comment_more_items)
+        }, { view, comment ->
+            context.showCommentMoreMenu(view, {
+
+            }, {
+
+            })
         })
     }
 
