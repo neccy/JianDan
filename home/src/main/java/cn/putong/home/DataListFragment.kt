@@ -24,6 +24,9 @@ import cn.putong.home.adapter.PostDataAdapter
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
+/**
+ * 数据列表界面
+ */
 @SuppressLint(value = ["ValidFragment"])
 class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
 

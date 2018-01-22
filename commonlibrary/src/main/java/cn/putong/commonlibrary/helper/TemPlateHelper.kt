@@ -6,11 +6,11 @@ package cn.putong.commonlibrary.helper
  */
 object TemPlateHelper {
     // 新鲜事
-    val NEWTHINGS = 0
+    const val NEWTHINGS = 0
     // 无聊图
-    val BORINGPICS = 1
+    const val BORINGPICS = 1
     // 段子
-    val DUANZIS = 2
+    const val DUANZIS = 2
     // 妹子图
-    val MEIZIPICS = 3
+    const val MEIZIPICS = 3
 }
