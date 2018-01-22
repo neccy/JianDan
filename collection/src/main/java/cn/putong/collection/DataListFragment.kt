@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import cn.putong.commonlibrary.adapter.CommentDataAdapter
 import cn.putong.commonlibrary.adapter.PostDataAdapter
 import cn.putong.commonlibrary.base.BaseFragment
-import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
-import cn.putong.commonlibrary.realm.AppDB
 import cn.putong.commonlibrary.ui.DataListFragmentUi
-import com.google.gson.Gson
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -48,15 +45,6 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment() {
 
         mCommentDatas = ArrayList()
         mPostDatas = ArrayList()
-
-        AppDB.getDataCollection(mTemPlate)?.forEach {
-            if (mTemPlate == TemPlateHelper.NEWTHINGS)
-                mPostDatas.add(
-                        Gson().fromJson(it.data, PostModel.Post::class.java))
-            else
-                mCommentDatas.add(
-                        Gson().fromJson(it.data, CommentModel.Comment::class.java))
-        }
     }
 
     override fun initView() {
