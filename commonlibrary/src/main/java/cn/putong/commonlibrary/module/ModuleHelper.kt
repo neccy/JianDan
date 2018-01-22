@@ -86,4 +86,14 @@ object ModuleHelper {
         fragment.start(mWebFragment)
     }
 
+    /**
+     * 启动收藏组件
+     */
+    fun startCollectionModule(fragment: BaseFragment) {
+        val mCollectionFragment = ARouter.getInstance()
+                .build(Module.MODULE_COLLECTION_PATH)
+                .navigation() as BaseFragment
+        fragment.start(mCollectionFragment)
+    }
+
 }

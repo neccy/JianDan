@@ -1,10 +1,4 @@
 <resources>
-
-    <string name="home_template_newthings">新鲜事</string>
-    <string name="home_template_boringpics">无聊图</string>
-    <string name="home_template_duanzis">闲段子</string>
-    <string name="home_template_meizipics">妹子图</string>
-
     <string name="home_menu_action_night_model">夜间模式</string>
     <string name="home_menu_action_collection">我的收藏</string>
     <string name="home_menu_action_setting">设置</string>

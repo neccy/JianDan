@@ -33,11 +33,12 @@ class CommentDataAdapter(
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         val attachToRoot = false
         return if (viewType == TYPE_NORMAL)
-            CardViewHolder(LayoutInflater.from(parent?.context).
-                    inflate(R.layout.item_comment, parent, attachToRoot))
+            CardViewHolder(LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.item_comment, parent, attachToRoot))
         else
-            PostDataAdapter.FooterViewHolder(LayoutInflater.from(parent?.context).
-                    inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
+            PostDataAdapter
+                    .FooterViewHolder(LayoutInflater.from(parent?.context)
+                            .inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -59,7 +60,8 @@ class CommentDataAdapter(
                     pic.visibility = View.GONE
                 } else {
                     // 目前默认显示一张
-                    FrescoHelper.setAnimatorController(Uri.parse(mComment.pics[0]), pic)
+                    FrescoHelper
+                            .setAnimatorController(Uri.parse(mComment.pics[0]), pic)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
                         onPicClickListener.invoke(mComment.pics)
@@ -80,10 +82,9 @@ class CommentDataAdapter(
                         else
                             ContextCompat.getColor(context, R.color.textview_color)
 
-                positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
-                negative_count.text = resources.getString(R.string.comment_content_negative_symbol, mComment.vote_negative)
-                comment_count.text = resources.getString(R.string.comment_content_comment_count_text, mComment.sub_comment_count)
-
+                positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
+                negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
+                comment_count.text = resources.getString(R.string.comment_count_text, mComment.sub_comment_count)
 
                 positive_count.setOnClickListener {
                     if (!mComment.positive_status && !mComment.negative_status) {

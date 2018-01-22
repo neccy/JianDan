@@ -17,10 +17,10 @@ import cn.putong.commonlibrary.mvp.home.present.DataPresenter
 import cn.putong.commonlibrary.mvp.home.view.IDataView
 import cn.putong.commonlibrary.otto.event.PostRecordEvent
 import cn.putong.commonlibrary.otto.event.UnWelComeEvent
+import cn.putong.commonlibrary.ui.DataListFragmentUi
 import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.CommentDataAdapter
 import cn.putong.home.adapter.PostDataAdapter
-import cn.putong.home.ui.DataListFragmentUi
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
 
@@ -31,7 +31,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private var mLongingMore = false
 
     private lateinit var mUi:
-            DataListFragmentUi
+            DataListFragmentUi<DataListFragment>
     private lateinit var mDataPrenSenter:
             DataPresenter
 

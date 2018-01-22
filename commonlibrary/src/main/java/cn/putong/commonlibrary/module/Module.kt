@@ -24,6 +24,9 @@ object Module {
     // WEB组件路径
     const val MODULE_WEB_PATH = "/web/main"
 
+    // 收藏组件入口
+    const val MODULE_COLLECTION_PATH = "/collection/main"
+
 
     // 数据类型所属分类
     val PARAM_DATA_CLASS = "data_class"

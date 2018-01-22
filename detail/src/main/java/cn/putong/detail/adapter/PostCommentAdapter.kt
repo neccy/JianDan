@@ -22,8 +22,8 @@ class PostCommentAdapter(
         with(holder!!.itemView) {
             val mComment = mList[position]
             author.text = mComment.name
-            positive_count.text = resources.getString(R.string.comment_content_positive_symbol, mComment.vote_positive)
-            negative_count.text = resources.getString(R.string.comment_content_negative_symbol, mComment.vote_negative)
+            positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
+            negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
             time.text = TimeHelper.format(TimeHelper.getDate(mComment.date))
             content.text = Html.fromHtml(mComment.content).trim()
         }

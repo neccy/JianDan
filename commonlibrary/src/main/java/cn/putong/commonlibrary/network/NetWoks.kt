@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object NetWoks {
 
-    private val APIURL = "https://i.jandan.net"
+    private const val APIURL = "https://i.jandan.net"
 
     fun <T> configRetrofit(mService: Class<T>): T {
         val gson = GsonBuilder()

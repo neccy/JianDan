@@ -8,9 +8,9 @@ import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
 import cn.putong.commonlibrary.otto.event.TemplateEvent
+import cn.putong.commonlibrary.ui.ViewPagerFragmentUi
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
-import cn.putong.home.ui.HomeFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.AnkoContext
@@ -22,7 +22,7 @@ import org.jetbrains.anko.AnkoContext
 @Route(path = Module.MODULE_HOME_PATH)
 class HomeFragment : BaseFragment() {
 
-    private lateinit var mUi: HomeFragmentUi
+    private lateinit var mUi: ViewPagerFragmentUi<HomeFragment>
 
     private lateinit var mFragmentsAdapter: DataListFragmentAdapter
     private lateinit var mFragments: ArrayList<DataListFragment>
@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initUi() {
-        mUi = HomeFragmentUi()
+        mUi = ViewPagerFragmentUi()
     }
 
     override fun initData() {
@@ -98,6 +98,8 @@ class HomeFragment : BaseFragment() {
         when (item!!.itemId) {
             R.id.action_setting ->
                 ModuleHelper.startSetModule(fragment = this)
+            R.id.action_collection ->
+                ModuleHelper.startCollectionModule(fragment = this)
         }
         return true
     }
