@@ -44,7 +44,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // LiBrary
-    implementation project(':commonlibrary')
+    implementation project(':commonlib')
     implementation project(':home')
     implementation project(':detail')
     implementation project(':gallery')
