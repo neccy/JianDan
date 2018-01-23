@@ -53,8 +53,8 @@ dependencies {
     compile "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
 
     // FireBase
-    implementation "com.google.firebase:firebase-core:$firebase_version"
-    implementation "com.google.firebase:firebase-database:$firebase_version"
+    compile "com.google.firebase:firebase-core:$firebase_version"
+    compile "com.google.firebase:firebase-database:$firebase_version"
 
     // UI 
     compile 'me.yokeyword:fragmentation:1.2.4'
