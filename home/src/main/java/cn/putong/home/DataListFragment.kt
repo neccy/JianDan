@@ -238,7 +238,7 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
         if (!mUi.refresh.isRefreshing
                 && mUi.progressbar.visibility == View.GONE
                 && !mLongingMore)
-            if (isSupportVisible){
+            if (isSupportVisible) {
                 mUi.refresh.isRefreshing = true
                 mUi.listview.scrollToPosition(0)
                 getData()

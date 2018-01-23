@@ -28,6 +28,8 @@ class CommentDataAdapter(
         private val onMoreClickListener: (View, CommentModel.Comment) -> Unit)
     : BaseRecyclerAdapter() {
 
+    private val PAYLOAD = "payload"
+
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
@@ -39,6 +41,31 @@ class CommentDataAdapter(
             PostDataAdapter
                     .FooterViewHolder(LayoutInflater.from(parent?.context)
                             .inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?,
+                                  position: Int, payloads: MutableList<Any>?) {
+
+        if (payloads!!.isEmpty()) {
+            onBindViewHolder(holder, position)
+        } else
+            if (holder is CardViewHolder)
+                with(holder.itemView!!) {
+                    val mComment = mList[position]
+                    positive_count.textColor =
+                            if (mComment.positive_status)
+                                ContextCompat.getColor(context,
+                                        R.color.comment_item_content_select_positive)
+                            else
+                                ContextCompat.getColor(context, R.color.textview_color)
+
+                    negative_count.textColor =
+                            if (mComment.negative_status)
+                                ContextCompat.getColor(context,
+                                        R.color.comment_item_content_select_negative)
+                            else
+                                ContextCompat.getColor(context, R.color.textview_color)
+                }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -91,7 +118,7 @@ class CommentDataAdapter(
                         AppDB.savePositiveRecord(mComment.comment_ID)
                         mComment.vote_positive += 1
                         mComment.positive_status = true
-                        notifyItemChanged(position)
+                        notifyItemChanged(position, PAYLOAD)
                         onPositiveClickListener.invoke(mComment)
                     }
                 }
@@ -101,7 +128,7 @@ class CommentDataAdapter(
                         AppDB.saveNegativeRecord(mComment.comment_ID)
                         mComment.vote_negative += 1
                         mComment.negative_status = true
-                        notifyItemChanged(position)
+                        notifyItemChanged(position, PAYLOAD)
                         onNegativeClickListener.invoke(mComment)
                     }
                 }
