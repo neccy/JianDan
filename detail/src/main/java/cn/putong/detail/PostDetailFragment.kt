@@ -66,6 +66,9 @@ class PostDetailFragment : BaseFragment(), IDetailView {
 
     private fun initToolBar() {
         mUi.toolbar.setToolbar(mNewData.title, mIsBack = true)
+        mUi.toolbar.setNavigationOnClickListener {
+            hideLoading()
+        }
         mUi.toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_grey600_24dp)
     }
 
@@ -98,7 +101,6 @@ class PostDetailFragment : BaseFragment(), IDetailView {
 
     override fun getDataId() = mNewData.id
 
-
     override fun onSupportVisible() {
         super.onSupportVisible()
         initWebView()
@@ -128,4 +130,8 @@ class PostDetailFragment : BaseFragment(), IDetailView {
         return true
     }
 
+    override fun onBackPressedSupport(): Boolean {
+        hideLoading()
+        return super.onBackPressedSupport()
+    }
 }
