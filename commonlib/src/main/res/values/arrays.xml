@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--首页分类-->
+    <!--首页模版-->
     <string-array name="template_item">
         <item>@string/template_newthings</item>
         <item>@string/template_hot</item>

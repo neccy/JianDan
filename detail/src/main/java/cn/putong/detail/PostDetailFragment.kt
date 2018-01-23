@@ -6,7 +6,7 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.helper.setWebView
 import cn.putong.commonlibrary.module.Module
-import cn.putong.commonlibrary.module.ModuleHelper
+import cn.putong.commonlibrary.module.startGalleryModule
 import cn.putong.commonlibrary.mvp.detail.model.PostDetailModel
 import cn.putong.commonlibrary.mvp.detail.presenter.DetailPresenter
 import cn.putong.commonlibrary.mvp.detail.view.IDetailView
@@ -75,8 +75,7 @@ class PostDetailFragment : BaseFragment(), IDetailView {
 
     override fun initListener() {
         mUi.picview.setOnClickListener {
-            ModuleHelper
-                    .startGalleryModule(fragment = this, pics = mNewData.custom_fields.thumb_c)
+            startGalleryModule(pics = mNewData.custom_fields.thumb_c)
         }
     }
 

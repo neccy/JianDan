@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_hotlist"
+        android:id="@+id/action_hot"
         android:icon="?attr/whatshot"
         android:title="@string/home_menu_action_hotlist"
         app:showAsAction="always" />

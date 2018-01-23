@@ -12,7 +12,8 @@ import cn.putong.commonlibrary.adapter.PostDataAdapter
 import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.*
-import cn.putong.commonlibrary.module.ModuleHelper
+import cn.putong.commonlibrary.module.startGalleryModule
+import cn.putong.commonlibrary.module.startPosDetailtModule
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.mvp.home.model.PostModel
 import cn.putong.commonlibrary.mvp.home.present.DataPresenter
@@ -69,11 +70,11 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
     private fun initAdapter() {
         val mParentFragment = (parentFragment as HomeFragment)
         mPostAdapter = PostDataAdapter { position ->
-            ModuleHelper.startPosDetailtModule(mParentFragment,
+            mParentFragment.startPosDetailtModule(
                     position, mPostDatas[position])
         }
         mCommentAdapter = CommentDataAdapter(ArrayList(), { pics ->
-            ModuleHelper.startGalleryModule(mParentFragment, pics)
+            mParentFragment.startGalleryModule(pics)
         }, { comment ->
             mDataPrenSenter.positive(comment.comment_ID)
         }, { comment ->

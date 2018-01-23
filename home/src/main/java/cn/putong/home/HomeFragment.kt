@@ -7,7 +7,9 @@ import cn.putong.commonlibrary.base.BaseFragment
 import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
-import cn.putong.commonlibrary.module.ModuleHelper
+import cn.putong.commonlibrary.module.startCollectionModule
+import cn.putong.commonlibrary.module.startHotMoudle
+import cn.putong.commonlibrary.module.startSetModule
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.TemplateEvent
 import cn.putong.commonlibrary.otto.event.UpdateDataEvent
@@ -114,9 +116,11 @@ class HomeFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.action_setting ->
-                ModuleHelper.startSetModule(fragment = this)
+                startSetModule()
+            R.id.action_hot ->
+                startHotMoudle()
             R.id.action_collection ->
-                ModuleHelper.startCollectionModule(fragment = this)
+                startCollectionModule()
         }
         return true
     }

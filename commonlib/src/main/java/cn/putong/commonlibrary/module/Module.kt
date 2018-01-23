@@ -27,6 +27,9 @@ object Module {
     // 收藏组件入口
     const val MODULE_COLLECTION_PATH = "/collection/main"
 
+    // 热榜组件入口
+    const val MODULE_HOT_PATH = "/hot/main"
+
 
     // 数据类型所属分类
     val PARAM_DATA_CLASS = "data_class"
