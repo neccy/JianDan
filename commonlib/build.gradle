@@ -52,7 +52,11 @@ dependencies {
     compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     compile "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
 
-    // UI
+    // FireBase
+    implementation "com.google.firebase:firebase-core:$firebase_version"
+    implementation "com.google.firebase:firebase-database:$firebase_version"
+
+    // UI 
     compile 'me.yokeyword:fragmentation:1.2.4'
 
     // NetWork
@@ -79,3 +83,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
 }
+
+// FireBase
+apply plugin: 'com.google.gms.google-services'

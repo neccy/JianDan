@@ -4,26 +4,17 @@
     <modules>
       <module fileurl="file://D:\Development\Android\AndroidProject\JianDan\home\Information.iml" filepath="D:\Development\Android\AndroidProject\JianDan\home\Information.iml" />
       <module fileurl="file://$PROJECT_DIR$/JianDan.iml" filepath="$PROJECT_DIR$/JianDan.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\JianDan.iml" filepath="D:\Development\Android\Personal\JianDan\JianDan.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\app\app.iml" filepath="D:\Development\Android\Personal\JianDan\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/collection/collection.iml" filepath="$PROJECT_DIR$/collection/collection.iml" />
       <module fileurl="file://D:\Development\Android\AndroidProject\JianDan\collection\collection.iml" filepath="D:\Development\Android\AndroidProject\JianDan\collection\collection.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\collection\collection.iml" filepath="D:\Development\Android\Personal\JianDan\collection\collection.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\commonlib\commonlib.iml" filepath="D:\Development\Android\Personal\JianDan\commonlib\commonlib.iml" />
       <module fileurl="file://D:\Development\Android\AndroidProject\JianDan\commonlib\commonlibrary.iml" filepath="D:\Development\Android\AndroidProject\JianDan\commonlib\commonlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/detail/detail.iml" filepath="$PROJECT_DIR$/detail/detail.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\detail\detail.iml" filepath="D:\Development\Android\Personal\JianDan\detail\detail.iml" />
       <module fileurl="file://$PROJECT_DIR$/gallery/gallery.iml" filepath="$PROJECT_DIR$/gallery/gallery.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\gallery\gallery.iml" filepath="D:\Development\Android\Personal\JianDan\gallery\gallery.iml" />
       <module fileurl="file://$PROJECT_DIR$/home/home.iml" filepath="$PROJECT_DIR$/home/home.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\home\home.iml" filepath="D:\Development\Android\Personal\JianDan\home\home.iml" />
       <module fileurl="file://$PROJECT_DIR$/hot/hot.iml" filepath="$PROJECT_DIR$/hot/hot.iml" />
       <module fileurl="file://$PROJECT_DIR$/setting/setting.iml" filepath="$PROJECT_DIR$/setting/setting.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\setting\setting.iml" filepath="D:\Development\Android\Personal\JianDan\setting\setting.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
-      <module fileurl="file://D:\Development\Android\Personal\JianDan\web\web.iml" filepath="D:\Development\Android\Personal\JianDan\web\web.iml" />
     </modules>
   </component>
 </project>

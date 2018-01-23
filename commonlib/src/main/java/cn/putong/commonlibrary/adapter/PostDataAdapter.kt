@@ -71,9 +71,11 @@ class PostDataAdapter(
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_NORMAL ->
-                NormalViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_post, parent, false))
+                NormalViewHolder(LayoutInflater.from(parent?.context)
+                        .inflate(R.layout.item_post, parent, false))
             else ->
-                FooterViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_recyclerview_footer, parent, false))
+                FooterViewHolder(LayoutInflater.from(parent?.context)
+                        .inflate(R.layout.item_recyclerview_footer, parent, false))
         }
     }
 

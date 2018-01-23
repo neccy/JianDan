@@ -2,11 +2,11 @@ buildscript {
     ext.kotlin_version = '1.2.20'
     ext.anko_version = '0.10.4'
     ext.support_version = '26.1.0'
+    ext.firebase_version = '11.8.0'
     repositories {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url 'https://github.com/500px/greedo-layout-for-android/raw/master/releases/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -14,6 +14,9 @@ buildscript {
 
         // Realm
         classpath "io.realm:realm-gradle-plugin:3.7.2"
+
+        // FireBase
+        classpath 'com.google.gms:google-services:3.1.1'
     }
 }
 
@@ -21,6 +24,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
 
