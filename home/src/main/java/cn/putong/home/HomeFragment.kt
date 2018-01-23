@@ -8,9 +8,10 @@ import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.ModuleHelper
+import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.TemplateEvent
+import cn.putong.commonlibrary.otto.event.UpdateDataEvent
 import cn.putong.commonlibrary.ui.ViewPagerFragmentUi
-import cn.putong.commonlibrary.widget.TipBar
 import cn.putong.home.adapter.DataListFragmentAdapter
 import cn.putong.home.helper.HawkHelper
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -94,9 +95,10 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initListener() {
+        // Tab点击事件
         mUi.tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                TipBar.showTip(mUi.toolbar, tab!!.position.toString())
+                AppEvent.post(UpdateDataEvent())
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}

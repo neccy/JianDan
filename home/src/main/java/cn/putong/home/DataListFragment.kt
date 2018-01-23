@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import cn.putong.commonlibrary.mvp.home.present.DataPresenter
 import cn.putong.commonlibrary.mvp.home.view.IDataView
 import cn.putong.commonlibrary.otto.event.PostRecordEvent
 import cn.putong.commonlibrary.otto.event.UnWelComeEvent
+import cn.putong.commonlibrary.otto.event.UpdateDataEvent
 import cn.putong.commonlibrary.ui.DataListFragmentUi
 import cn.putong.commonlibrary.widget.TipBar
 import com.squareup.otto.Subscribe
@@ -215,17 +217,33 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
      * 根据详情页面发送过来的下标更新已看状态
      */
     @Subscribe
-    fun getPositionUpdateAdapter(record: PostRecordEvent) {
+    fun getPositionUpdateAdapter(event: PostRecordEvent) {
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
-            mPostAdapter.notifyItemChanged(record.position)
+            mPostAdapter.notifyItemChanged(event.position)
     }
 
     /**
      * 根据发送过来的通知更新Comment适配器
      */
     @Subscribe
-    fun getUnWelComeValue(unWelCome: UnWelComeEvent) {
+    fun getUnWelComeValue(event: UnWelComeEvent) {
         updateCommentAdapter()
+    }
+
+    /**
+     * 根据发送过来的模版更新 数据
+     */
+    @Subscribe
+    fun getTemplateUpdateData(event: UpdateDataEvent) {
+        // 正在加载、首次加载、加载更多时,禁止更新
+        if (!mUi.refresh.isRefreshing
+                && mUi.progressbar.visibility == View.GONE
+                && !mLongingMore)
+            if (isSupportVisible){
+                mUi.refresh.isRefreshing = true
+                mUi.listview.scrollToPosition(0)
+                getData()
+            }
     }
 
 }
