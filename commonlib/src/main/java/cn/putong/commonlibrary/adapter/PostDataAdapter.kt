@@ -25,6 +25,22 @@ class PostDataAdapter(
 
     private var FOOTER: PostModel.Post = PostModel.Post()
 
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int, payloads: MutableList<Any>?) {
+        if (payloads!!.isEmpty())
+            onBindViewHolder(holder, position)
+        else
+            if (holder is NormalViewHolder) {
+                with(holder.itemView!!) {
+                    val mPost = mList[position]
+                    val titleColor = if (!mPost.have_seen)
+                        ContextCompat.getColor(context, R.color.textview_black_color)
+                    else
+                        Color.GRAY
+                    title.textColor = titleColor
+                }
+            }
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is NormalViewHolder) {
             with(holder.itemView!!) {
@@ -55,11 +71,9 @@ class PostDataAdapter(
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_NORMAL ->
-                NormalViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_post, parent, false))
+                NormalViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_post, parent, false))
             else ->
-                FooterViewHolder(LayoutInflater.from(parent?.context).
-                        inflate(R.layout.item_recyclerview_footer, parent, false))
+                FooterViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_recyclerview_footer, parent, false))
         }
     }
 
@@ -81,8 +95,7 @@ class PostDataAdapter(
      * 设置已看状态
      */
     private fun List<PostModel.Post>.setHaveSeenStatus() {
-        filter { AppDB.getHaveSeeRecord(it.id) != null }.
-                forEach { it.have_seen = true }
+        filter { AppDB.getHaveSeeRecord(it.id) != null }.forEach { it.have_seen = true }
     }
 
     override fun addFooter() {

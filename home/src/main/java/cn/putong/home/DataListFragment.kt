@@ -218,8 +218,9 @@ class DataListFragment(private val mTemPlate: Int) : BaseFragment(), IDataView {
      */
     @Subscribe
     fun getPositionUpdateAdapter(event: PostRecordEvent) {
+        val mPayload = "payload"
         if (mTemPlate == TemPlateHelper.NEWTHINGS)
-            mPostAdapter.notifyItemChanged(event.position)
+            mPostAdapter.notifyItemChanged(event.position, mPayload)
     }
 
     /**
