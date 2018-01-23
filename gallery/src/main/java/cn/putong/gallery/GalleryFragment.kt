@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.putong.commonlibrary.base.BaseFragment
+import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.module.Module
 import cn.putong.gallery.ui.GalleryFragmentUi
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -51,7 +52,7 @@ class GalleryFragment() : BaseFragment() {
         mPicViews = arrayListOf()
         mPics.forEach {
             val mPicView = PhotoDraweeView(context)
-            mPicView.setPhotoUri(Uri.parse(it))
+            FrescoHelper.setAnimatorController(Uri.parse(it), mPicView)
             mPicViews.add(mPicView)
         }
     }
