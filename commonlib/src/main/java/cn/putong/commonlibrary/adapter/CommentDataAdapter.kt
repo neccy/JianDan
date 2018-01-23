@@ -65,6 +65,9 @@ class CommentDataAdapter(
                                         R.color.comment_item_content_select_negative)
                             else
                                 ContextCompat.getColor(context, R.color.textview_color)
+
+                    positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
+                    negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
                 }
     }
 
