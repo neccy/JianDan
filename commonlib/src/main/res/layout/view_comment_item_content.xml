@@ -55,6 +55,16 @@
         app:placeholderImage="@color/comment_item_content_pic_placeholder"
         tools:visibility="visible" />
 
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+    <!--android:id="@+id/pic"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/content"-->
+    <!--android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"-->
+    <!--android:visibility="gone"-->
+    <!--app:placeholderImage="@color/comment_item_content_pic_placeholder"-->
+    <!--tools:visibility="visible" />-->
+
     <TextView
         android:id="@+id/positive_count"
         android:layout_width="wrap_content"
