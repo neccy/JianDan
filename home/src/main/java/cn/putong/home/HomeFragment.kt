@@ -8,7 +8,6 @@ import cn.putong.commonlibrary.helper.TemPlateHelper
 import cn.putong.commonlibrary.helper.getMeiZiValue
 import cn.putong.commonlibrary.module.Module
 import cn.putong.commonlibrary.module.startCollectionModule
-import cn.putong.commonlibrary.module.startHotMoudle
 import cn.putong.commonlibrary.module.startSetModule
 import cn.putong.commonlibrary.otto.AppEvent
 import cn.putong.commonlibrary.otto.event.TemplateEvent
@@ -117,8 +116,8 @@ class HomeFragment : BaseFragment() {
         when (item!!.itemId) {
             R.id.action_setting ->
                 startSetModule()
-            R.id.action_hot ->
-                startHotMoudle()
+//            R.id.action_hot ->
+//                startHotMoudle()
             R.id.action_collection ->
                 startCollectionModule()
         }
