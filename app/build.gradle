@@ -51,5 +51,4 @@ dependencies {
     implementation project(':setting')
     implementation project(':web')
     implementation project(':collection')
-    implementation project(':hot')
 }

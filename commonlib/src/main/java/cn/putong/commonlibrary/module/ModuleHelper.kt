@@ -98,7 +98,7 @@ fun BaseFragment.startCollectionModule() {
 /**
  * 启动热榜组件
  */
-fun BaseFragment.startHotMoudle(){
+fun BaseFragment.startHotMoudle() {
     val mHotFragment = ARouter.getInstance()
             .build(Module.MODULE_HOT_PATH)
             .navigation() as BaseFragment
