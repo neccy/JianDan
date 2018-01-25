@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/comment_item_content_main_vertical_margin"
@@ -47,23 +47,21 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/pic"
+        app:placeholderImage="@color/comment_item_content_pic_placeholder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/comment_item_content_pic_height"
         android:layout_below="@+id/content"
         android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"
         android:visibility="gone"
-        app:placeholderImage="@color/comment_item_content_pic_placeholder"
         tools:visibility="visible" />
 
-    <!--<com.facebook.drawee.view.SimpleDraweeView-->
-    <!--android:id="@+id/pic"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/content"-->
-    <!--android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"-->
-    <!--android:visibility="gone"-->
-    <!--app:placeholderImage="@color/comment_item_content_pic_placeholder"-->
-    <!--tools:visibility="visible" />-->
+    <!--<pl.droidsonroids.gif.GifImageView-->
+        <!--android:id="@+id/pic"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/content"-->
+        <!--android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"-->
+        <!--android:visibility="gone" />-->
 
     <TextView
         android:id="@+id/positive_count"
