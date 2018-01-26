@@ -6,13 +6,16 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import cn.putong.commonlibrary.R
 import com.facebook.drawee.view.SimpleDraweeView
+import android.widget.RelativeLayout
+import android.widget.TextView
+
+
 
 /**
  * 图片网格适配器
  * Created by xinyi on 2018/1/26.
  */
 class PicGirdAdapter(private var mPics: ArrayList<String>) : BaseAdapter() {
-
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val holder: ViewHolder
@@ -22,14 +25,21 @@ class PicGirdAdapter(private var mPics: ArrayList<String>) : BaseAdapter() {
             view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_pic, parent, false)
             holder = ViewHolder()
-            holder.pic = view.findViewById(R.id.pic)
+            holder.pic = view.findViewById(R.id.pic) as SimpleDraweeView
             view.tag = holder
         } else {
             view = convertView
             holder = view.tag as ViewHolder
+
+            if (holder.pic.tag != null) {
+                val tagValue = holder.pic.tag.toString()
+                if (tagValue == mPics[position])
+                    return view
+            }
         }
 
         holder.pic.setImageURI(mPics[position])
+        holder.pic.tag = mPics[position]
         return view
     }
 
@@ -41,10 +51,12 @@ class PicGirdAdapter(private var mPics: ArrayList<String>) : BaseAdapter() {
 
     fun updateList(mPics: ArrayList<String>) {
         this.mPics = mPics
-        notifyDataSetChanged()
+        // notifyDataSetChanged()
     }
 
     class ViewHolder {
         lateinit var pic: SimpleDraweeView
     }
+
+
 }
