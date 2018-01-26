@@ -72,13 +72,13 @@
             app:placeholderImage="@color/comment_item_content_pic_placeholder"
             tools:visibility="visible" />
 
-        <GridView
-            android:verticalSpacing="3dp"
-            android:horizontalSpacing="3dp"
-            android:numColumns="3"
+        <cn.putong.commonlibrary.widget.MyGridView
             android:id="@+id/pics_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
             android:visibility="gone" />
     </RelativeLayout>
 
