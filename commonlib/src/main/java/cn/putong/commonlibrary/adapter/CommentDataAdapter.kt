@@ -68,6 +68,7 @@ class CommentDataAdapter(
 
                     positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
                     negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
+
                 }
     }
 

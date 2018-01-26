@@ -1,9 +1,6 @@
 package cn.putong.commonlibrary.helper
 
-import android.content.Context
 import android.net.Uri
-import android.util.DisplayMetrics
-import android.view.WindowManager
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.request.ImageRequestBuilder
@@ -43,13 +40,4 @@ object FrescoHelper {
                         .setUri(uri)
                         .build()
     }
-
-    private fun getScreenWidth(context: Context): Int {
-        val wm = context
-                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val outMetrics = DisplayMetrics()
-        wm.defaultDisplay.getMetrics(outMetrics)
-        return outMetrics.widthPixels
-    }
-
 }
