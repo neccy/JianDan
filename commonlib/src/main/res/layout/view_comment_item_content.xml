@@ -52,6 +52,7 @@
         android:layout_below="@+id/content"
         android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"
         android:visibility="gone"
+        app:actualImageScaleType="focusCrop"
         app:placeholderImage="@color/comment_item_content_pic_placeholder"
         tools:visibility="visible" />
 

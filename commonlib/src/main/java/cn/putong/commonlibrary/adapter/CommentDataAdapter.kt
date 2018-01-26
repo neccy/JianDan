@@ -1,6 +1,5 @@
 package cn.putong.commonlibrary.adapter
 
-import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -91,8 +90,9 @@ class CommentDataAdapter(
                     pic.visibility = View.GONE
                 } else {
                     // 目前默认显示一张
+                    val mPicUrl = mComment.pics[0]
                     FrescoHelper
-                            .setAnimatorController(Uri.parse(mComment.pics[0]), pic)
+                            .setControllerListener(pic, mPicUrl, imageWidth = 1050)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
                         onPicClickListener.invoke(mComment.pics)

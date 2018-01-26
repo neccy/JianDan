@@ -7,4 +7,6 @@
     <!--通用 AppBarLayout Id-->
     <item name="appbarlayout" type="id" />
 
+    <item name="fresco_tag" type="id" />
+
 </resources>
