@@ -2,14 +2,12 @@ package cn.putong.commonlibrary.helper
 
 import android.graphics.drawable.Animatable
 import android.net.Uri
-import cn.putong.commonlibrary.R
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import me.relex.photodraweeview.PhotoDraweeView
-
 
 /**
  * Fresco封装

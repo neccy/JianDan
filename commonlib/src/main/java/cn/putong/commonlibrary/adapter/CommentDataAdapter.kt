@@ -1,5 +1,6 @@
 package cn.putong.commonlibrary.adapter
 
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -89,14 +90,24 @@ class CommentDataAdapter(
                     // 是段子数据,隐藏图片显示
                     pic.visibility = View.GONE
                 } else {
-                    // 目前默认显示一张
-                    val mPicUrl = mComment.pics[0]
-                    FrescoHelper
-                            .setControllerListener(pic, mPicUrl, imageWidth = 1050)
-                    pic.visibility = View.VISIBLE
-                    pic.setOnClickListener {
-                        onPicClickListener.invoke(mComment.pics)
+                    if (mComment.pics.size == 1) {
+                        val mPicUrl = mComment.pics[0]
+                        FrescoHelper
+                                .setAnimatorController(Uri.parse(mPicUrl), pic)
+                        pics_grid.visibility = View.GONE
+                        pic.visibility = View.VISIBLE
+                        pic.setOnClickListener {
+                            onPicClickListener.invoke(mComment.pics)
+                        }
+                    } else {
+                        pics_grid.adapter = PicGirdAdapter(mComment.pics)
+                        pic.visibility = View.GONE
+                        pics_grid.visibility = View.VISIBLE
+                        pics_grid.setOnItemClickListener { parent, view, position, id ->
+
+                        }
                     }
+
                 }
 
                 positive_count.textColor =

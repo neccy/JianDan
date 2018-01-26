@@ -45,22 +45,48 @@
         tools:text="这是一条测试内容"
         tools:visibility="visible" />
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/pic"
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+    <!--android:id="@+id/pic"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/comment_item_content_pic_height"-->
+    <!--android:layout_below="@+id/content"-->
+    <!--android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"-->
+    <!--android:visibility="gone"-->
+    <!--app:actualImageScaleType="focusCrop"-->
+    <!--app:placeholderImage="@color/comment_item_content_pic_placeholder"-->
+    <!--tools:visibility="visible" />-->
+
+    <RelativeLayout
+        android:id="@+id/pic_content"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/comment_item_content_pic_height"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/content"
-        android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin"
-        android:visibility="gone"
-        app:actualImageScaleType="focusCrop"
-        app:placeholderImage="@color/comment_item_content_pic_placeholder"
-        tools:visibility="visible" />
+        android:layout_marginBottom="@dimen/comment_item_content_pic_vertical_margin">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/pic"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/comment_item_content_pic_height"
+            android:visibility="gone"
+            app:actualImageScaleType="focusCrop"
+            app:placeholderImage="@color/comment_item_content_pic_placeholder"
+            tools:visibility="visible" />
+
+        <GridView
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:id="@+id/pics_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/positive_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pic"
+        android:layout_below="@+id/pic_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_positive_horizontal_margin_right"
         android:layout_marginStart="@dimen/comment_item_content_positive_horizontal_margin_left"
@@ -73,7 +99,7 @@
         android:id="@+id/negative_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pic"
+        android:layout_below="@+id/pic_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/comment_item_content_negative_horizontal_margin"
         android:layout_toEndOf="@+id/positive_count"
@@ -86,7 +112,7 @@
         android:id="@+id/comment_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pic"
+        android:layout_below="@+id/pic_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/negative_count"
         android:background="@drawable/selector_background_borderless"
@@ -101,7 +127,7 @@
         android:layout_alignBottom="@+id/comment_count"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/comment_count"
-        android:layout_below="@+id/pic"
+        android:layout_below="@+id/pic_content"
         android:layout_marginEnd="@dimen/comment_item_content_more_horiz_margin"
         android:background="@drawable/selector_background_borderless"
         android:src="?attr/more_horiz_small" />
