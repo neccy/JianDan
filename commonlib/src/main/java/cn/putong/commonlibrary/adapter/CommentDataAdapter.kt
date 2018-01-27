@@ -15,9 +15,7 @@ import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.realm.AppDB
-import cn.putong.commonlibrary.widget.MyGridView
 import com.facebook.drawee.view.SimpleDraweeView
-import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 import org.jetbrains.anko.textColor
 
 /**
@@ -54,34 +52,33 @@ class CommentDataAdapter(
         if (payloads!!.isEmpty()) {
             onBindViewHolder(holder, position)
         } else
-            if (holder is CardViewHolder)
-                with(holder.itemView!!) {
-                    val mComment = mList[position]
-                    positive_count.textColor =
-                            if (mComment.positive_status)
-                                ContextCompat.getColor(context,
-                                        R.color.comment_item_content_select_positive)
-                            else
-                                ContextCompat.getColor(context, R.color.textview_color)
+            if (holder is CardViewHolder) {
+                val context = holder.negative_count.context
+                val mComment = mList[position]
 
-                    negative_count.textColor =
-                            if (mComment.negative_status)
-                                ContextCompat.getColor(context,
-                                        R.color.comment_item_content_select_negative)
-                            else
-                                ContextCompat.getColor(context, R.color.textview_color)
+                holder.positive_count.textColor =
+                        if (mComment.positive_status)
+                            ContextCompat.getColor(context,
+                                    R.color.comment_item_content_select_positive)
+                        else
+                            ContextCompat.getColor(context, R.color.textview_color)
 
-                    positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
-                    negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
+                holder.negative_count.textColor =
+                        if (mComment.negative_status)
+                            ContextCompat.getColor(context,
+                                    R.color.comment_item_content_select_negative)
+                        else
+                            ContextCompat.getColor(context, R.color.textview_color)
 
-                }
+                holder.positive_count.text = context.resources.getString(R.string.positive_symbol, mComment.vote_positive)
+                holder.negative_count.text = context.resources.getString(R.string.negative_symbol, mComment.vote_negative)
+            }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is CardViewHolder) {
 
             val context: Context = holder.author.context
-
             val mComment = mList[position]
 
             holder.author.text = mComment.comment_author
@@ -97,19 +94,13 @@ class CommentDataAdapter(
                 // 是段子数据,隐藏图片显示
                 holder.pic.visibility = View.GONE
             } else {
-                if (mComment.pics.size == 1) {
-                    val mPicPath = mComment.pics[0]
-                    FrescoHelper
-                            .setAnimatorController(Uri.parse(mPicPath), holder.pic)
-                    holder.pics_grid.visibility = View.GONE
-                    holder.pic.visibility = View.VISIBLE
-                    holder.pic.setOnClickListener {
-                        onPicClickListener.invoke(mComment.pics)
-                    }
-                } else {
-                    holder.mGirdAdapter.updateList(mComment.pics)
-                    holder.pic.visibility = View.GONE
-                    holder.pics_grid.visibility = View.VISIBLE
+                val mPicPath = mComment.pics[0]
+                FrescoHelper
+                        .setAnimatorController(Uri.parse(mPicPath), holder.pic)
+                // 设置标识
+                holder.pic.visibility = View.VISIBLE
+                holder.pic.setOnClickListener {
+                    onPicClickListener.invoke(mComment.pics)
                 }
             }
 
@@ -210,18 +201,10 @@ class CommentDataAdapter(
         val content: TextView = view.findViewById(R.id.content)
         val pic_content: View = view.findViewById(R.id.pic_content)
         val pic: SimpleDraweeView = view.findViewById(R.id.pic)
-        val pics_grid: MyGridView = view.findViewById(R.id.pics_grid)
         val positive_count: TextView = view.findViewById(R.id.positive_count)
         val negative_count: TextView = view.findViewById(R.id.negative_count)
         val comment_count: TextView = view.findViewById(R.id.comment_count)
         val more: ImageView = view.findViewById(R.id.more)
-
-        var mGirdAdapter: PicGirdAdapter = PicGirdAdapter(arrayListOf())
-
-        init {
-            pics_grid.adapter = mGirdAdapter
-        }
-
     }
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
