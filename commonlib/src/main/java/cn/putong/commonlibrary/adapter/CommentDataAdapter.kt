@@ -1,21 +1,17 @@
 package cn.putong.commonlibrary.adapter
 
-import android.content.Context
-import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import cn.putong.commonlibrary.R
 import cn.putong.commonlibrary.base.BaseRecyclerAdapter
 import cn.putong.commonlibrary.helper.FrescoHelper
 import cn.putong.commonlibrary.helper.TimeHelper
 import cn.putong.commonlibrary.mvp.home.model.CommentModel
 import cn.putong.commonlibrary.realm.AppDB
-import com.facebook.drawee.view.SimpleDraweeView
+import kotlinx.android.synthetic.main.view_comment_item_content.view.*
 import org.jetbrains.anko.textColor
 
 /**
@@ -52,105 +48,106 @@ class CommentDataAdapter(
         if (payloads!!.isEmpty()) {
             onBindViewHolder(holder, position)
         } else
-            if (holder is CardViewHolder) {
-                val context = holder.negative_count.context
+            if (holder is CardViewHolder)
+                with(holder.itemView!!) {
+                    val mComment = mList[position]
+                    positive_count.textColor =
+                            if (mComment.positive_status)
+                                ContextCompat.getColor(context,
+                                        R.color.comment_item_content_select_positive)
+                            else
+                                ContextCompat.getColor(context, R.color.textview_color)
+
+                    negative_count.textColor =
+                            if (mComment.negative_status)
+                                ContextCompat.getColor(context,
+                                        R.color.comment_item_content_select_negative)
+                            else
+                                ContextCompat.getColor(context, R.color.textview_color)
+
+                    positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
+                    negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
+
+                }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        if (holder is CardViewHolder)
+            with(holder.itemView!!) {
                 val mComment = mList[position]
 
-                holder.positive_count.textColor =
+                author.text = mComment.comment_author
+                time.text = TimeHelper.format(TimeHelper.getDate(mComment.comment_date))
+                content.text = mComment.text_content.trim()
+                content.visibility =
+                        if (mComment.text_content.trim().isEmpty())
+                            View.GONE
+                        else
+                            View.VISIBLE
+
+                if (mComment.pics.isEmpty()) {
+                    // 是段子数据,隐藏图片显示
+                    pic.visibility = View.GONE
+                } else {
+                    // 目前默认显示一张
+                    val mPicUrl = mComment.pics[0]
+                    // 设置自适应高度
+                    FrescoHelper
+                            .setControllerListener(pic, mPicUrl, imageWidth = 1050)
+
+                    pic.visibility = View.VISIBLE
+                    pic.setOnClickListener {
+                        onPicClickListener.invoke(mComment.pics)
+                    }
+                }
+
+                positive_count.textColor =
                         if (mComment.positive_status)
                             ContextCompat.getColor(context,
                                     R.color.comment_item_content_select_positive)
                         else
                             ContextCompat.getColor(context, R.color.textview_color)
 
-                holder.negative_count.textColor =
+                negative_count.textColor =
                         if (mComment.negative_status)
                             ContextCompat.getColor(context,
                                     R.color.comment_item_content_select_negative)
                         else
                             ContextCompat.getColor(context, R.color.textview_color)
 
-                holder.positive_count.text = context.resources.getString(R.string.positive_symbol, mComment.vote_positive)
-                holder.negative_count.text = context.resources.getString(R.string.negative_symbol, mComment.vote_negative)
-            }
-    }
+                positive_count.text = resources.getString(R.string.positive_symbol, mComment.vote_positive)
+                negative_count.text = resources.getString(R.string.negative_symbol, mComment.vote_negative)
+                comment_count.text = resources.getString(R.string.tucao_count_text, mComment.sub_comment_count)
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        if (holder is CardViewHolder) {
-
-            val context: Context = holder.author.context
-            val mComment = mList[position]
-
-            holder.author.text = mComment.comment_author
-            holder.time.text = TimeHelper.format(TimeHelper.getDate(mComment.comment_date))
-            holder.content.text = mComment.text_content.trim()
-            holder.content.visibility =
-                    if (mComment.text_content.trim().isEmpty())
-                        View.GONE
-                    else
-                        View.VISIBLE
-
-            if (mComment.pics.isEmpty()) {
-                // 是段子数据,隐藏图片显示
-                holder.pic.visibility = View.GONE
-            } else {
-                val mPicPath = mComment.pics[0]
-                FrescoHelper
-                        .setAnimatorController(Uri.parse(mPicPath), holder.pic)
-                // 设置标识
-                holder.pic.visibility = View.VISIBLE
-                holder.pic.setOnClickListener {
-                    onPicClickListener.invoke(mComment.pics)
+                positive_count.setOnClickListener {
+                    if (!mComment.positive_status && !mComment.negative_status) {
+                        AppDB.savePositiveRecord(mComment.comment_ID)
+                        mComment.vote_positive += 1
+                        mComment.positive_status = true
+                        notifyItemChanged(position, PAYLOAD)
+                        onPositiveClickListener.invoke(mComment)
+                    }
                 }
-            }
 
-            holder.positive_count.textColor =
-                    if (mComment.positive_status)
-                        ContextCompat.getColor(context,
-                                R.color.comment_item_content_select_positive)
-                    else
-                        ContextCompat.getColor(context, R.color.textview_color)
-
-            holder.negative_count.textColor =
-                    if (mComment.negative_status)
-                        ContextCompat.getColor(context,
-                                R.color.comment_item_content_select_negative)
-                    else
-                        ContextCompat.getColor(context, R.color.textview_color)
-
-            holder.positive_count.text = context.resources.getString(R.string.positive_symbol, mComment.vote_positive)
-            holder.negative_count.text = context.resources.getString(R.string.negative_symbol, mComment.vote_negative)
-            holder.comment_count.text = context.resources.getString(R.string.tucao_count_text, mComment.sub_comment_count)
-
-            holder.positive_count.setOnClickListener {
-                if (!mComment.positive_status && !mComment.negative_status) {
-                    AppDB.savePositiveRecord(mComment.comment_ID)
-                    mComment.vote_positive += 1
-                    mComment.positive_status = true
-                    notifyItemChanged(position, PAYLOAD)
-                    onPositiveClickListener.invoke(mComment)
+                negative_count.setOnClickListener {
+                    if (!mComment.positive_status && !mComment.negative_status) {
+                        AppDB.saveNegativeRecord(mComment.comment_ID)
+                        mComment.vote_negative += 1
+                        mComment.negative_status = true
+                        notifyItemChanged(position, PAYLOAD)
+                        onNegativeClickListener.invoke(mComment)
+                    }
                 }
-            }
 
-            holder.negative_count.setOnClickListener {
-                if (!mComment.positive_status && !mComment.negative_status) {
-                    AppDB.saveNegativeRecord(mComment.comment_ID)
-                    mComment.vote_negative += 1
-                    mComment.negative_status = true
-                    notifyItemChanged(position, PAYLOAD)
-                    onNegativeClickListener.invoke(mComment)
+                comment_count.setOnClickListener {
+                    onCommentClickListener.invoke()
                 }
-            }
 
-            holder.comment_count.setOnClickListener {
-                onCommentClickListener.invoke()
-            }
+                more.setOnClickListener {
+                    onMoreClickListener.invoke(more, mComment)
+                }
 
-            holder.more.setOnClickListener {
-                onMoreClickListener.invoke(holder.more, mComment)
             }
-
-        }
     }
 
     override fun getItemCount() = mList.size
@@ -195,17 +192,7 @@ class CommentDataAdapter(
         notifyItemRemoved(mList.size)
     }
 
-    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val author: TextView = view.findViewById(R.id.author)
-        val time: TextView = view.findViewById(R.id.time)
-        val content: TextView = view.findViewById(R.id.content)
-        val pic_content: View = view.findViewById(R.id.pic_content)
-        val pic: SimpleDraweeView = view.findViewById(R.id.pic)
-        val positive_count: TextView = view.findViewById(R.id.positive_count)
-        val negative_count: TextView = view.findViewById(R.id.negative_count)
-        val comment_count: TextView = view.findViewById(R.id.comment_count)
-        val more: ImageView = view.findViewById(R.id.more)
-    }
+    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
