@@ -1,5 +1,6 @@
 package cn.putong.commonlibrary.adapter
 
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -31,14 +32,16 @@ class CommentDataAdapter(
 
     private var FOOTER: CommentModel.Comment = CommentModel.Comment()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int):
+            RecyclerView.ViewHolder {
         val attachToRoot = false
         return if (viewType == TYPE_NORMAL)
             CardViewHolder(LayoutInflater.from(parent?.context)
                     .inflate(R.layout.item_comment, parent, attachToRoot))
         else
             PostDataAdapter
-                    .FooterViewHolder(LayoutInflater.from(parent?.context)
+                    .FooterViewHolder(LayoutInflater
+                            .from(parent?.context)
                             .inflate(R.layout.item_recyclerview_footer, parent, attachToRoot))
     }
 
@@ -89,12 +92,10 @@ class CommentDataAdapter(
                     // 是段子数据,隐藏图片显示
                     pic.visibility = View.GONE
                 } else {
-                    // 目前默认显示一张
                     val mPicUrl = mComment.pics[0]
-                    // 设置自适应高度
-                    FrescoHelper
-                            .setControllerListener(pic, mPicUrl, imageWidth = 1050)
-
+                    FrescoHelper.setAnimatorController(Uri.parse(mPicUrl),pic)
+//                    FrescoHelper
+//                            .setControllerListener(pic, mPicUrl, imageWidth = 1050)
                     pic.visibility = View.VISIBLE
                     pic.setOnClickListener {
                         onPicClickListener.invoke(mComment.pics)
